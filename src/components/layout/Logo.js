@@ -40,10 +40,10 @@ export function Logo({ variant = "header" }) {
         />
       </div>
       <div className="flex gap-2">
-        <span className="font-title text-2xl font-bold tracking-tight text-[#1C1B1B] leading-none">
+        <span className="font-title text-xl sm:text-xl lg:text-2xl font-bold tracking-tight text-[#1C1B1B] leading-none">
           BYMER
         </span>
-        <span className="font-title text-2xl font-bold tracking-tight text-[#1C1B1B] leading-none">
+        <span className="font-title text-xl sm:text-xl lg:text-2xl font-bold tracking-tight text-[#1C1B1B] leading-none">
           ELASTOMERS
         </span>
       </div>

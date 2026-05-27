@@ -8,7 +8,7 @@ function ContactHero() {
       {/* Background Image Container */}
       <div className="absolute inset-0 z-0">
         <Image 
-          src="/images/Background Image contact.png" 
+          src="/images/backgroundContact.png" 
           alt="Contact Bymer Elastomers" 
           fill
           sizes="100vw"

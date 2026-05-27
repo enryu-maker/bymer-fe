@@ -13,17 +13,17 @@ export function Header() {
   const navLinks = [
     { name: "HOME", href: "/" },
     { name: "ABOUT", href: "/about" },
-    { name: "PRODUCTS", href: "/#products" },
-    { name: "COMPOUNDS", href: "/#compounds" },
-    { name: "MACHINERY", href: "/#machinery" },
+    { name: "PRODUCTS", href: "/products" },
+    { name: "COMPOUNDS", href: "/compounds" },
+    { name: "MACHINERY", href: "/machinery" },
     { name: "TESTIMONIALS", href: "/#testimonials" },
   ];
 
   return (
     <header className="w-full sticky top-0 z-50 flex flex-col">
       {/* 1. TOP HEADER STRIP */}
-      <div className="w-full bg-[#1C1B1B] text-[#FCF9F8] border-b border-[#313030] py-2.5">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-2 font-subtitle text-xs font-bold tracking-wider">
+      <div className="hidden md:block w-full bg-[#1C1B1B] text-[#FCF9F8] border-b border-[#313030] py-2.5">
+        <div className="w-full mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-2 font-subtitle text-xs font-bold tracking-wider">
           {/* Left contact */}
           <div className="flex flex-wrap items-center justify-center gap-6">
             <a href="tel:+919822079899" className="inline-flex items-center gap-2 hover:text-[#FDC003] transition-colors">

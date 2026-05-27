@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { ContactBanner } from "../layout/ContactBanner";
 
 // 1. ABOUT HERO
 function AboutHero() {
@@ -8,11 +9,11 @@ function AboutHero() {
       {/* Background Image Container */}
       <div className="absolute inset-0 z-0">
         <Image 
-          src="/images/background image aboutus.png" 
+          src="/images/backgroundAbout.png" 
           alt="About Bymer Elastomers" 
           fill
           sizes="100vw"
-          className="object-cover opacity-30 filter grayscale"
+          className="object-cover opacity-40 filter grayscale"
           priority
         />
       </div>
@@ -303,8 +304,9 @@ function CommitmentBanner() {
           <Image 
             src="/icons/play.svg" 
             alt="Play Icon" 
-            width={56}  
-            height={56}
+            width={60}  
+            height={60}
+            style={{ width: "auto", height: "auto" }}
             className="text-[#FDC003] fill-current transform translate-x-0.5 group-hover:text-[#B81312] transition-colors" />
         </div>
 
@@ -359,38 +361,7 @@ function ClientLogos() {
   );
 }
 
-// 8. CONTACT BANNER
-function ContactBanner() {
-  return (
-    <section className="w-full bg-[#FDC003] text-[#1C1B1B] border-2 border-[#1C1B1B] py-8 px-8 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-        <div className="flex items-center gap-4 text-left w-full md:w-auto">
-          <div className="flex items-center justify-center w-12 h-12 bg-white border-2 border-[#1C1B1B] text-[#1C1B1B] flex-shrink-0 relative">
-            <Image
-              src="/icons/inbox_text.svg"
-              alt="Inbox Icon"
-              width={24}
-              height={24}
-              className="object-contain"
-            />
-          </div>
-          <span className="font-title text-xl sm:text-2xl lg:text-3xl font-bold tracking-wide uppercase leading-none text-[#1C1B1B]">
-            GET IN TOUCH, & WE&apos;LL RESPOND SOON!
-          </span>
-        </div>
-
-        <div className="flex-shrink-0 w-full md:w-auto flex justify-end md:justify-start">
-          <Link 
-            href="/contact" 
-            className="w-full md:w-auto text-center bg-[#1C1B1B] text-white font-title text-sm lg:text-base font-bold tracking-widest uppercase px-6 py-4.5 border-2 border-[#1C1B1B] shadow-[4px_4px_0px_0px_#FFFFFF] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_0px_#FFFFFF] active:translate-x-0 active:translate-y-0 active:shadow-[4px_4px_0px_0px_#FFFFFF] transition-all duration-150 rounded-none"
-          >
-            CONTACT NOW
-          </Link>
-        </div>
-      </div>
-    </section>
-  );
-}
+// MAIN ABOUT PAGE COMPONENT
 
 // MAIN ABOUT PAGE COMPONENT
 export function AboutPage() {
