@@ -2,37 +2,47 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
-import { ContactBanner } from "../layout/ContactBanner";
 
 // 1. HISTORICAL MILESTONES DATA
 const HISTORICAL_MILESTONES = [
   {
     year: "1992",
-    shortTitle: "FOUNDED WITH EX...",
+    shortTitle: "Founded",
     fullTitle: "FOUNDED WITH EXPERTISE",
+    cardTitle: "FOUNDED WITH EXPERTISE",
+    roadmapLabel: "FOUNDED",
     description: "Bymer Elastomers, led by CEO Mr. Yezdi B. Patel, was established in 1992 with over 60 years of experience in rubber technology and manufacturing. This laid down the manufacturing headquarters at Nashik, Ambad MIDC to process severe-duty mechanical isolators and custom compounds.",
+    cardDescription: "Bymer Elastomers, led by CEO Mr. Yazdi B. Patel, was established in 1992 with over 60 years of experience in rubber technology and manufacturing.",
     image: "/images/section1.png"
   },
   {
     year: "2001",
-    shortTitle: "STEADY EXPANSIO...",
+    shortTitle: "Expansion",
     fullTitle: "STEADY GROWTH & EXPANSION",
+    cardTitle: "STEADY GROWTH",
+    roadmapLabel: "EXPANSION",
     description: "We have grown to supply high-quality rubber products to over 50 customers across various industries, both in India and overseas. Deployed high-efficiency automated mixing and testing infrastructure to meet growing demand scales.",
+    cardDescription: "We have grown to supply high-quality rubber products to over 50 customers across various industries, both in India and overseas.",
     image: "/images/section3 homepage.png"
   },
   {
     year: "2007",
-    shortTitle: "LEADING THE IND...",
+    shortTitle: "Leading Industry",
     fullTitle: "LEADING THE INDUSTRY IN COMPOUNDING",
+    cardTitle: "LEADING THE INDUSTRY",
+    roadmapLabel: "MARKET LEADER",
     description: "We are becoming a key player in manufacturing rubber compounds, molded products, and rubber-to-metal bonded solutions for the automotive, aerospace, and industrial sectors. Attained our key ISO and quality certification frameworks.",
+    cardDescription: "We are becoming a key player in manufacturing rubber compounds, molded products, and rubber-to-metal bonded solutions for the automotive, aerospace, and industrial sectors.",
     image: "/images/section2 homepage.png"
   },
   {
     year: "2024",
-    shortTitle: "OUR DREAM",
+    shortTitle: "Our Dream",
     fullTitle: "OUR DREAM OF EXCELLENCE",
+    cardTitle: "OUR DREAM",
+    roadmapLabel: "OUR DREAM",
     description: "To be a world-class rubber manufacturing company, achieving 100% customer satisfaction, ensuring a safe work environment, and continuously upgrading our technology directly within our plants.",
+    cardDescription: "To be a world-class rubber manufacturing company, achieving 100% customer satisfaction, ensuring a safe work environment, and continuously upgrading our technology.",
     image: "/images/sectio2 aboutpage.png"
   }
 ];
@@ -41,21 +51,25 @@ const HISTORICAL_MILESTONES = [
 const LEADERSHIP_STAT_BOXES = [
   {
     num: "01",
+    code: "TRACK",
     title: "RIGOROUS TESTING",
     desc: "We leverage high-frequency rheometry and tensile testing machinery to evaluate dynamic compound characteristics under continuous heat and solvent cycles."
   },
   {
     num: "02",
+    code: "BASE",
     title: "STRATEGIC FORMULATIONS",
     desc: "Formulating high-performance EPDM, Nitrile, Viton (FKM), Neoprene, and VMQ Silicone bases aligned perfectly with ASTM D2000 code-callouts."
   },
   {
     num: "03",
+    code: "MATRICES",
     title: "QUALITY CREDENTIALS",
     desc: "Fully compliant certification matrices (IATF 16949 / ISO 9001 / ISO 14001) ensuring a secure, standard-driven technical supply pipeline."
   },
   {
     num: "04",
+    code: "EXPORTS",
     title: "GLOBAL EXPORTERS",
     desc: "Formulating and manufacturing custom automotive dampers and low-pressure hose profiles shipped to rigorous international markets directly."
   }
@@ -64,41 +78,30 @@ const LEADERSHIP_STAT_BOXES = [
 // 3. HERO COMPONENT
 function HistoryHero() {
   return (
-    <header className="relative w-full border-b-2 border-[#1C1B1B] overflow-hidden bg-[#1C1B1B] py-20 sm:py-24 lg:py-28">
+    <header className="relative w-full border-b border-[#e5e7eb] overflow-hidden bg-white min-h-[300px] sm:min-h-[350px] flex items-center justify-center">
       {/* Background Image Container */}
       <div className="absolute inset-0 z-0">
         <Image 
           src="/images/backgroundAbout.png" 
-          alt="Bymer Elastomers Factory Facility background" 
+          alt="Bymer Elastomers History Background" 
           fill
           sizes="100vw"
-          className="object-cover opacity-25 filter grayscale"
+          className="object-cover opacity-35 filter grayscale"
           priority
-        />
-        {/* Technical grid overlay */}
-        <div 
-          className="absolute inset-0 pointer-events-none opacity-[0.04]" 
-          style={{
-            backgroundImage: "linear-gradient(#FCF9F8 2px, transparent 2px), linear-gradient(90deg, #FCF9F8 2px, transparent 2px)",
-            backgroundSize: "30px 30px"
-          }}
         />
       </div>
 
+      {/* Dark semi-transparent overlay */}
+      <div className="absolute inset-0 bg-[#0a0a0a]/70 z-10 pointer-events-none" />
+
       {/* Hero Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center gap-2.5 text-center">
-        <span className="font-subtitle text-xs sm:text-sm font-bold tracking-[0.25em] text-[#DCD9D9] uppercase leading-none">
-          HOME / HISTORY
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-20 flex flex-col items-center gap-3">
+        <span className="font-montserrat text-xs sm:text-sm font-bold tracking-[0.2em] text-[#9ca3af] uppercase leading-none">
+          HOME <span className="text-[#C75550]">/</span> HISTORY
         </span>
-        <h1 
-          className="font-title text-5xl sm:text-7xl font-black uppercase text-[#FCF9F8] tracking-tight relative inline-block"
-          style={{
-            textShadow: "4px 4px 0px #1C1B1B"
-          }}
-        >
+        <h1 className="font-title text-4xl sm:text-6xl font-black uppercase text-white tracking-tight leading-none">
           OUR HISTORY
         </h1>
-        <div className="w-24 h-[5px] bg-[#B81312] mt-1" />
       </div>
     </header>
   );
@@ -107,82 +110,73 @@ function HistoryHero() {
 // 4. MAIN HISTORY PAGE COMPONENT
 export function HistoryPage() {
   const [activeTabIdx, setActiveTabIdx] = useState(0);
+  const [activeChronologyIdx, setActiveChronologyIdx] = useState(0);
   const activeMilestone = HISTORICAL_MILESTONES[activeTabIdx];
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#FCF9F8]">
+    <div className="min-h-screen flex flex-col bg-white">
       
       {/* History Hero */}
       <HistoryHero />
 
-      {/* SECTION 1: SYSTEM LEDGER & TABS SELECTOR */}
-      <main className="w-full py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* SECTION 1: TABS SELECTOR & ACTIVE DETAIL */}
+      <main className="w-full py-16 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-white">
         
-        {/* Monospaced Stripe Header */}
-        <div className="w-full bg-[#FCF9F8] border-2 border-[#1C1B1B] py-4.5 px-6 font-subtitle text-xs sm:text-sm font-bold tracking-widest uppercase flex items-center justify-between shadow-[4px_4px_0px_0px_#1C1B1B] mb-10">
-          <span className="text-[#1C1B1B]">■ SYSTEM LEDGER // RECORDED MILESTONES (1992 - 2026)</span>
-        </div>
-
         {/* Milestone tab selectors grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
           {HISTORICAL_MILESTONES.map((milestone, idx) => {
             const isSelected = activeTabIdx === idx;
             return (
               <button
                 key={milestone.year}
                 onClick={() => setActiveTabIdx(idx)}
-                className={`w-full border-2 border-[#1C1B1B] p-6 text-center transition-all duration-100 uppercase rounded-none cursor-pointer ${
+                className={`w-full py-4 px-6 text-center font-montserrat text-xs sm:text-sm font-bold uppercase tracking-wider transition-colors duration-150 rounded-none cursor-pointer flex items-center justify-center gap-2 ${
                   isSelected 
-                    ? "bg-[#FDC003] text-[#1C1B1B] shadow-[4px_4px_0px_0px_#1C1B1B] translate-x-[-2px] translate-y-[-2px] font-bold"
-                    : "bg-white text-[#1C1B1B]/70 hover:bg-[#F0EDEC]"
+                    ? "bg-[#1c1b1b] text-white border border-[#1c1b1b]"
+                    : "bg-white text-[#4b5563] hover:text-[#1c1b1b] hover:bg-[#f9fafb] border border-[#e5e7eb]"
                 }`}
               >
-                <div className="font-title text-xl sm:text-2xl font-black">{milestone.year}</div>
-                <div className="font-subtitle text-[10px] tracking-wider mt-1 truncate">{milestone.shortTitle}</div>
+                {isSelected && (
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#fbbd05] inline-block animate-pulse" />
+                )}
+                <span>{milestone.year} &mdash; {milestone.shortTitle}</span>
               </button>
             );
           })}
         </div>
 
         {/* Dynamic Detail Card Box */}
-        <div className="bg-white border-4 border-[#1C1B1B] shadow-[8px_8px_0px_0px_#1C1B1B] p-8 sm:p-10 lg:p-12 overflow-hidden w-full transition-all duration-200">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+        <div className="w-full bg-white transition-all duration-200">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
             
-            {/* Left side text detail */}
-            <div className="lg:col-span-7 flex flex-col items-start gap-5">
+            {/* Left side text detail (7 cols) */}
+            <div className="lg:col-span-7 flex flex-col items-start text-left">
               
-              {/* Massive red outline year tag */}
-              <div className="border-2 border-[#B81312] px-4 py-2 text-[#B81312] font-title text-2xl sm:text-3xl font-black tracking-wider leading-none select-none shadow-[2px_2px_0px_0px_#1C1B1B]">
+              {/* Red year tag */}
+              <div className="bg-[#C75550] text-white font-montserrat text-xs sm:text-sm font-bold px-3 py-1.5 uppercase leading-none rounded-none w-fit">
                 {activeMilestone.year}
               </div>
 
-              <h2 className="font-title text-3xl sm:text-4xl lg:text-5xl font-black text-[#1C1B1B] uppercase leading-none tracking-tight">
+              <h2 className="font-title text-3xl sm:text-4xl lg:text-5xl font-black text-[#1c1b1b] uppercase leading-tight tracking-tight mt-6">
                 {activeMilestone.fullTitle}
               </h2>
 
-              <div className="w-full border-t border-[#1C1B1B] my-1" />
+              {/* Short yellow divider line */}
+              <div className="w-12 h-[4px] bg-[#fbbd05] mt-4 mb-6" />
 
-              <p className="font-body text-base text-[#1C1B1B]/80 leading-relaxed text-left">
+              <p className="font-body text-sm sm:text-base text-[#4b5563] leading-relaxed text-left">
                 {activeMilestone.description}
               </p>
             </div>
 
-            {/* Right side plant facade image */}
-            <div className="lg:col-span-5 w-full relative aspect-[4/3] border-2 border-[#1C1B1B] bg-[#FCF9F8] overflow-hidden">
+            {/* Right side plant facade image (5 cols) */}
+            <div className="lg:col-span-5 w-full relative aspect-[4/3] border border-[#e5e7eb] bg-[#f9fafb] overflow-hidden">
               <Image 
                 src={activeMilestone.image}
                 alt={`${activeMilestone.year} Corporate Plant Facility`}
                 fill
                 sizes="(max-w-lg) 100vw, 500px"
                 className="object-cover filter grayscale"
-              />
-              {/* Technical drawing mesh mask overlay */}
-              <div 
-                className="absolute inset-0 bg-transparent opacity-10 pointer-events-none" 
-                style={{
-                  backgroundImage: "radial-gradient(#1C1B1B 1px, transparent 1px)",
-                  backgroundSize: "16px 16px"
-                }} 
               />
             </div>
 
@@ -192,99 +186,136 @@ export function HistoryPage() {
       </main>
 
       {/* SECTION 2: CHRONOLOGY ROADMAP TIMELINE */}
-      <section className="w-full py-24 bg-[#F0EDEC] border-y-2 border-[#1C1B1B]">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
+      <section className="w-full py-24 bg-white border-t border-b border-[#f3f4f6]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
           
-          <span className="font-subtitle text-xs font-bold text-[#B81312] uppercase tracking-[0.2em] leading-none mb-2">
-            // HISTORICAL ROADMAP
+          <span className="font-montserrat text-xs font-bold text-[#C75550] uppercase tracking-[0.22em] leading-none mb-3">
+            HISTORICAL ROADMAP
           </span>
-          <h2 className="font-title text-4xl sm:text-5xl font-black uppercase text-[#1C1B1B] tracking-tight relative inline-block mb-16">
+          <h2 className="font-title text-3xl sm:text-4xl lg:text-[40px] font-black uppercase text-[#1c1b1b] tracking-tight mb-2">
             THE CHRONOLOGY OF GROWTH
-            <span className="absolute left-1/4 bottom-[-6px] w-1/2 h-[5px] bg-[#B81312]" />
           </h2>
 
-          {/* Vertical Timeline Wrapper with Left-Aligned Track Line */}
-          <div className="relative w-full max-w-4xl mx-auto pl-10 sm:pl-16">
-            
-            {/* Timeline Vertical Track Line */}
-            <div className="absolute left-[36px] sm:left-[48px] top-0 bottom-0 w-[4px] bg-[#1C1B1B]" />
+          {/* Horizontal Interactive Timeline Line (visible on md screens and above) */}
+          <div className="hidden md:block w-full max-w-4xl mx-auto mt-14 mb-16 relative px-12">
+            {/* Absolute centered track line that extends nicely past node edges */}
+            <div className="absolute left-6 right-6 top-[22px] h-[1.5px] bg-[#e5e7eb] z-0" />
 
-            <div className="flex flex-col gap-12 w-full relative py-4">
-              {HISTORICAL_MILESTONES.map((milestone) => (
-                <div 
-                  key={`timeline-${milestone.year}`}
-                  className="relative pl-16 sm:pl-12 flex items-center justify-start w-full min-h-[5.5rem]"
-                >
-                  
-                  {/* Timeline Node Block (Year tag) Absolute-positioned on the Track Line */}
-                  <div className="absolute left-[-34px] sm:left-[-54px] top-1/2 -translate-y-1/2 z-20 flex items-center justify-center">
-                    <div className="relative bg-[#FDC003] text-[#1C1B1B] font-title text-base sm:text-lg lg:text-2xl font-black border-2 border-[#1C1B1B] py-2 px-3 sm:px-4 leading-none text-center shadow-[3px_3px_0px_0px_#1C1B1B] select-none rounded-none w-16 sm:w-20">
-                      {milestone.year}
-                      {/* Industrial Tag Top-Right Notch */}
-                      <span className="absolute right-1.5 -top-[8px] w-2.5 h-2 bg-[#FDC003] border-t-2 border-x-2 border-[#1C1B1B]" />
-                    </div>
+            <div className="flex justify-between relative z-10">
+              {HISTORICAL_MILESTONES.map((milestone, idx) => {
+                const isSelected = activeChronologyIdx === idx;
+                const lastTwoDigits = milestone.year.slice(-2);
+                return (
+                  <div key={`node-${milestone.year}`} className="flex flex-col items-center select-none">
+                    {/* Circle Node */}
+                    <button
+                      onClick={() => setActiveChronologyIdx(idx)}
+                      className={`w-11 h-11 rounded-full flex items-center justify-center font-title text-base font-bold transition-all duration-250 cursor-pointer z-10 ${
+                        isSelected 
+                          ? "bg-[#1c1b1b] text-[#fbbd05] border-2 border-[#1c1b1b] shadow-sm scale-105"
+                          : "bg-white text-[#cbd5e1] border border-[#cbd5e1] hover:border-[#1c1b1b] hover:text-[#1c1b1b]"
+                      }`}
+                    >
+                      {lastTwoDigits}
+                    </button>
+                    {/* Label below circle */}
+                    <span className={`font-montserrat text-[11px] tracking-wider mt-4 uppercase transition-colors duration-255 ${
+                      isSelected ? "text-[#1c1b1b] font-bold" : "text-[#9ca3af] font-medium"
+                    }`}>
+                      {milestone.year} — {milestone.roadmapLabel}
+                    </span>
                   </div>
-
-                  {/* Aligned Card details block */}
-                  <div className="w-full">
-                    <div className="bg-[#FCF9F8] border-2 border-[#1C1B1B] shadow-[4px_4px_0px_0px_#1C1B1B] p-6 sm:p-8 text-left w-full hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_0px_#1C1B1B] active:translate-y-0 active:shadow-[4px_4px_0px_0px_#1C1B1B] transition-all duration-150">
-                      <h4 className="font-title text-xl sm:text-2xl font-black text-[#1C1B1B] uppercase leading-none">
-                        {milestone.fullTitle}
-                      </h4>
-                      <p className="font-body text-xs sm:text-sm text-[#1C1B1B]/70 leading-relaxed mt-3">
-                        {milestone.description}
-                      </p>
-                    </div>
-                  </div>
-
-                </div>
-              ))}
+                );
+              })}
             </div>
+          </div>
 
+          {/* Milestone Cards Grid (stacked on mobile, 2 columns on sm, 4 columns on md+) */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 w-full mt-10 md:mt-0">
+            {HISTORICAL_MILESTONES.map((milestone, idx) => {
+              const isSelected = activeChronologyIdx === idx;
+              return (
+                <div 
+                  key={`card-${milestone.year}`}
+                  onClick={() => setActiveChronologyIdx(idx)}
+                  className={`bg-white border p-8 flex flex-col justify-start text-left min-h-[300px] transition-all duration-300 hover:-translate-y-1 hover:shadow-md cursor-pointer rounded-none ${
+                    isSelected 
+                      ? "border-[#e5e7eb] border-t-[3.5px] border-t-[#1c1b1b]"
+                      : "border-[#e5e7eb] border-t border-t-[#e5e7eb]"
+                  }`}
+                >
+                  <span className={`font-title text-[32px] font-black leading-none tracking-tight transition-colors duration-300 ${
+                    isSelected ? "text-[#1c1b1b]" : "text-[#cbd5e1]"
+                  }`}>
+                    {milestone.year}
+                  </span>
+                  
+                  <h3 className="font-title text-base font-black text-[#1c1b1b] uppercase tracking-tight mt-3 mb-4">
+                    {milestone.cardTitle}
+                  </h3>
+                  
+                  <p className="font-body text-xs sm:text-[13.5px] text-[#4b5563] leading-relaxed">
+                    {milestone.cardDescription}
+                  </p>
+                </div>
+              );
+            })}
           </div>
 
         </div>
       </section>
 
       {/* SECTION 3: MANAGERIAL LEADERSHIP GRID */}
-      <section className="w-full py-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-[#FCF9F8]">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+      <section className="w-full py-24 bg-white border-b border-[#f3f4f6]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center">
           
-          {/* Left information banner details */}
-          <div className="lg:col-span-4 flex flex-col items-start gap-6 text-left">
-            <span className="font-subtitle text-xs font-bold text-[#B81312] uppercase tracking-[0.2em] leading-none pl-0.5">
-              // MANAGERIAL LEADERSHIP
-            </span>
-            <h2 className="font-title text-4xl sm:text-5xl font-black text-[#1C1B1B] uppercase leading-[1.05] tracking-tight">
-              ENGINEERING <br />GROUNDED IN <br />EXCELLENCE
-            </h2>
-            <p className="font-body text-base text-[#1C1B1B]/80 leading-relaxed mt-2">
-              Our legacy is built on formulating customized chemical compounds that withstand aggressive environments. From specialized automotive subframes to aerospace gaskets, we engineer safety metrics directly into our elastomers.
-            </p>
-            
-            {/* Approved yellow block banner */}
-            <div className="w-full bg-[#FDC003] border-2 border-[#1C1B1B] p-5 font-title text-sm lg:text-base font-bold uppercase tracking-wider text-[#1C1B1B] flex items-center gap-3 shadow-[4px_4px_0px_0px_#1C1B1B] select-none mt-4 rounded-none">
-              <span>🛠️</span>
-              <span>APPROVED SUPPLIER: LEADING GLOBAL TIER-1 COMPANIES</span>
+          {/* Header Split Row */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-end w-full mb-12">
+            {/* Left Column: Subtitle & Title */}
+            <div className="lg:col-span-7 flex flex-col items-start text-left">
+              <span className="font-montserrat text-xs font-bold text-[#C75550] uppercase tracking-[0.22em] leading-none mb-3">
+                MANAGERIAL LEADERSHIP
+              </span>
+              <h2 className="font-title text-3xl sm:text-4xl lg:text-[40px] font-black text-[#1c1b1b] uppercase leading-[1.1] tracking-tight">
+                ENGINEERING GROUNDED IN <br className="hidden sm:inline" />EXCELLENCE
+              </h2>
+            </div>
+
+            {/* Right Column: Description */}
+            <div className="lg:col-span-5 text-left">
+              <p className="font-body text-sm sm:text-[14.5px] text-[#4b5563] leading-relaxed">
+                Our legacy is built on formulating customized chemical compounds that withstand aggressive environments. From specialized automotive subframes to aerospace gaskets, we engineer safety metrics directly into our elastomers.
+              </p>
             </div>
           </div>
 
-          {/* Right 2x2 grid stats/philosophies */}
-          <div className="lg:col-span-8 w-full grid grid-cols-1 sm:grid-cols-2 gap-6">
+          {/* Approved Supplier Black Banner */}
+          <div className="w-full bg-[#1c1b1b] border-l-[6px] border-l-[#C75550] py-4 px-6 flex items-center justify-center gap-3 mb-12 select-none rounded-none">
+            <i className="fa-solid fa-earth-americas text-[#fbbd05] text-sm sm:text-base"></i>
+            <span className="font-title text-xs sm:text-[13.5px] font-bold uppercase tracking-wider text-white">
+              APPROVED SUPPLIER: LEADING GLOBAL TIER-1 COMPANIES
+            </span>
+          </div>
+
+          {/* 4-Card Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
             {LEADERSHIP_STAT_BOXES.map((box) => (
               <div 
                 key={box.num} 
-                className="bg-white border-2 border-[#1C1B1B] p-8 text-left flex flex-col items-start gap-4 shadow-[4px_4px_0px_0px_#1C1B1B] hover:translate-y-[-2px] hover:shadow-[5px_5px_0px_0px_#1C1B1B] transition-all rounded-none"
+                className="bg-white border border-[#e5e7eb] p-8 text-left flex flex-col items-start min-h-[260px] transition-all duration-300 hover:-translate-y-1 hover:shadow-md cursor-pointer rounded-none"
               >
-                {/* Accent red number */}
-                <div className="font-title text-4xl font-black text-[#B81312] leading-none tracking-tight">
-                  {box.num}
-                </div>
-                <h3 className="font-title text-xl font-bold tracking-tight text-[#1C1B1B] uppercase leading-none mt-1">
+                {/* Accent red code label */}
+                <span className="font-montserrat text-xs font-bold text-[#C75550] uppercase tracking-wider mb-3">
+                  {box.num} // {box.code}
+                </span>
+                
+                {/* Oswald Card Title */}
+                <h3 className="font-title text-lg font-black text-[#1c1b1b] uppercase tracking-tight mb-4">
                   {box.title}
                 </h3>
-                <div className="w-12 border-t-2 border-[#B81312] my-1" />
-                <p className="font-body text-sm text-[#1C1B1B]/70 leading-relaxed">
+                
+                {/* Inter Description */}
+                <p className="font-body text-xs sm:text-[13.5px] text-[#4b5563] leading-relaxed">
                   {box.desc}
                 </p>
               </div>
@@ -293,13 +324,6 @@ export function HistoryPage() {
 
         </div>
       </section>
-
-      {/* Get in touch banner at the bottom */}
-      <div className="w-full mx-auto px-4 sm:px-6 lg:px-0 mb-24">
-        <div className="w-full mx-auto border-y-2 border-r-2 lg:border-r-0 border-[#1C1B1B] shadow-[8px_8px_0px_0px_#1C1B1B] overflow-hidden">
-          <ContactBanner />
-        </div>
-      </div>
 
     </div>
   );

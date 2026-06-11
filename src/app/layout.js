@@ -1,16 +1,16 @@
-import { Archivo_Narrow, JetBrains_Mono, Inter } from "next/font/google";
+import { Oswald, Montserrat, Inter } from "next/font/google";
 import "./globals.css";
 
-const archivoNarrow = Archivo_Narrow({
-  variable: "--font-archivo-narrow",
+const oswald = Oswald({
+  variable: "--font-oswald",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["300", "400", "500", "600", "700"],
 });
 
-const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-jetbrains-mono",
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
   subsets: ["latin"],
-  weight: ["400", "500", "700"],
+  weight: ["300", "400", "500", "600", "700", "800"],
 });
 
 const inter = Inter({
@@ -31,8 +31,17 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${archivoNarrow.variable} ${jetbrainsMono.variable} ${inter.variable} h-full antialiased`}
+      className={`${oswald.variable} ${montserrat.variable} ${inter.variable} h-full antialiased`}
     >
+      <head>
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+          integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+          crossOrigin="anonymous"
+          referrerPolicy="no-referrer"
+        />
+      </head>
       <body className="min-h-full flex flex-col bg-[#FCF9F8] text-[#1C1B1B]">
         {children}
       </body>

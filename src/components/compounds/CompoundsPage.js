@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ContactBanner } from "../layout/ContactBanner";
 
 // 1. FORMULATION PRODUCTS DATA (THE MASTER 19 ENTRIES IN Dense Format)
 const COMPOUNDS_CATALOG = [
@@ -282,13 +281,6 @@ export function CompoundsPage() {
         </section>
 
       </main>
-
-      {/* Contact Banner at the bottom */}
-      <div className="w-full mx-auto px-4 sm:px-6 lg:px-0 mb-24">
-        <div className="w-full mx-auto border-y-2 border-r-2 lg:border-r-0 border-[#1C1B1B] shadow-[8px_8px_0px_0px_#1C1B1B] overflow-hidden">
-          <ContactBanner />
-        </div>
-      </div>
 
     </div>
   );

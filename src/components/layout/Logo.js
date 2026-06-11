@@ -1,52 +1,28 @@
 import Link from "next/link";
-import Image from "next/image";
 
 export function Logo({ variant = "header" }) {
-  if (variant === "footer") {
-    return (
-      <Link href="/" className="flex items-center gap-3 group">
-        <div className="relative w-12 h-12">
-          <Image
-            src="/icons/Logo.png"
-            alt="Bymer Elastomers Logo"
-            fill
-            sizes="48px"
-            className="object-contain transition-transform duration-200 group-hover:scale-105"
-            priority
-          />
-        </div>
-        <div className="flex flex-col">
-          <span className="font-title text-2xl font-bold tracking-tight text-white leading-none">
-            BYMER
-          </span>
-          <span className="font-subtitle text-xs font-bold tracking-widest text-[#FDC003] mt-0.5 leading-none">
-            ELASTOMERS
-          </span>
-        </div>
-      </Link>
-    );
-  }
+  const isFooter = variant === "footer";
 
   return (
-    <Link href="/" className="flex items-center gap-3 group">
-      <div className="flex-shrink-0 relative w-10 h-10">
-        <Image
-          src="/icons/Logo.png"
-          alt="Bymer Elastomers Logo"
-          fill
-          sizes="40px"
-          className="object-contain transition-transform duration-200 group-hover:scale-105"
-          priority
-        />
-      </div>
-      <div className="flex gap-2">
-        <span className="font-title text-xl sm:text-xl lg:text-2xl font-bold tracking-tight text-[#1C1B1B] leading-none">
+    <Link href="/" className="flex flex-col items-start group">
+      <div className="flex items-center gap-1.5 leading-none">
+        <span className={`font-montserrat text-xl sm:text-2xl font-black uppercase transition-transform duration-200 group-hover:scale-[1.01] ${
+          isFooter ? "text-[#f5f5f5]" : "text-[#1c1b1b]"
+        }`}>
           BYMER
         </span>
-        <span className="font-title text-xl sm:text-xl lg:text-2xl font-bold tracking-tight text-[#1C1B1B] leading-none">
+        <span className={`font-montserrat text-xl sm:text-2xl font-black tracking-wide uppercase transition-transform duration-200 group-hover:scale-[1.01] ${
+          isFooter ? "text-[#f5f5f5]/90" : "text-[#C75550]"
+        }`}>
           ELASTOMERS
         </span>
       </div>
+      <span className={`font-montserrat text-[9px] sm:text-[10px] font-bold tracking-widest mt-1.5 leading-none uppercase ${
+        isFooter ? "text-[#9ca3af]" : "text-[#1c1b1b]/60"
+      }`}>
+        EST 1999 | ISO 9001:2015
+      </span>
     </Link>
   );
 }
+

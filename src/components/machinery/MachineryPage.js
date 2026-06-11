@@ -8,127 +8,127 @@ import { ContactBanner } from "../layout/ContactBanner";
 const MACHINERY_CATALOG = [
   {
     id: "mach-1",
-    subtitle: "CAPABILITY // HIGH SPEED MOULDING",
+    subtitle: "MACHINERY // HIGH SPEC MOULDING",
     title: "INJECTION MOULDING MACHINES",
     specs: [
-      "MICROPROCESSOR PLC CONTROLLED SYSTEM",
-      "CAPACITY TONNAGE: 100 TO 250 TONS",
-      "INTEGRATED VACUUM ASSISTED SEALING",
-      "COLD RUNNER SYSTEM COMPATIBILITY",
-      "OPTIMIZED FOR CRITICAL TECHNICAL RUBBER MOULDED COMPONENTS"
+      "Thermoplastic flow control systems",
+      "Capacity range from 75T to 350T",
+      "Dedicated mold accuracy tooling",
+      "High-speed production capabilities",
+      "Suitable for precision technical rubber mouldings"
     ],
-    image: "/images/machineryCard  (1).png"
+    image: "/images/machineryCard1.png"
   },
   {
     id: "mach-2",
-    subtitle: "CAPABILITY // DEFECT-FREE VULCANIZATION",
+    subtitle: "MACHINERY // VACUUM VULCANIZATION",
     title: "VACUUM COMPRESSION MOULDING MACHINES",
     specs: [
-      "DUAL STATION SHUTTLE SYSTEMS",
-      "PLC MICROPROCESSOR CONTROL BOARD",
-      "CAPACITY TONNAGE: 150 TO 250 TONS",
-      "FULL ENCLOSED VACUUM CHAMBER ENCLOSURES",
-      "INTENDED EXCLUSIVELY FOR DEFECT-FREE HIGH DENSITY SEALS"
+      "Dual station shuttle systems",
+      "PLC microprocessor control board",
+      "Capacity range from 150T to 250T",
+      "Fully enclosed vacuum chamber enclosures",
+      "Intended for high density, defect-free seals"
     ],
-    image: "/images/machineryCard  (2).png"
+    image: "/images/machineryCard2.png"
   },
   {
     id: "mach-3",
-    subtitle: "CAPABILITY // HIGH TONNAGE VULCANIZATION",
+    subtitle: "MACHINERY // HIGH TONNAGE MOULDING",
     title: "COMPRESSION MOULDING MACHINES",
     specs: [
-      "MULTI-STATION DAYLIGHT PRESS CONFIGURATIONS",
-      "PRESS TONNAGE: 50 TO 250 TONS",
-      "MAX PLATEN WORKPLACE SIZE: UP TO 600X600 MM",
-      "INTEGRATED MICROPROCESSOR TEMPERATURE CONTROLLER",
-      "HEAVY-DUTY ARCHITECTURE BUILT FOR CONTINUOUS INDUSTRIAL RUNS"
+      "Multi-station daylight press configurations",
+      "Press tonnage from 50T to 250T",
+      "Max platen size up to 600 x 600 mm",
+      "Integrated microprocessor temperature controller",
+      "Heavy-duty architecture built for continuous runs"
     ],
-    image: "/images/machineryCard  (3).png"
+    image: "/images/machineryCard3.png"
   },
   {
     id: "mach-4",
-    subtitle: "CAPABILITY // HIGH SHEAR PREPARATION",
+    subtitle: "MACHINERY // COMPOUND PREPARATION",
     title: "KNEADER (HYDRAULIC) FOR COLORED COMPOUND MIXING",
     specs: [
-      "VESSEL NET CAPACITIES: 35 LITERS / 55 LITERS / 75 LITERS",
-      "ENVIRONMENTALLY SEALED DUST-FREE BATCH SYSTEM",
-      "HEAVY-DUTY STAINLESS STEEL WATER COOLED JACKET SYSTEM",
-      "STRICTLY SEGREGATED EQUIPMENT STATIONS FOR BLACK & COLORED COMPOUNDS",
-      "AUTOMATIC REAL-TIME TEMPERATURE MONITORING CONTROLS"
+      "Vessel capacities of 35L, 55L, and 75L",
+      "Environmentally sealed dust-free batch systems",
+      "Heavy-duty stainless steel water cooled jackets",
+      "Strictly segregated black & colored compound stations",
+      "Automatic real-time temperature monitoring"
     ],
-    image: "/images/machineryCard  (4).png"
+    image: "/images/machineryCard4.png"
   },
   {
     id: "mach-5",
-    subtitle: "CAPABILITY // INTENSE HOMOGENIZATION",
+    subtitle: "MACHINERY // MATERIAL PROCESSING",
     title: "MIXING MILL FOR COLORED COMPOUNDS",
     specs: [
-      "DUAL-ROLL OPEN COLD FEED COMPOUND MIXING MILLS",
-      "ROLL SIZES ACCESSED: 12X30 INCH / 14X36 INCH / 16X42 INCH",
-      "HIGH CAPACITY CONTINUOUS-CIRCULATION WATER COOLED SYSTEM",
-      "INTEGRATED BATCH OFF SYSTEM WITH CONVEYING REELS",
-      "SPECIALLY ALLOCATED STATION ELIMINATING ANY RAW CROSS-CONTAMINATION"
+      "Dual-roll open cold feed mixing mills",
+      "Roll sizes: 12x30, 14x36, and 16x42 inches",
+      "High capacity water cooling circulation",
+      "Integrated batch off systems with conveying reels",
+      "Dedicated stations eliminating cross-contamination"
     ],
-    image: "/images/machineryCard  (5).png"
+    image: "/images/machineryCard5.png"
   },
   {
     id: "mach-6",
-    subtitle: "CAPABILITY // UNIFORM SHEETING",
-    title: "3 ROLL CALENDER MACHINE FOR RUBBER SHEETING & FABRIC FRICTIONING",
+    subtitle: "MACHINERY // CALENDERING & SHEETING",
+    title: "3 ROLL CALENDER MACHINE FOR RUBBER SHEETING",
     specs: [
-      "INTEGRATED HIGH PRECISION MICROMETRIC ROLL GAPPING GAUGE",
-      "CAPACITY SHEETING WIDTH: UP TO 600 MM MAXIMUM",
-      "INTEGRATED HOT-WATER / SATURATED STEAM HEATED ROLL SYSTEM",
-      "FORMULATED TO SHIP CONTINUOUS CONCURRENT UNIFORM RUBBER SHEETS",
-      "INTEGRATED CO-FRICTIONING DEVICE FOR HOSE REINFORCING FABRICS"
+      "High precision micrometric roll gapping gauge",
+      "Maximum sheeting width up to 600 mm",
+      "Integrated hot-water and steam heating systems",
+      "Formulated for uniform rubber sheets",
+      "Integrated co-frictioning for hose reinforcing fabrics"
     ],
-    image: "/images/machineryCard  (6).png"
+    image: "/images/machineryCard6.png"
   },
   {
     id: "mach-7",
-    subtitle: "CAPABILITY // PROFILE EXTRUSION",
+    subtitle: "MACHINERY // PROFILE EXTRUSION",
     title: "EXTRUDERS",
     specs: [
-      "COEXISTING COLD FEED & HOT FEED TECHNOLOGY EXTRUSION HEADS",
-      "CYLINDER / SCREW DIAMETERS DEPLOYED: 50 MM / 60 MM / 75 MM",
-      "AUTOMATED MULTI-ZONE TEMPERATURE HEATING & COOLING JACKET PROCESSES",
-      "DESIGNED EXCLUSIVELY FOR SHAPED STRIPS, SEALS, BEADING CORDS, & HOSE EXTRUSIONS",
-      "INTEGRATED VARIABLE FREQUENCY RUN CONTROLLERS FOR GEOMETRIC STABILITY"
+      "Coexisting cold feed and hot feed extruder heads",
+      "Screw diameters: 50 mm, 60 mm, and 75 mm",
+      "Automated multi-zone jacketed heating and cooling",
+      "Designed for shaped strips, seals, and hose extrusions",
+      "Variable frequency controllers for profile stability"
     ],
-    image: "/images/machineryCard  (7).png"
+    image: "/images/machineryCard7.png"
   },
   {
     id: "mach-8",
-    subtitle: "CAPABILITY // UNIFORM HEAT-SET",
+    subtitle: "MACHINERY // DIRECT STEAM CURING",
     title: "STEAM VULCANIZERS",
     specs: [
-      "DIRECT INJECTED STEAM AUTOCLAVES FOR ENCLOSED HEATING CURING",
-      "VESSEL CHAMBER DIMENSIONS: DIAMETER UP TO 1000 MM, TOTAL LENGTH 3000 MM",
-      "PROGRAMMABLE REPETITIVE STEPPING TEMPERATURE SCHEDULING SYSTEM",
-      "SAFETY SECURED AUTOMATIC PRESSURE LOCK MECHANISMS",
-      "CRITICAL PIECE APPARATUS RESERVED FOR LARGE EXTRUDED ENGINE HOSE REELS & COUPLINGS"
+      "Direct injected steam autoclaves for enclosed curing",
+      "Vessel sizes: diameter up to 1000 mm, length 3000 mm",
+      "Programmable stepping temperature schedules",
+      "Safety secured automatic pressure lock mechanisms",
+      "Reserved for large extruded hose reels & couplings"
     ],
-    image: "/images/machineryCard  (8).png"
+    image: "/images/machineryCard8.png"
   },
   {
     id: "mach-9",
-    subtitle: "CAPABILITY // THERMAL UTILITIES",
+    subtitle: "MACHINERY // UTILITY SYSTEMS",
     title: "STEAM BOILER",
     specs: [
-      "CONTINUOUS SATURATED STEAM CAPACITY: 300 KG/HR TO 600 KG/HR",
-      "WORKING SAFE STEAM PRESSURES: 7 TO 10.5 KG/CM2 RANGE",
-      "COMPATIBILITY MODES: SOLID FUELS, INDUSTRIAL DIESEL & LIQUID GAS BOILERS",
-      "AUTOMATIC ELECTRONIC FEED WATER FLOW REGULATOR CONTROL DEVICE",
-      "HEAVY CAPACITY PRESSURE VENT SHUNTS AND HIGH SAFETY OVERPRESSURE VALVES"
+      "Saturated steam capacity: 300 to 600 kg/hr",
+      "Working steam pressures: 7 to 10.5 kg/cm2",
+      "Compatible with solid fuels, diesel, and liquid gas",
+      "Automatic electronic feed water regulators",
+      "High safety pressure vent shunts and valves"
     ],
-    image: "/images/machineryCard  (9).png"
+    image: "/images/machineryCard9.png"
   }
 ];
 
 // 2. HERO BANNER COMPONENT
 function MachineryHero() {
   return (
-    <header className="relative w-full border-b-2 border-[#1C1B1B] overflow-hidden bg-[#1C1B1B] py-20 sm:py-24 lg:py-28">
+    <header className="relative w-full border-b border-[#e5e7eb] overflow-hidden bg-white min-h-[300px] sm:min-h-[350px] flex items-center justify-center">
       {/* Background Image Container */}
       <div className="absolute inset-0 z-0">
         <Image 
@@ -139,26 +139,21 @@ function MachineryHero() {
           className="object-cover filter grayscale"
           priority
         />
-        {/* Technical Grid Overlay */}
-        <div 
-          className="absolute inset-0 pointer-events-none opacity-[0.03]" 
-          style={{
-            backgroundImage: "linear-gradient(#FCF9F8 2px, transparent 2px), linear-gradient(90deg, #FCF9F8 2px, transparent 2px)",
-            backgroundSize: "30px 30px"
-          }}
-        />
       </div>
 
+      {/* Dark semi-transparent overlay */}
+      <div className="absolute inset-0 bg-[#0a0a0a]/70 z-10 pointer-events-none" />
+
       {/* Hero Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-start gap-4">
-        <span className="font-subtitle text-xs sm:text-sm font-bold tracking-[0.25em] text-[#FDC003] uppercase leading-none bg-[#1C1B1B] px-3 py-1.5 border border-[#313030] shadow-[2px_2px_0px_0px_#B81312]">
-          BYMER // INFRASTRUCTURE & HEAVY PRODUCTION DIVISION
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-20 flex flex-col items-center gap-3">
+        <span className="font-montserrat text-xs sm:text-sm font-bold tracking-[0.2em] text-[#9ca3af] uppercase leading-none">
+          HOME / MACHINERY
         </span>
-        <h1 className="font-title text-5xl sm:text-7xl font-black uppercase text-[#FCF9F8] leading-[0.95] tracking-tighter">
-          MACHINERY USED (PLANT I)
+        <h1 className="font-title text-4xl sm:text-6xl font-black uppercase text-white tracking-tight leading-none mb-1">
+          MACHINERY
         </h1>
-        <p className="font-body text-base sm:text-lg text-[#DCD9D9] max-w-xl leading-relaxed mt-2 border-l-2 border-[#B81312] pl-4">
-          Complete listing of our high-tonnage moulding lines, vacuum-assisted presses, and material preparation assets deployed across our Nashik manufacturing footprint.
+        <p className="font-body text-xs sm:text-sm text-[#9ca3af] max-w-xl leading-relaxed">
+          Complete lineup of rubber mixing, moulding, vacuum-assisted presses, and material preparation assets used across our Nashik manufacturing footprint.
         </p>
       </div>
     </header>
@@ -168,92 +163,72 @@ function MachineryHero() {
 // 3. MAIN MACHINERY CATALOG COMPONENT
 export function MachineryPage() {
   return (
-    <div className="min-h-screen flex flex-col bg-[#FCF9F8]">
+    <div className="min-h-screen flex flex-col bg-white">
       
       {/* Hero Banner */}
       <MachineryHero />
 
       {/* Main Listing Section */}
-      <main className="w-full py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <main className="w-full py-16 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-white">
         
         {/* Active Heavy Assets Stripe Banner */}
-        <div className="w-full bg-[#FCF9F8] border-2 border-[#1C1B1B] py-4.5 px-6 font-subtitle text-xs sm:text-sm font-bold tracking-widest uppercase flex flex-col sm:flex-row items-center justify-between shadow-[4px_4px_0px_0px_#1C1B1B] mb-16 gap-3">
-          <span className="text-[#1C1B1B]">■ ACTIVE HEAVY ASSETS // PROCESS TIMELINES & CAPABILITIES</span>
-          <span className="text-[#B81312]">SYSTEM ID: BYM-PLANT-1-DECK</span>
+        <div className="w-full bg-[#f5f5f5] border border-[#e5e7eb] py-4.5 px-6 font-montserrat text-xs font-bold tracking-widest uppercase flex flex-col sm:flex-row items-center justify-between mb-16 gap-3">
+          <span className="text-[#1c1b1b]">■ ACTIVE HEAVY ASSETS // PROCESS TIMELINES & CAPABILITIES</span>
+          <span className="text-[#C75550]">SYSTEM ID: BYM-PLANT-1-DECK</span>
         </div>
 
         {/* Vertical Stack of Machinery Cards (Alternating Left/Right Layout) */}
-        <section className="flex flex-col gap-16">
-          {MACHINERY_CATALOG.map((machine, index) => {
-            // Check if index is odd for layout alternation
-            const isOdd = index % 2 === 0;
-
+        <section className="flex flex-col gap-12">
+          {MACHINERY_CATALOG.map((machine) => {
             return (
               <div 
                 key={machine.id}
-                className="w-full bg-white border-4 border-[#1C1B1B] shadow-[8px_8px_0px_0px_#1C1B1B] hover:shadow-[10px_10px_0px_0px_#1C1B1B] transition-all duration-200 p-8 sm:p-10 lg:p-12 overflow-hidden"
+                className="w-full bg-white border border-[#e5e7eb] flex flex-col lg:flex-row items-stretch overflow-hidden rounded-none group transition-all duration-300 hover:border-[#C75550] hover:shadow-[0_10px_20px_rgba(0,0,0,0.05)]"
               >
-                <div className={`grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center`}>
-                  
-                  {/* Left-aligned block vs Right-aligned block based on isOdd */}
-                  {/* 1. IMAGE CONTAINER */}
-                  <div className={`lg:col-span-5 w-full relative aspect-[4/3] border-2 border-[#1C1B1B] bg-[#FCF9F8] overflow-hidden ${
-                    isOdd ? "lg:order-1" : "lg:order-2"
-                  }`}>
-                    <Image 
-                      src={machine.image}
-                      alt={machine.title}
-                      fill
-                      sizes="(max-w-lg) 100vw, 500px"
-                      className="object-cover filter grayscale contrast-110 hover:grayscale-0 transition-all duration-300"
-                    />
-                    {/* Technical grid mask overlay */}
-                    <div 
-                      className="absolute inset-0 bg-transparent opacity-10 pointer-events-none" 
-                      style={{
-                        backgroundImage: "radial-gradient(#1C1B1B 1px, transparent 1px)",
-                        backgroundSize: "16px 16px"
-                      }} 
-                    />
-                  </div>
+                {/* 1. IMAGE CONTAINER */}
+                <div className="w-full lg:w-[45%] relative min-h-[250px] lg:min-h-full flex-shrink-0 overflow-hidden">
+                  <Image 
+                    src={machine.image}
+                    alt={machine.title}
+                    fill
+                    sizes="(max-w-lg) 100vw, 500px"
+                    className="object-cover filter  group-hover:grayscale-0 group-hover:scale-[1.02] transition-all duration-500"
+                  />
+                </div>
 
-                  {/* 2. SPEC DETAILS AND INQUIRE BUTTON CONTAINER */}
-                  <div className={`lg:col-span-7 w-full flex flex-col gap-6 items-start ${
-                    isOdd ? "lg:order-2" : "lg:order-1"
-                  }`}>
+                {/* 2. SPEC DETAILS AND INQUIRE LINK CONTAINER */}
+                <div className="w-full lg:w-[55%] p-8 sm:p-10 lg:p-12 flex flex-col justify-between items-start text-left">
+                  <div className="w-full flex flex-col items-start gap-1">
+                    <span className="font-montserrat text-xs font-bold text-[#9ca3af] uppercase tracking-widest leading-none">
+                      {machine.subtitle}
+                    </span>
+                    <h2 className="font-title text-2xl sm:text-3xl lg:text-4xl font-black text-[#1c1b1b] uppercase leading-tight tracking-tight mt-1">
+                      {machine.title}
+                    </h2>
                     
-                    {/* Headers */}
-                    <div className="flex flex-col items-start gap-1">
-                      <span className="font-subtitle text-xs sm:text-sm font-bold text-[#B81312] uppercase tracking-wider leading-none">
-                        {machine.subtitle}
-                      </span>
-                      <h2 className="font-title text-3xl sm:text-4xl lg:text-5xl font-black text-[#1C1B1B] uppercase leading-[1.05] tracking-tight mt-1">
-                        {machine.title}
-                      </h2>
-                    </div>
+                    {/* Hard divider line */}
+                    <div className="w-full border-t border-[#e5e7eb] my-4" />
 
-                    {/* Hard solid line divider */}
-                    <div className="w-full border-t border-[#1C1B1B] my-1" />
-
-                    {/* Specification list using custom lightning bolt icons */}
-                    <ul className="flex flex-col gap-3 font-subtitle text-xs sm:text-sm font-medium text-[#1C1B1B]/80 leading-relaxed uppercase pl-1 text-left">
+                    {/* Specification list using custom circular chevron bullet points */}
+                    <ul className="flex flex-col gap-3 leading-relaxed text-left w-full">
                       {machine.specs.map((spec, specIdx) => (
-                        <li key={specIdx} className="flex gap-3.5 items-start">
-                          <span className="text-[#FDC003] font-bold text-sm leading-none mt-0.5 select-none">⚡</span>
+                        <li key={specIdx} className="flex gap-3 items-start font-body text-sm sm:text-base text-[#4b5563]">
+                          <span className="flex-shrink-0 flex items-center justify-center w-5 h-5 rounded-full bg-[#C75550] text-white text-[9px] mt-0.5 select-none">
+                            <i className="fa-solid fa-chevron-right" />
+                          </span>
                           <span className="tracking-wide">{spec}</span>
                         </li>
                       ))}
                     </ul>
-
-                    {/* Inquire CTA Button */}
-                    <Link 
-                      href="/contact" 
-                      className="btn-brutal-red w-full py-4 text-base tracking-widest text-center mt-3 border-2 border-[#1C1B1B]"
-                    >
-                      INQUIRE MACHINE CAPACITY →
-                    </Link>
-
                   </div>
+
+                  {/* Inquire capacity text link */}
+                  <Link 
+                    href="/contact" 
+                    className="font-montserrat text-xs sm:text-sm font-bold tracking-[0.15em] text-[#C75550] hover:text-[#a53b36] transition-colors mt-8 flex items-center gap-1 uppercase self-start"
+                  >
+                    MORE MACHINE CAPACITY <span className="font-sans text-sm">→</span>
+                  </Link>
 
                 </div>
               </div>
@@ -264,10 +239,8 @@ export function MachineryPage() {
       </main>
 
       {/* Contact Banner at the bottom */}
-      <div className="w-full mx-auto px-4 sm:px-6 lg:px-0 mb-24">
-        <div className="w-full mx-auto border-y-2 border-r-2 lg:border-r-0 border-[#1C1B1B] shadow-[8px_8px_0px_0px_#1C1B1B] overflow-hidden">
-          <ContactBanner />
-        </div>
+      <div className="w-full mt-16">
+        <ContactBanner />
       </div>
 
     </div>

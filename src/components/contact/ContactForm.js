@@ -16,82 +16,112 @@ export function ContactForm() {
   };
 
   return (
-    <div className="lg:col-span-6 w-full lg:pt-8">
-      
-      <form onSubmit={handleSubmit} className="flex flex-col gap-6">
-        
+    <div className="w-full flex flex-col items-start">
+      <span className="font-montserrat text-xs font-bold text-[#C75550] uppercase tracking-[0.15em] mb-2 text-left">
+        MESSAGE ENVELOPE
+      </span>
+      <h2 className="font-title text-3xl sm:text-4xl font-black text-[#1c1b1b] uppercase tracking-tight mb-8 text-left">
+        SEND AN ENGINEERING REQUEST
+      </h2>
+
+      <form onSubmit={handleSubmit} className="w-full flex flex-col gap-6">
         {submitted ? (
-          <div className="bg-[#B81312] text-white border-2 border-white p-6 font-subtitle font-bold text-center uppercase tracking-wider animate-pulse">
-            ✓ Form submitted! We will respond shortly.
+          <div className="bg-[#C75550] text-white p-6 font-body font-bold text-center uppercase tracking-wider animate-pulse w-full">
+            ✓ Engineering request sent successfully! We will respond shortly.
           </div>
         ) : (
           <>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            {/* Row 1: Name and Email */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full">
               {/* Name */}
-              <input 
-                type="text" 
-                placeholder="Your Name" 
-                required
-                value={formState.name}
-                onChange={(e) => setFormState({ ...formState, name: e.target.value })}
-                className="bg-[#F0EDEC] text-[#1C1B1B] placeholder-[#1C1B1B]/50 border-none focus:bg-[#E5E2E1] focus:outline-none p-5 font-body text-base font-medium rounded-none w-full"
-              />
+              <div className="flex flex-col items-start w-full gap-2 text-left">
+                <label className="font-montserrat text-[10px] sm:text-xs font-bold text-[#64748b] tracking-wider uppercase">
+                  YOUR NAME
+                </label>
+                <input 
+                  type="text" 
+                  placeholder="Enter your full name" 
+                  required
+                  value={formState.name}
+                  onChange={(e) => setFormState({ ...formState, name: e.target.value })}
+                  className="w-full bg-[#f9fafb] border border-[#e5e7eb] rounded-none py-3 px-4 font-body text-sm text-[#1c1b1b] placeholder-gray-400 focus:bg-white focus:border-[#9ca3af] focus:outline-none transition-colors duration-150"
+                />
+              </div>
               
               {/* Email */}
-              <input 
-                type="email" 
-                placeholder="Email Address" 
-                required
-                value={formState.email}
-                onChange={(e) => setFormState({ ...formState, email: e.target.value })}
-                className="bg-[#F0EDEC] text-[#1C1B1B] placeholder-[#1C1B1B]/50 border-none focus:bg-[#E5E2E1] focus:outline-none p-5 font-body text-base font-medium rounded-none w-full"
-              />
+              <div className="flex flex-col items-start w-full gap-2 text-left">
+                <label className="font-montserrat text-[10px] sm:text-xs font-bold text-[#64748b] tracking-wider uppercase">
+                  EMAIL ADDRESS
+                </label>
+                <input 
+                  type="email" 
+                  placeholder="Enter your corporate email address" 
+                  required
+                  value={formState.email}
+                  onChange={(e) => setFormState({ ...formState, email: e.target.value })}
+                  className="w-full bg-[#f9fafb] border border-[#e5e7eb] rounded-none py-3 px-4 font-body text-sm text-[#1c1b1b] placeholder-gray-400 focus:bg-white focus:border-[#9ca3af] focus:outline-none transition-colors duration-150"
+                />
+              </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            {/* Row 2: Phone and Subject */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full">
               {/* Phone */}
-              <input 
-                type="tel" 
-                placeholder="Phone Number" 
-                required
-                value={formState.phone}
-                onChange={(e) => setFormState({ ...formState, phone: e.target.value })}
-                className="bg-[#F0EDEC] text-[#1C1B1B] placeholder-[#1C1B1B]/50 border-none focus:bg-[#E5E2E1] focus:outline-none p-5 font-body text-base font-medium rounded-none w-full"
-              />
+              <div className="flex flex-col items-start w-full gap-2 text-left">
+                <label className="font-montserrat text-[10px] sm:text-xs font-bold text-[#64748b] tracking-wider uppercase">
+                  PHONE NUMBER
+                </label>
+                <input 
+                  type="tel" 
+                  placeholder="Enter mobile or desk connection line" 
+                  required
+                  value={formState.phone}
+                  onChange={(e) => setFormState({ ...formState, phone: e.target.value })}
+                  className="w-full bg-[#f9fafb] border border-[#e5e7eb] rounded-none py-3 px-4 font-body text-sm text-[#1c1b1b] placeholder-gray-400 focus:bg-white focus:border-[#9ca3af] focus:outline-none transition-colors duration-150"
+                />
+              </div>
               
               {/* Subject */}
-              <input 
-                type="text" 
-                placeholder="Subject" 
-                required
-                value={formState.subject}
-                onChange={(e) => setFormState({ ...formState, subject: e.target.value })}
-                className="bg-[#F0EDEC] text-[#1C1B1B] placeholder-[#1C1B1B]/50 border-none focus:bg-[#E5E2E1] focus:outline-none p-5 font-body text-base font-medium rounded-none w-full"
-              />
+              <div className="flex flex-col items-start w-full gap-2 text-left">
+                <label className="font-montserrat text-[10px] sm:text-xs font-bold text-[#64748b] tracking-wider uppercase">
+                  SUBJECT
+                </label>
+                <input 
+                  type="text" 
+                  placeholder="Compound specifications or order inquiry" 
+                  required
+                  value={formState.subject}
+                  onChange={(e) => setFormState({ ...formState, subject: e.target.value })}
+                  className="w-full bg-[#f9fafb] border border-[#e5e7eb] rounded-none py-3 px-4 font-body text-sm text-[#1c1b1b] placeholder-gray-400 focus:bg-white focus:border-[#9ca3af] focus:outline-none transition-colors duration-150"
+                />
+              </div>
             </div>
 
-            {/* Message */}
-            <textarea 
-              rows="6" 
-              placeholder="Write Message"
-              required
-              value={formState.message}
-              onChange={(e) => setFormState({ ...formState, message: e.target.value })}
-              className="bg-[#F0EDEC] text-[#1C1B1B] placeholder-[#1C1B1B]/50 border-none focus:bg-[#E5E2E1] focus:outline-none p-5 font-body text-base font-medium rounded-none w-full resize-none"
-            />
+            {/* Row 3: Message */}
+            <div className="flex flex-col items-start w-full gap-2 text-left">
+              <label className="font-montserrat text-[10px] sm:text-xs font-bold text-[#64748b] tracking-wider uppercase">
+                WRITE MESSAGE
+              </label>
+              <textarea 
+                rows="6" 
+                placeholder="Elaborate details on physical dimensions, rubber hardness, standards compliance deadlines, or general operations questions..."
+                required
+                value={formState.message}
+                onChange={(e) => setFormState({ ...formState, message: e.target.value })}
+                className="w-full bg-[#f9fafb] border border-[#e5e7eb] rounded-none py-3 px-4 font-body text-sm text-[#1c1b1b] placeholder-gray-400 focus:bg-white focus:border-[#9ca3af] focus:outline-none transition-colors duration-150 resize-none"
+              />
+            </div>
 
             {/* Submit Button */}
             <button 
               type="submit" 
-              className="bg-[#B81312] text-white font-title text-base font-bold tracking-widest uppercase py-4.5 px-8 border-2 border-[#1C1B1B] shadow-[4px_4px_0px_0px_#1C1B1B] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_0px_#1C1B1B] active:translate-x-0 active:translate-y-0 active:shadow-[4px_4px_0px_0px_#1C1B1B] transition-all duration-150 rounded-none self-start"
+              className="bg-[#111111] hover:bg-[#2d3748] text-white font-montserrat px-8 py-4 text-xs sm:text-sm font-bold tracking-[0.15em] flex items-center justify-center gap-2 rounded-none cursor-pointer transition-colors duration-150 self-start"
             >
-              _ SUBMIT COMMENT
+              SUBMIT COMMENT <i className="fa-solid fa-paper-plane text-xs ml-1" />
             </button>
           </>
         )}
-
       </form>
-
     </div>
   );
 }
