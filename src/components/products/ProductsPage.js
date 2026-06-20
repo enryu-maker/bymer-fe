@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ContactBanner } from "../layout/ContactBanner";
+import { fetchCategories, fetchProducts } from "@/lib/api";
 
 // 1. DYNAMIC CATALOG PRODUCT DATA
 const ALL_CATALOG_PRODUCTS = [
@@ -15,7 +16,7 @@ const ALL_CATALOG_PRODUCTS = [
     compound: "EPDM",
     title: "STEERING COLUMN RUBBER GROMMETS / BELLOWS",
     material: "MAT // EPDM / SBR",
-    image: "/images/product card images (1).png",
+    image: "/images/product_card_1.png",
   },
   {
     id: "auto-2",
@@ -24,7 +25,7 @@ const ALL_CATALOG_PRODUCTS = [
     compound: "NBR",
     title: "RUBBER REBOUND SLIDER",
     material: "MAT // NBR / WEAR RESISTANT",
-    image: "/images/product card images (2).png",
+    image: "/images/product_card_2.png",
   },
   {
     id: "auto-3",
@@ -33,7 +34,7 @@ const ALL_CATALOG_PRODUCTS = [
     compound: "Natural Rubber (NR)",
     title: "AUTOMOTIVE RUBBER MOUNTINGS FOR AIR PRESSURE TANK SEAT",
     material: "MAT // NATURAL RUBBER",
-    image: "/images/product card images (3).png",
+    image: "/images/product_card_3.png",
   },
   {
     id: "auto-4",
@@ -42,7 +43,7 @@ const ALL_CATALOG_PRODUCTS = [
     compound: "Epichlorohydrin (ECO)",
     title: "DIESEL FILTER RUBBER AIR DUCT AIR CLEANER PIPES & ELBOWS",
     material: "MAT // EPICHLOROHYDRIN",
-    image: "/images/product card images (4).png",
+    image: "/images/product_card_4.png",
   },
   {
     id: "auto-5",
@@ -51,7 +52,7 @@ const ALL_CATALOG_PRODUCTS = [
     compound: "Neoprene (CR)",
     title: "PROTECTIVE SLEEVES, DUST BOOTS, BELLOWS & WEATHER PROTECTIVE COVERS",
     material: "MAT // NEOPRENE (CR)",
-    image: "/images/product card images (5).png",
+    image: "/images/product_card_5.png",
   },
   {
     id: "auto-6",
@@ -60,7 +61,7 @@ const ALL_CATALOG_PRODUCTS = [
     compound: "Heavy Duty NR Compound",
     title: "RUBBER PAD FOR LEAF SPRING SEAT ENDS",
     material: "MAT // HEAVY DUTY NR",
-    image: "/images/product card images (1).png",
+    image: "/images/product_card_1.png",
   },
   {
     id: "auto-7",
@@ -69,7 +70,7 @@ const ALL_CATALOG_PRODUCTS = [
     compound: "EPDM",
     title: "DIFFERENT TYPES OF RUBBER MOUNTINGS",
     material: "MAT // EPDM / NR BLEND",
-    image: "/images/product card images (2).png",
+    image: "/images/product_card_2.png",
   },
   {
     id: "auto-8",
@@ -78,7 +79,7 @@ const ALL_CATALOG_PRODUCTS = [
     compound: "NBR with Fabric Insert",
     title: "RUBBER DIAPHRAGMS",
     material: "MAT // NBR / FABRIC REINFORCED",
-    image: "/images/product card images (3).png",
+    image: "/images/product_card_3.png",
   },
   {
     id: "auto-9",
@@ -87,7 +88,7 @@ const ALL_CATALOG_PRODUCTS = [
     compound: "LVI-Soft Silicon (VMQ)",
     title: "RUBBER DAMPER ASSEMBLY FOR TACHOMETER MOUNTINGS",
     material: "MAT // SILICON RUBBER",
-    image: "/images/product card images (4).png",
+    image: "/images/product_card_4.png",
   },
   {
     id: "auto-10",
@@ -96,7 +97,7 @@ const ALL_CATALOG_PRODUCTS = [
     compound: "Weather Resistant EPDM",
     title: "RUBBER STRAPS & STRIPS FOR AIR FILTER MOUNTINGS WITH S.S. HOOKS",
     material: "MAT // WEATHER RESISTANT",
-    image: "/images/product card images (5).png",
+    image: "/images/product_card_5.png",
   },
   {
     id: "auto-11",
@@ -105,7 +106,7 @@ const ALL_CATALOG_PRODUCTS = [
     compound: "Silicon",
     title: "REINFORCED SILICON RUBBER SLEEVES / ELBOWS FOR TURBO CHARGER HOSES",
     material: "MAT // ARAMID / POLYESTER REINFORCEMENT",
-    image: "/images/product card images (1).png",
+    image: "/images/product_card_1.png",
   },
   {
     id: "auto-12",
@@ -114,7 +115,7 @@ const ALL_CATALOG_PRODUCTS = [
     compound: "Premium NR",
     title: "ENGINE MOUNTING PARTS FOR EXPORT CARS",
     material: "MAT // PREMIUM NR",
-    image: "/images/product card images (2).png",
+    image: "/images/product_card_2.png",
   },
   {
     id: "auto-13",
@@ -123,7 +124,7 @@ const ALL_CATALOG_PRODUCTS = [
     compound: "SBR",
     title: "RUBBER MOUNTINGS & BUMPERS FOR EXPORT CARS",
     material: "MAT // SBR / NR BLEND",
-    image: "/images/product card images (3).png",
+    image: "/images/product_card_3.png",
   },
   {
     id: "auto-14",
@@ -132,7 +133,7 @@ const ALL_CATALOG_PRODUCTS = [
     compound: "Epichlorohydrin Natural Blend",
     title: "RUBBER WIPER BLADES",
     material: "MAT // EPICHLOROHYDRIN",
-    image: "/images/product card images (4).png",
+    image: "/images/product_card_4.png",
   },
   {
     id: "auto-15",
@@ -141,7 +142,7 @@ const ALL_CATALOG_PRODUCTS = [
     compound: "Triple Composite EPDM",
     title: "RUBBER/PLASTIC & ALUMINIUM CO-EXTRUDED PROFILES FOR AUTOMOTIVE",
     material: "MAT // TRIPLE COMPOSITE",
-    image: "/images/product card images (5).png",
+    image: "/images/product_card_5.png",
   },
   {
     id: "auto-16",
@@ -150,7 +151,7 @@ const ALL_CATALOG_PRODUCTS = [
     compound: "Fluorocarbon (FKM / Viton)",
     title: "RUBBER SEALS FOR RADIAL PISTON ACTUATORS & SOLENOID VALVES",
     material: "MAT // FLUOROCARBON",
-    image: "/images/product card images (1).png",
+    image: "/images/product_card_1.png",
   },
   {
     id: "auto-17",
@@ -159,7 +160,7 @@ const ALL_CATALOG_PRODUCTS = [
     compound: "Flame Retardant Neoprene (CR)",
     title: "RUBBER SLEEVES FOR CABLES AND WIRING HARNESSES",
     material: "MAT // FLAME RETARDANT",
-    image: "/images/product card images (2).png",
+    image: "/images/product_card_2.png",
   },
   {
     id: "auto-18",
@@ -168,7 +169,7 @@ const ALL_CATALOG_PRODUCTS = [
     compound: "High Heat Heavy Duty Fabric",
     title: "RUBBER DIAPHRAGMS FOR ACTUATORS",
     material: "MAT // HEAT RESISTANT",
-    image: "/images/product card images (3).png",
+    image: "/images/product_card_3.png",
   },
   {
     id: "auto-19",
@@ -177,7 +178,7 @@ const ALL_CATALOG_PRODUCTS = [
     compound: "Custom Calendered Raw Compound",
     title: "RUBBER COMPOUND FOR AUTOMOTIVE RUBBER HOSE",
     material: "MAT // CUSTOM COMPOUND",
-    image: "/images/product card images (4).png",
+    image: "/images/product_card_4.png",
   },
 
   // --- CATEGORY 2: LOW PRESSURE HOSES ---
@@ -188,7 +189,7 @@ const ALL_CATALOG_PRODUCTS = [
     compound: "NBR / CR DUAL EXTRUSION",
     title: "LOW PRESSURE FUEL & OIL DELIVERY RUBBER HOSE",
     material: "MAT // NBR CORE / CR OUTER",
-    image: "/images/product card images (5).png",
+    image: "/images/product_card_5.png",
   },
   {
     id: "hose-2",
@@ -197,7 +198,7 @@ const ALL_CATALOG_PRODUCTS = [
     compound: "EPDM",
     title: "RADIATOR & COOLANT BENT RUBBER HOSE FOR DIESEL ENGINES",
     material: "MAT // EPDM WITH POLYESTER",
-    image: "/images/product card images (1).png",
+    image: "/images/product_card_1.png",
   },
   {
     id: "hose-3",
@@ -206,7 +207,7 @@ const ALL_CATALOG_PRODUCTS = [
     compound: "SBR / EPDM BLENDS",
     title: "TEXTILE REINFORCED WATER DISCHARGE FLUID HOSE",
     material: "MAT // SBR BRAID REINFORCED",
-    image: "/images/product card images (2).png",
+    image: "/images/product_card_2.png",
   },
 
   // --- CATEGORY 3: INDUSTRIAL & CRITICAL RUBBER ---
@@ -217,7 +218,7 @@ const ALL_CATALOG_PRODUCTS = [
     compound: "SILICONE (VMQ)",
     title: "HIGH TEMPERATURE SILICONE GASKETS FOR INDUSTRIAL OVENS",
     material: "MAT // HIGH TEMPERATURE VMQ",
-    image: "/images/product card images (3).png",
+    image: "/images/product_card_3.png",
   },
   {
     id: "ind-2",
@@ -226,7 +227,7 @@ const ALL_CATALOG_PRODUCTS = [
     compound: "NBR / BR COMPOSITE",
     title: "HEAVY DUTY ANTI-VIBRATION INDUSTRIAL MOUNTINGS",
     material: "MAT // NITRILE / METAL INSERT",
-    image: "/images/product card images (4).png",
+    image: "/images/product_card_4.png",
   },
   {
     id: "ind-3",
@@ -235,7 +236,7 @@ const ALL_CATALOG_PRODUCTS = [
     compound: "NATURAL RUBBER (NR)",
     title: "CRITICAL RUBBER TO METAL BONDED SUSPENSION PADS",
     material: "MAT // NR TO STEEL SHELL",
-    image: "/images/product card images (5).png",
+    image: "/images/product_card_5.png",
   },
 
   // --- CATEGORY 4: AIR FILTER & TURBO CHARGER ---
@@ -246,7 +247,7 @@ const ALL_CATALOG_PRODUCTS = [
     compound: "SILICONE / ARAMID (KEVLAR)",
     title: "TURBOCHARGER CONVOLUTED HOSE FOR HIGH PRESSURE DUCTS",
     material: "MAT // ARAMID BRAID SILICONE",
-    image: "/images/product card images (1).png",
+    image: "/images/product_card_1.png",
   },
   {
     id: "turbo-2",
@@ -255,7 +256,7 @@ const ALL_CATALOG_PRODUCTS = [
     compound: "CHLOROPRENE (CR)",
     title: "FLEXIBLE AIR CLEANER INTAKE BELLOWS",
     material: "MAT // HEAVY DUTY CR",
-    image: "/images/product card images (2).png",
+    image: "/images/product_card_2.png",
   },
 
   // --- CATEGORY 5: EXTRUDED RUBBER PROFILES ---
@@ -266,7 +267,7 @@ const ALL_CATALOG_PRODUCTS = [
     compound: "EPICHLOROHYDRIN / SPONGE",
     title: "AUTOMOTIVE DOOR AND BOOT WEATHERSTRIP EXTRUSIONS",
     material: "MAT // DUAL DENSITY EPDM",
-    image: "/images/product card images (3).png",
+    image: "/images/product_card_3.png",
   },
   {
     id: "prof-2",
@@ -275,7 +276,7 @@ const ALL_CATALOG_PRODUCTS = [
     compound: "NBR EXTRUDED",
     title: "OIL RESISTANT EXTRUDED SQUARE CHANNEL PROFILE",
     material: "MAT // HIGH ACRYLONITRILE",
-    image: "/images/product card images (4).png",
+    image: "/images/product_card_4.png",
   },
 
   // --- CATEGORY 6: SPECIAL DAMPER MOUNTINGS ---
@@ -286,7 +287,7 @@ const ALL_CATALOG_PRODUCTS = [
     compound: "NATURAL RUBBER (NR)",
     title: "TUNED TORSIONAL VIBRATION DAMPER FOR ENGINE CRANKSHAFTS",
     material: "MAT // SHEAR DAMPING NR",
-    image: "/images/product card images (5).png",
+    image: "/images/product_card_5.png",
   },
   {
     id: "damp-2",
@@ -295,7 +296,7 @@ const ALL_CATALOG_PRODUCTS = [
     compound: "NEOPRENE (CR)",
     title: "SPECIALIZED SHOCK ABSORBING MOUNTS FOR INDUSTRIAL UNITS",
     material: "MAT // CR / STEEL INSERTS",
-    image: "/images/product card images (1).png",
+    image: "/images/product_card_1.png",
   },
 ];
 
@@ -312,7 +313,7 @@ const CATEGORIES = [
 // 2. PRODUCTS HERO COMPONENT
 function ProductsHero() {
   return (
-    <header className="relative w-full border-b border-[#e5e7eb] overflow-hidden bg-white min-h-[300px] sm:min-h-[350px] flex items-center justify-center">
+    <header className="relative w-full border-b border-[#e5e7eb] overflow-hidden min-h-[300px] sm:min-h-[350px] flex items-center justify-center">
       {/* Background Image Container */}
       <div className="absolute inset-0 z-0">
         <Image 
@@ -320,7 +321,7 @@ function ProductsHero() {
           alt="Products Catalog Bymer Elastomers" 
           fill
           sizes="100vw"
-          className="object-cover  filter grayscale"
+          className="object-cover filter grayscale"
           priority
         />
       </div>
@@ -364,35 +365,59 @@ function ProductCard({ product, index }) {
     <Link href="/contact" className="group block h-full">
       <div className="bg-white border border-[#e5e7eb] p-6 flex flex-col h-full justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(0,0,0,0.05)] hover:border-[#C75550] rounded-none">
         
-        {/* Top Part Metadata */}
-        <div className="flex flex-col items-start gap-1">
-          <span className="font-montserrat text-[10px] font-bold text-[#9ca3af] tracking-widest uppercase">
+        {/* Top Section: Image, Part Metadata & Title */}
+        <div className="flex flex-col items-start w-full">
+          {/* Image Container Block */}
+          <div className="w-full bg-[#f9fafb] border border-[#e5e7eb] p-3 aspect-[4/3] mb-5 relative flex-shrink-0">
+            <div className="w-full h-full border border-dashed border-[#cbd5e1] relative bg-white flex items-center justify-center overflow-hidden">
+              {product.image ? (
+                <Image
+                  src={product.image}
+                  alt={product.title}
+                  fill
+                  sizes="(max-w-sm) 100vw, 300px"
+                  className="object-contain p-2 transition-transform duration-300 group-hover:scale-105"
+                />
+              ) : (
+                <span className="text-gray-300 text-[10px] uppercase font-montserrat tracking-wider">NO IMAGE</span>
+              )}
+            </div>
+          </div>
+
+          {/* Part Metadata */}
+          <span className="font-montserrat text-[10px] font-bold text-[#9ca3af] tracking-widest uppercase mb-1.5 leading-none">
             PART {partNumber} // COMPONENT
           </span>
           
           {/* Product Title */}
-          <h3 className="font-title text-lg sm:text-xl font-black text-[#1c1b1b] uppercase tracking-tight leading-snug mt-2 group-hover:text-[#C75550] transition-colors duration-200 text-left">
+          <h3 className="font-title text-lg sm:text-xl font-black text-[#1c1b1b] uppercase tracking-tight leading-snug group-hover:text-[#C75550] transition-colors duration-200 text-left">
             {product.title}
           </h3>
         </div>
 
-        {/* Shaded Compound Block */}
-        <div className="bg-[#f9fafb] border-l-4 border-[#fbbd05] py-2 px-3 my-4 text-left w-full">
-          <span className="font-montserrat text-xs text-[#4b5563] tracking-wide">
-            <span className="font-bold text-[#1c1b1b]">Compound:</span> {product.compound}
-          </span>
-        </div>
-
-        {/* Bottom Material Tags Row */}
-        <div className="flex flex-wrap gap-2 pt-2">
-          {tags.map((tag) => (
-            <span 
-              key={tag} 
-              className="bg-[#f3f4f6] border border-[#e5e7eb] text-[#4b5563] px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider rounded-none"
-            >
-              {tag}
+        {/* Bottom Section: Compound Block & Material Tags */}
+        <div className="w-full">
+          {/* Shaded Compound Block */}
+          <div className="bg-[#f9fafb] border-l-4 border-[#fbbd05] py-2 px-3 my-4 text-left w-full">
+            <span className="font-montserrat text-xs text-[#4b5563] tracking-wide">
+              <span className="font-bold text-[#1c1b1b]">Compound:</span> {product.compound}
             </span>
-          ))}
+          </div>
+
+          {/* Hard divider line */}
+          <div className="w-full border-t border-[#e5e7eb] my-4" />
+
+          {/* Bottom Material Tags Row */}
+          <div className="flex flex-wrap gap-2">
+            {tags.map((tag) => (
+              <span 
+                key={tag} 
+                className="bg-[#f3f4f6] border border-[#e5e7eb] text-[#4b5563] px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider rounded-none"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
         </div>
 
       </div>
@@ -402,12 +427,74 @@ function ProductCard({ product, index }) {
 
 // 4. MAIN DYNAMIC PRODUCTS CATALOG COMPONENT
 export function ProductsPage() {
+  const [categories, setCategories] = useState([]);
+  const [products, setProducts] = useState([]);
   const [activeCategory, setActiveCategory] = useState("AUTOMOTIVE PRODUCTS");
   const [searchQuery, setSearchQuery] = useState("");
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function loadData() {
+      try {
+        const [catsData, prodsData] = await Promise.all([
+          fetchCategories(),
+          fetchProducts(),
+        ]);
+        
+        if (catsData && catsData.length > 0) {
+          const catNames = catsData.map(c => c.name.toUpperCase());
+          setCategories(catNames);
+          // Default to first category if available
+          if (catNames.length > 0) {
+            setActiveCategory(catNames[0]);
+          }
+        } else {
+          setCategories([
+            "AUTOMOTIVE PRODUCTS",
+            "LOW PRESSURE HOSES",
+            "INDUSTRIAL & CRITICAL RUBBER",
+            "AIR FILTER & TURBO CHARGER",
+            "EXTRUDED RUBBER PROFILES",
+            "SPECIAL DAMPER MOUNTINGS",
+          ]);
+        }
+
+        if (prodsData && prodsData.length > 0) {
+          const mapped = prodsData.map(prod => ({
+            id: prod.id || prod.slug,
+            category: (prod.category_name || "").toUpperCase(),
+            category_slug: prod.category_slug,
+            title: prod.name,
+            spec: prod.specification || "",
+            compound: prod.customer || "",
+            material: prod.description || "",
+            image: prod.image_url
+          }));
+          setProducts(mapped);
+        } else {
+          setProducts(ALL_CATALOG_PRODUCTS);
+        }
+      } catch (err) {
+        console.error("Failed to load products page data", err);
+        setCategories([
+          "AUTOMOTIVE PRODUCTS",
+          "LOW PRESSURE HOSES",
+          "INDUSTRIAL & CRITICAL RUBBER",
+          "AIR FILTER & TURBO CHARGER",
+          "EXTRUDED RUBBER PROFILES",
+          "SPECIAL DAMPER MOUNTINGS",
+        ]);
+        setProducts(ALL_CATALOG_PRODUCTS);
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadData();
+  }, []);
 
   // Memoized filtered products list based on category & search terms
   const filteredProducts = useMemo(() => {
-    return ALL_CATALOG_PRODUCTS.filter((product) => {
+    return products.filter((product) => {
       // 1. Matches Category
       const matchesCategory = product.category === activeCategory;
       
@@ -416,14 +503,31 @@ export function ProductsPage() {
       if (!query) return matchesCategory;
 
       const matchesSearch = 
-        product.title.toLowerCase().includes(query) ||
-        product.compound.toLowerCase().includes(query) ||
-        product.spec.toLowerCase().includes(query) ||
-        product.material.toLowerCase().includes(query);
+        (product.title || "").toLowerCase().includes(query) ||
+        (product.compound || "").toLowerCase().includes(query) ||
+        (product.spec || "").toLowerCase().includes(query) ||
+        (product.material || "").toLowerCase().includes(query);
 
       return matchesCategory && matchesSearch;
     });
-  }, [activeCategory, searchQuery]);
+  }, [products, activeCategory, searchQuery]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex flex-col bg-white">
+        <ProductsHero />
+        <main className="w-full py-16 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-white flex flex-col items-center justify-center min-h-[400px]">
+          <div className="flex flex-col items-center gap-4 animate-pulse">
+            <div className="w-12 h-12 border-t-4 border-b-4 border-[#C75550] rounded-full animate-spin"></div>
+            <span className="font-montserrat text-xs font-bold tracking-widest text-[#4b5563] uppercase">LOADING PRODUCTS CATALOG...</span>
+          </div>
+        </main>
+        <div className="w-full mt-16">
+          <ContactBanner />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen flex flex-col bg-white">
@@ -474,7 +578,7 @@ export function ProductsPage() {
               </span>
               
               <div className="flex flex-col gap-3">
-                {CATEGORIES.map((category) => {
+                {categories.map((category) => {
                   const isSelected = activeCategory === category;
                   return (
                     <button

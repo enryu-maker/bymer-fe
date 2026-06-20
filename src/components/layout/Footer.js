@@ -1,6 +1,28 @@
+"use client";
+
 import Link from "next/link";
+import { useCompanySettings } from "./CompanySettingsContext";
 
 export function Footer() {
+  const { profile, socialLinks } = useCompanySettings();
+
+  const companyName = profile?.company_name || "BYMER ELASTOMERS";
+  const tagline = profile?.tagline || "Delivering precision-engineered elastomer solutions with uncompromising quality since 1999. IATF 16949:2016, ISO 9001:2015 and ISO 14001:2015 certified.";
+  const email = profile?.email || "sales@bymer.com";
+  const phone = profile?.phone || "+91 98228 79699";
+  const address = profile?.address || "Plot No. J-46 & 47 MIDC Area,\nAmbad, Nashik 422010,\nMaharashtra, India.";
+
+  const getSocialIcon = (platform) => {
+    const p = platform.toLowerCase();
+    if (p.includes("linkedin")) return "fa-brands fa-linkedin-in";
+    if (p.includes("youtube")) return "fa-brands fa-youtube";
+    if (p.includes("email") || p.includes("mail")) return "fa-regular fa-envelope";
+    if (p.includes("facebook")) return "fa-brands fa-facebook-f";
+    if (p.includes("twitter") || p.includes("x.com")) return "fa-brands fa-x-twitter";
+    if (p.includes("instagram")) return "fa-brands fa-instagram";
+    return "fa-solid fa-link";
+  };
+
   return (
     <footer className="w-full bg-[#0a0a0a] text-[#f5f5f5] border-t border-[#111111] pt-16 pb-8 relative overflow-hidden">
       
@@ -11,38 +33,55 @@ export function Footer() {
           {/* Column 1: Brand Info (Occupies 4 columns) */}
           <div className="lg:col-span-4 flex flex-col gap-6">
             <span className="font-montserrat text-lg sm:text-xl font-black uppercase text-[#fbbd05] tracking-wide select-none">
-              BYMER ELASTOMERS
+              {companyName.toUpperCase()}
             </span>
             <p className="font-body text-sm text-[#9ca3af] mt-1 leading-relaxed max-w-sm">
-              Delivering precision-engineered elastomer solutions with uncompromising quality since 1999. IATF 16949:2016, ISO 9001:2015 and ISO 14001:2015 certified.
+              {tagline}
             </p>
             {/* Social Icons (Simple glyphs) */}
             <div className="flex items-center gap-5 mt-2">
-              <a 
-                href="https://linkedin.com" 
-                target="_blank" 
-                rel="noreferrer" 
-                className="text-white/60 hover:text-[#C75550] transition-colors duration-150"
-                aria-label="LinkedIn"
-              >
-                <i className="fa-brands fa-linkedin-in text-base"></i>
-              </a>
-              <a 
-                href="https://youtube.com" 
-                target="_blank" 
-                rel="noreferrer" 
-                className="text-white/60 hover:text-[#C75550] transition-colors duration-150"
-                aria-label="YouTube"
-              >
-                <i className="fa-brands fa-youtube text-base"></i>
-              </a>
-              <a 
-                href="mailto:sales@bymer.com" 
-                className="text-white/60 hover:text-[#C75550] transition-colors duration-150"
-                aria-label="Email"
-              >
-                <i className="fa-regular fa-envelope text-base"></i>
-              </a>
+              {socialLinks && socialLinks.length > 0 ? (
+                socialLinks.map((link) => (
+                  <a
+                    key={link.id}
+                    href={link.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-white/60 hover:text-[#C75550] transition-colors duration-150"
+                    aria-label={link.platform}
+                  >
+                    <i className={`${getSocialIcon(link.platform)} text-base`}></i>
+                  </a>
+                ))
+              ) : (
+                <>
+                  <a 
+                    href="https://linkedin.com" 
+                    target="_blank" 
+                    rel="noreferrer" 
+                    className="text-white/60 hover:text-[#C75550] transition-colors duration-150"
+                    aria-label="LinkedIn"
+                  >
+                    <i className="fa-brands fa-linkedin-in text-base"></i>
+                  </a>
+                  <a 
+                    href="https://youtube.com" 
+                    target="_blank" 
+                    rel="noreferrer" 
+                    className="text-white/60 hover:text-[#C75550] transition-colors duration-150"
+                    aria-label="YouTube"
+                  >
+                    <i className="fa-brands fa-youtube text-base"></i>
+                  </a>
+                  <a 
+                    href={`mailto:${email}`} 
+                    className="text-white/60 hover:text-[#C75550] transition-colors duration-150"
+                    aria-label="Email"
+                  >
+                    <i className="fa-regular fa-envelope text-base"></i>
+                  </a>
+                </>
+              )}
             </div>
           </div>
 
@@ -110,18 +149,21 @@ export function Footer() {
               GET IN TOUCH
             </h3>
             <div className="flex flex-col gap-3.5 font-body text-xs text-[#9ca3af] mt-2">
-              <a href="tel:+919822879699" className="hover:text-[#C75550] transition-colors">
-                +91 98228 79699
+              <a href={`tel:${phone}`} className="hover:text-[#C75550] transition-colors">
+                {phone}
               </a>
-              <a href="mailto:sales@bymer.com" className="hover:text-[#C75550] transition-colors lowercase">
-                sales@bymer.com
+              {profile?.alternate_phone && (
+                <a href={`tel:${profile.alternate_phone}`} className="hover:text-[#C75550] transition-colors">
+                  {profile.alternate_phone}
+                </a>
+              )}
+              <a href={`mailto:${email}`} className="hover:text-[#C75550] transition-colors lowercase">
+                {email}
               </a>
-              <p className="leading-relaxed">
-                Plot No. J-46 & 47 MIDC Area,<br />
-                Ambad, Nashik 422010,<br />
-                Maharashtra, India.
-              </p>
-              <p className="text-[#fbbd05] font-montserrat font-bold mt-1 uppercase select-none">
+              <div className="leading-relaxed whitespace-pre-line text-left">
+                {address}
+              </div>
+              <p className="text-[#fbbd05] font-montserrat font-bold mt-1 uppercase select-none text-left">
                 GSTIN: 27AADP8030173
               </p>
             </div>

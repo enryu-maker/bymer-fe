@@ -27,6 +27,8 @@ export const metadata = {
   },
 };
 
+import { CompanySettingsProvider } from "@/components/layout/CompanySettingsContext";
+
 export default function RootLayout({ children }) {
   return (
     <html
@@ -43,7 +45,9 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className="min-h-full flex flex-col bg-[#FCF9F8] text-[#1C1B1B]">
-        {children}
+        <CompanySettingsProvider>
+          {children}
+        </CompanySettingsProvider>
       </body>
     </html>
   );

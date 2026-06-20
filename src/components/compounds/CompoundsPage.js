@@ -1,7 +1,10 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { fetchProducts } from "@/lib/api";
+import { ContactBanner } from "../layout/ContactBanner";
 
 // 1. FORMULATION PRODUCTS DATA (THE MASTER 19 ENTRIES IN Dense Format)
 const COMPOUNDS_CATALOG = [
@@ -11,7 +14,7 @@ const COMPOUNDS_CATALOG = [
     compound: "EPDM",
     title: "STEERING COLUMN RUBBER GROMMETS / BELLOWS",
     material: "MAT // EPDM / SBR",
-    image: "/images/product card images (1).png",
+    image: "/images/product_card_1.png",
   },
   {
     id: "comp-2",
@@ -19,7 +22,7 @@ const COMPOUNDS_CATALOG = [
     compound: "NBR",
     title: "RUBBER REBOUND SLIDER",
     material: "MAT // NBR / WEAR RESI...",
-    image: "/images/product card images (2).png",
+    image: "/images/product_card_2.png",
   },
   {
     id: "comp-3",
@@ -27,7 +30,7 @@ const COMPOUNDS_CATALOG = [
     compound: "NATURAL RUBBER (NR)",
     title: "AUTOMOTIVE RUBBER MOUNTINGS FOR AIR PRESSURE TANK SEAT...",
     material: "MAT // NATURAL RUBBER ...",
-    image: "/images/product card images (3).png",
+    image: "/images/product_card_3.png",
   },
   {
     id: "comp-4",
@@ -35,7 +38,7 @@ const COMPOUNDS_CATALOG = [
     compound: "EPICHLOROHYDRIN (ECO)",
     title: "DIESEL FILTER RUBBER AIR DUCT AIR CLEANER PIPES & ELBOWS",
     material: "MAT // EPICHLOROHYDRIN...",
-    image: "/images/product card images (4).png",
+    image: "/images/product_card_4.png",
   },
   {
     id: "comp-5",
@@ -43,7 +46,7 @@ const COMPOUNDS_CATALOG = [
     compound: "NEOPRENE (CR)",
     title: "PROTECTIVE SLEEVES, DUST BOOTS, BELLOWS & WEATHER PROTECTIVE...",
     material: "MAT // NEOPRENE (CR)",
-    image: "/images/product card images (5).png",
+    image: "/images/product_card_5.png",
   },
   {
     id: "comp-6",
@@ -51,7 +54,7 @@ const COMPOUNDS_CATALOG = [
     compound: "HEAVY-DUTY NR COMPOUND",
     title: "RUBBER PAD FOR LEAF SPRING SEAT ENDS",
     material: "MAT // HEAVY-DUTY NR C...",
-    image: "/images/product card images (1).png",
+    image: "/images/product_card_1.png",
   },
   {
     id: "comp-7",
@@ -59,7 +62,7 @@ const COMPOUNDS_CATALOG = [
     compound: "EPDM",
     title: "DIFFERENT TYPES OF RUBBER MOUNTINGS",
     material: "MAT // EPDM / NBR CUST...",
-    image: "/images/product card images (2).png",
+    image: "/images/product_card_2.png",
   },
   {
     id: "comp-8",
@@ -67,7 +70,7 @@ const COMPOUNDS_CATALOG = [
     compound: "NBR WITH FABRIC INLAY (NYLON",
     title: "RUBBER DIAPHRAGMS",
     material: "MAT // NBR WITH FABRIC...",
-    image: "/images/product card images (3).png",
+    image: "/images/product_card_3.png",
   },
   {
     id: "comp-9",
@@ -75,7 +78,7 @@ const COMPOUNDS_CATALOG = [
     compound: "ULTRA-SOFT SILICONE (VMQ)",
     title: "RUBBER DAMPER ASSEMBLY FOR TACHOMETER MOUNTINGS",
     material: "MAT // ULTRA-SOFT SILI...",
-    image: "/images/product card images (4).png",
+    image: "/images/product_card_4.png",
   },
   {
     id: "comp-10",
@@ -83,7 +86,7 @@ const COMPOUNDS_CATALOG = [
     compound: "WEATHER RESISTANT EPDM",
     title: "RUBBER STRAPS & STRIPS FOR AIR FILTER MOUNTINGS WITH S.S. HOOKS",
     material: "MAT // WEATHER RESISTA...",
-    image: "/images/product card images (5).png",
+    image: "/images/product_card_5.png",
   },
   {
     id: "comp-11",
@@ -91,7 +94,7 @@ const COMPOUNDS_CATALOG = [
     compound: "KEVLAR",
     title: "REINFORCED SILICON RUBBER SLEEVES / ELBOWS FOR TURBO CHARGER...",
     material: "MAT // KEVLAR/POLYESTE...",
-    image: "/images/product card images (1).png",
+    image: "/images/product_card_1.png",
   },
   {
     id: "comp-12",
@@ -99,7 +102,7 @@ const COMPOUNDS_CATALOG = [
     compound: "PREMIUM NR",
     title: "ENGINE MOUNTING PARTS FOR EXPORT CARS",
     material: "MAT // PREMIUM NR / CA...",
-    image: "/images/product card images (2).png",
+    image: "/images/product_card_2.png",
   },
   {
     id: "comp-13",
@@ -107,7 +110,7 @@ const COMPOUNDS_CATALOG = [
     compound: "SBR",
     title: "RUBBER MOUNTINGS & BUMPERS FOR EXPORT CARS",
     material: "MAT // SBR / NBR BLEND",
-    image: "/images/product card images (3).png",
+    image: "/images/product_card_3.png",
   },
   {
     id: "comp-14",
@@ -115,7 +118,7 @@ const COMPOUNDS_CATALOG = [
     compound: "CHLORINATED NATURAL RUBBER",
     title: "RUBBER WIPER BLADES",
     material: "MAT // CHLORINATED NAT...",
-    image: "/images/product card images (4).png",
+    image: "/images/product_card_4.png",
   },
   {
     id: "comp-15",
@@ -123,7 +126,7 @@ const COMPOUNDS_CATALOG = [
     compound: "TRIPLE COMPOSITE: EPDM",
     title: "RUBBER/PLASTIC & ALUMINIUM CO-EXTRUDED PROFILES FOR AUTOMOTIVE",
     material: "MAT // TRIPLE COMPOSIT...",
-    image: "/images/product card images (5).png",
+    image: "/images/product_card_5.png",
   },
   {
     id: "comp-16",
@@ -131,7 +134,7 @@ const COMPOUNDS_CATALOG = [
     compound: "FLUOROCARBON (FKM - VITON)",
     title: "RUBBER SEALS FOR RADIAL PISTON ACTUATORS & SOLENOID VALVES",
     material: "MAT // FLUOROCARBON (F...",
-    image: "/images/product card images (1).png",
+    image: "/images/product_card_1.png",
   },
   {
     id: "comp-17",
@@ -139,7 +142,7 @@ const COMPOUNDS_CATALOG = [
     compound: "FLAME RETARDANT NEOPRENE (CR)",
     title: "RUBBER SLEEVES FOR CABLES AND WIRING HARNESSES",
     material: "MAT // FLAME RETARDANT...",
-    image: "/images/product card images (2).png",
+    image: "/images/product_card_2.png",
   },
   {
     id: "comp-18",
@@ -147,7 +150,7 @@ const COMPOUNDS_CATALOG = [
     compound: "NBR WITH HEAVY DUTY FABRIC CORE",
     title: "RUBBER DIAPHRAGMS FOR ACTUATORS",
     material: "MAT // NBR WITH HEAVY ...",
-    image: "/images/product card images (3).png",
+    image: "/images/product_card_3.png",
   },
   {
     id: "comp-19",
@@ -155,14 +158,14 @@ const COMPOUNDS_CATALOG = [
     compound: "CUSTOM CALENDERED RAW COMPOUNDS (EPDM",
     title: "RUBBER COMPOUND FOR AUTOMOTIVE RUBBER HOSE",
     material: "MAT // CUSTOM CALENDER...",
-    image: "/images/product card images (4).png",
+    image: "/images/product_card_4.png",
   },
 ];
 
 // 2. HERO COMPONENT
 function CompoundsHero() {
   return (
-    <header className="relative w-full border-b-2 border-[#1C1B1B] overflow-hidden bg-[#1C1B1B] py-20 sm:py-24 lg:py-28">
+    <header className="relative w-full border-b border-[#e5e7eb] overflow-hidden] min-h-[300px] sm:min-h-[350px] flex items-center justify-center">
       {/* Background Image Container */}
       <div className="absolute inset-0 z-0">
         <Image 
@@ -173,25 +176,20 @@ function CompoundsHero() {
           className="object-cover filter grayscale"
           priority
         />
-        {/* Technical grid overlay */}
-        <div 
-          className="absolute inset-0 pointer-events-none opacity-[0.03]" 
-          style={{
-            backgroundImage: "linear-gradient(#FCF9F8 2px, transparent 2px), linear-gradient(90deg, #FCF9F8 2px, transparent 2px)",
-            backgroundSize: "30px 30px"
-          }}
-        />
       </div>
 
+      {/* Dark semi-transparent overlay */}
+      <div className="absolute inset-0 bg-[#0a0a0a]/90 z-10 pointer-events-none" />
+
       {/* Hero Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-start gap-4">
-        <span className="font-subtitle text-xs sm:text-sm font-bold tracking-[0.25em] text-[#FDC003] uppercase leading-none bg-[#1C1B1B] px-3 py-1.5 border border-[#313030] shadow-[2px_2px_0px_0px_#B81312]">
-          ELASTOMER & POLYMER LIBRARY
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-20 flex flex-col items-center gap-3">
+        <span className="font-montserrat text-xs sm:text-sm font-bold tracking-[0.2em] text-[#9ca3af] uppercase leading-none">
+          HOME / COMPOUNDS
         </span>
-        <h1 className="font-title text-5xl sm:text-7xl font-black uppercase text-[#FCF9F8] leading-[0.95] tracking-tighter">
+        <h1 className="font-title text-4xl sm:text-6xl font-black uppercase text-white tracking-tight leading-none mb-1">
           COMPOUNDS
         </h1>
-        <p className="font-body text-base sm:text-lg text-[#DCD9D9] max-w-xl leading-relaxed mt-2 border-l-2 border-[#B81312] pl-4">
+        <p className="font-body text-xs sm:text-sm text-[#9ca3af] max-w-xl leading-relaxed">
           Formulating high-performance polymers tailored for aggressive solvents, dynamic mechanical shear, and high-temperature thermal cycling.
         </p>
       </div>
@@ -201,79 +199,145 @@ function CompoundsHero() {
 
 // 3. SINGLE COMPOUND CARD COMPONENT
 function CompoundCard({ product }) {
+  // Parse the material tags
+  const getMaterialTags = (materialStr) => {
+    if (!materialStr) return [];
+    // Remove "MAT // " prefix if present
+    let cleanStr = materialStr.replace(/^MAT\s*\/\/\s*/i, "");
+    // Split by "/" or ","
+    return cleanStr.split(/[\/,]/).map(t => t.trim()).filter(t => t.length > 0);
+  };
+
+  const tags = getMaterialTags(product.material);
+
   return (
-    <div className="group relative bg-white border-2 border-[#1C1B1B] shadow-[4px_4px_0px_0px_#1C1B1B] hover:translate-y-[-4px] hover:shadow-[6px_6px_0px_0px_#1C1B1B] active:translate-y-0 active:shadow-[4px_4px_0px_0px_#1C1B1B] transition-all duration-200 flex flex-col justify-between overflow-hidden h-full">
-      
-      {/* Absolute Spec Tag */}
-      <div className="absolute top-3 left-3 bg-[#1C1B1B] text-[#FCF9F8] border border-[#313030] py-1.5 px-3 font-subtitle text-[10px] sm:text-[11px] font-bold uppercase tracking-wider z-10 shadow-[2px_2px_0px_0px_#B81312]">
-        {product.spec}
-      </div>
+    <Link href="/contact" className="group block h-full">
+      <div className="bg-white border border-[#e5e7eb] p-6 flex flex-col h-full justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(0,0,0,0.05)] hover:border-[#C75550] rounded-none">
+        
+        {/* Top Section: Image, Spec Metadata & Title */}
+        <div className="flex flex-col items-start w-full">
+          {/* Image Container Block */}
+          <div className="w-full bg-[#f9fafb] border border-[#e5e7eb] p-3 aspect-[4/3] mb-5 relative flex-shrink-0">
+            <div className="w-full h-full border border-dashed border-[#cbd5e1] relative bg-white flex items-center justify-center overflow-hidden">
+              {product.image ? (
+                <Image
+                  src={product.image}
+                  alt={product.title}
+                  fill
+                  sizes="(max-w-sm) 100vw, 300px"
+                  className="object-contain p-2 transition-transform duration-300 group-hover:scale-105"
+                />
+              ) : (
+                <span className="text-gray-300 text-[10px] uppercase font-montserrat tracking-wider">NO IMAGE</span>
+              )}
+            </div>
+          </div>
 
-      {/* Grayscale product photo */}
-      <div className="relative w-full aspect-[279/154] border-b-2 border-[#1C1B1B] bg-[#FCF9F8] overflow-hidden flex-shrink-0">
-        <Image 
-          src={product.image}
-          alt={product.title}
-          fill
-          sizes="(max-w-7xl) 25vw, (max-w-md) 100vw, 400px"
-          className="object-cover filter grayscale brightness-95 contrast-105 group-hover:grayscale-0 group-hover:scale-102 transition-all duration-300"
-        />
-        {/* Subtle grid pattern overlay */}
-        <div className="absolute inset-0 bg-transparent opacity-10 pointer-events-none" 
-             style={{
-               backgroundImage: "radial-gradient(#1C1B1B 1px, transparent 1px)",
-               backgroundSize: "16px 16px"
-             }} 
-        />
-      </div>
-
-      {/* Title Details */}
-      <div className="p-5 flex flex-col items-start gap-2 flex-grow">
-        <span className="font-subtitle text-xs font-bold text-[#B81312] uppercase tracking-wider leading-none">
-          COMPOUND: {product.compound}
-        </span>
-        <h3 className="font-title text-xl font-black text-[#1C1B1B] uppercase leading-[1.1] tracking-tight group-hover:text-[#B81312] transition-colors mt-1.5 truncate-3-lines">
-          {product.title}
-        </h3>
-      </div>
-
-      {/* Bottom Material row */}
-      <div className="w-full border-t-2 border-[#1C1B1B] flex items-stretch h-12 bg-[#F0EDEC] flex-shrink-0">
-        <div className="flex-grow px-4 flex items-center font-subtitle text-[11px] sm:text-xs font-bold text-[#1C1B1B]/70 tracking-wider uppercase truncate">
-          {product.material}
+          {/* Spec Metadata */}
+          <span className="font-montserrat text-[10px] font-bold text-[#9ca3af] tracking-widest uppercase mb-1.5 leading-none">
+            {product.spec}
+          </span>
+          
+          {/* Product Title */}
+          <h3 className="font-title text-lg sm:text-xl font-black text-[#1c1b1b] uppercase tracking-tight leading-snug group-hover:text-[#C75550] transition-colors duration-200 text-left">
+            {product.title}
+          </h3>
         </div>
-        <Link 
-          href="/contact"
-          className="w-12 border-l-2 border-[#1C1B1B] bg-[#B81312] hover:bg-[#DC3228] active:bg-[#B81312] text-[#FCF9F8] flex items-center justify-center font-black transition-colors duration-100 flex-shrink-0 cursor-pointer"
-        >
-          <span className="text-lg leading-none transform translate-y-[-1px] group-hover:translate-x-0.5 transition-transform">→</span>
-        </Link>
-      </div>
 
-    </div>
+        {/* Bottom Section: Compound Block & Material Tags */}
+        <div className="w-full">
+          {/* Shaded Compound Block */}
+          <div className="bg-[#f9fafb] border-l-4 border-[#fbbd05] py-2 px-3 my-4 text-left w-full">
+            <span className="font-montserrat text-xs text-[#4b5563] tracking-wide">
+              <span className="font-bold text-[#1c1b1b]">Compound:</span> {product.compound}
+            </span>
+          </div>
+
+          {/* Hard divider line */}
+          <div className="w-full border-t border-[#e5e7eb] my-4" />
+
+          {/* Bottom Material Tags Row */}
+          <div className="flex flex-wrap gap-2">
+            {tags.map((tag) => (
+              <span 
+                key={tag} 
+                className="bg-[#f3f4f6] border border-[#e5e7eb] text-[#4b5563] px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider rounded-none"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+
+      </div>
+    </Link>
   );
 }
 
 // 4. MAIN COMPOUNDS PAGE COMPONENT
 export function CompoundsPage() {
+  const [compounds, setCompounds] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function loadCompounds() {
+      try {
+        const data = await fetchProducts("compounds");
+        if (data && data.length > 0) {
+          const mapped = data.map((prod) => ({
+            id: prod.id || prod.slug,
+            spec: prod.specification || "SPEC: ASTM D2000 STANDARD",
+            compound: prod.customer || "RUBBER",
+            title: prod.name,
+            material: prod.description || "MAT // CUSTOM FORMULATION",
+            image: prod.image_url || "/images/product_card_1.png",
+          }));
+          setCompounds(mapped);
+        } else {
+          setCompounds(COMPOUNDS_CATALOG);
+        }
+      } catch (err) {
+        console.error("Failed to load compounds:", err);
+        setCompounds(COMPOUNDS_CATALOG);
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadCompounds();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex flex-col bg-white">
+        <CompoundsHero />
+        <main className="max-w-7xl py-20 mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center min-h-[400px]">
+          <div className="flex flex-col items-center gap-4 animate-pulse">
+            <div className="w-12 h-12 border-t-4 border-b-4 border-[#C75550] rounded-full animate-spin"></div>
+            <span className="font-montserrat text-xs font-bold tracking-widest text-[#1c1b1b] uppercase">LOADING POLYMER FORMULATIONS...</span>
+          </div>
+        </main>
+      </div>
+    );
+  }
+
   return (
-    <div className="min-h-screen flex flex-col bg-[#FCF9F8]">
+    <div className="min-h-screen flex flex-col bg-white">
       
       {/* Hero Banner */}
       <CompoundsHero />
 
       {/* Main Content Area */}
-      <main className="max-w-7xl py-20  mx-auto px-4 sm:px-6 lg:px-8">
+      <main className="max-w-7xl py-16 sm:py-20 mx-auto px-4 sm:px-6 lg:px-8 bg-white">
         
         {/* Breadcrumb Stripe Banner (Full Width) */}
-        <div className="w-full bg-[#1C1B1B] text-[#FCF9F8] border-2 border-[#1C1B1B] py-4 px-6 font-subtitle text-xs font-bold tracking-widest uppercase flex items-center justify-between shadow-[4px_4px_0px_0px_#1C1B1B] mb-12">
-          <span>■ CATALOG // COMPOUNDS</span>
-          <span className="text-[#FDC003] font-bold text-[11px]">{COMPOUNDS_CATALOG.length} STABLE SPECIFICATIONS</span>
+        <div className="w-full bg-[#f5f5f5] border border-[#e5e7eb] py-4.5 px-6 font-montserrat text-xs font-bold tracking-widest uppercase flex flex-col sm:flex-row items-center justify-between mb-12 gap-3">
+          <span className="text-[#1c1b1b]">■ CATALOG // COMPOUNDS</span>
+          <span className="text-[#C75550]">{compounds.length} STABLE SPECIFICATIONS</span>
         </div>
 
         {/* Dense 4-Column Responsive Grid */}
         <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {COMPOUNDS_CATALOG.map((prod) => (
+          {compounds.map((prod) => (
             <div key={prod.id} className="w-full">
               <CompoundCard product={prod} />
             </div>
@@ -281,6 +345,11 @@ export function CompoundsPage() {
         </section>
 
       </main>
+
+      {/* Contact Banner at the bottom */}
+      <div className="w-full mt-16">
+        <ContactBanner />
+      </div>
 
     </div>
   );

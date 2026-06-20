@@ -78,7 +78,7 @@ const LEADERSHIP_STAT_BOXES = [
 // 3. HERO COMPONENT
 function HistoryHero() {
   return (
-    <header className="relative w-full border-b border-[#e5e7eb] overflow-hidden bg-white min-h-[300px] sm:min-h-[350px] flex items-center justify-center">
+    <header className="relative w-full border-b border-[#e5e7eb] overflow-hidden bg-[#0a0a0a] min-h-[300px] sm:min-h-[350px] flex items-center justify-center">
       {/* Background Image Container */}
       <div className="absolute inset-0 z-0">
         <Image 

@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { fetchStatistics, fetchClients, submitContactInquiry } from "@/lib/api";
 
 // 1. HERO SECTION
 function Hero() {
@@ -62,12 +63,44 @@ function Hero() {
 // 2. CORE OPERATIONS METRICS SECTION
 // 2. CORE OPERATIONS METRICS SECTION
 function TopStatsBar() {
-  const stats = [
-    { value: "30+", label: "YEARS EXPERIENCE", icon: "fa-solid fa-circle-check" },
-    { value: "50+", label: "GLOBAL CLIENTS", icon: "fa-solid fa-globe" },
-    { value: "1150+", label: "PROJECTS COMPLETED", icon: "fa-solid fa-industry" },
-    { value: "150+", label: "SATISFIED CLIENTS", icon: "fa-solid fa-award" },
-  ];
+  const [stats, setStats] = useState([]);
+
+  useEffect(() => {
+    async function loadStats() {
+      const data = await fetchStatistics();
+      const iconMap = {
+        experience: "fa-solid fa-circle-check",
+        clients: "fa-solid fa-globe",
+        projects: "fa-solid fa-industry",
+        satisfied: "fa-solid fa-award",
+      };
+
+      const mapped = data.map((item) => {
+        const label = item.label.toLowerCase();
+        let icon = "fa-solid fa-circle-check";
+        if (label.includes("experience") || label.includes("years")) icon = iconMap.experience;
+        else if (label.includes("global") || label.includes("client")) icon = iconMap.clients;
+        else if (label.includes("project")) icon = iconMap.projects;
+        else if (label.includes("satisfied") || label.includes("award")) icon = iconMap.satisfied;
+
+        return {
+          value: item.value,
+          label: item.label.toUpperCase(),
+          icon,
+        };
+      });
+
+      setStats(mapped.length > 0 ? mapped : [
+        { value: "30+", label: "YEARS EXPERIENCE", icon: "fa-solid fa-circle-check" },
+        { value: "50+", label: "GLOBAL CLIENTS", icon: "fa-solid fa-globe" },
+        { value: "1150+", label: "PROJECTS COMPLETED", icon: "fa-solid fa-industry" },
+        { value: "150+", label: "SATISFIED CLIENTS", icon: "fa-solid fa-award" },
+      ]);
+    }
+    loadStats();
+  }, []);
+
+  if (stats.length === 0) return null;
 
   return (
     <section className="w-full bg-[#0a0a0a] text-[#f5f5f5] py-12 border-b border-[#111111]">
@@ -388,12 +421,23 @@ function QuoteSection() {
     message: ""
   });
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
+    setLoading(true);
+    setError(null);
+    try {
+      await submitContactInquiry({
+        name: formState.fullName,
+        email: formState.email,
+        phone: formState.phone,
+        subject: `Request a Free Quote - ${formState.companyName}`,
+        message: formState.message,
+        source_page: "home-quote",
+      });
+      setSubmitted(true);
       setFormState({ 
         companyName: "", 
         fullName: "", 
@@ -401,7 +445,15 @@ function QuoteSection() {
         phone: "", 
         message: ""
       });
-    }, 3000);
+      setTimeout(() => {
+        setSubmitted(false);
+      }, 5000);
+    } catch (err) {
+      console.error(err);
+      setError("Failed to submit request. Please verify connection and try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -448,6 +500,11 @@ function QuoteSection() {
               </div>
             ) : (
               <>
+                {error && (
+                  <div className="bg-red-600 text-white p-4 font-body text-xs font-bold text-center uppercase tracking-wider">
+                    ⚠ {error}
+                  </div>
+                )}
                 {/* Full Name & Company Name */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 w-full">
                   <div className="flex flex-col gap-2 w-full text-left">
@@ -518,9 +575,10 @@ function QuoteSection() {
                 {/* Submit Button */}
                 <button 
                   type="submit" 
-                  className="bg-[#C75550] hover:bg-[#a53b36] text-white font-montserrat px-10 py-4 text-xs font-bold tracking-[0.15em] mt-4 flex items-center justify-center gap-2 w-fit cursor-pointer transition-colors duration-200"
+                  disabled={loading}
+                  className="bg-[#C75550] hover:bg-[#a53b36] text-white font-montserrat px-10 py-4 text-xs font-bold tracking-[0.15em] mt-4 flex items-center justify-center gap-2 w-fit cursor-pointer transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  START A PROJECT <span className="font-sans text-sm">→</span>
+                  {loading ? "SUBMITTING..." : "START A PROJECT"} <span className="font-sans text-sm">→</span>
                 </button>
               </>
             )}
@@ -534,14 +592,28 @@ function QuoteSection() {
 
 // 6. CLIENT LOGOS
 function ClientLogos() {
-  const logos = [
-    { src: "/images/L14 2.png", alt: "Liljas Plastic" },
-    { src: "/images/L15 2.png", alt: "HL Automotive Suzhou" },
-    { src: "/images/L16 2.png", alt: "Hindustan Hardy Ltd" },
-    { src: "/images/1728122557.png", alt: "Air Force" },
-    { src: "/images/L18 2.png", alt: "MSL" },
-    { src: "/images/L19 2.png", alt: "Innova Rubbers" }
-  ];
+  const [logos, setLogos] = useState([]);
+
+  useEffect(() => {
+    async function loadClients() {
+      const data = await fetchClients();
+      if (data && data.length > 0) {
+        setLogos(data.map((c) => ({ src: c.logo_url, alt: c.name })));
+      } else {
+        setLogos([
+          { src: "/images/L14 2.png", alt: "Liljas Plastic" },
+          { src: "/images/L15 2.png", alt: "HL Automotive Suzhou" },
+          { src: "/images/L16 2.png", alt: "Hindustan Hardy Ltd" },
+          { src: "/images/1728122557.png", alt: "Air Force" },
+          { src: "/images/L18 2.png", alt: "MSL" },
+          { src: "/images/L19 2.png", alt: "Innova Rubbers" }
+        ]);
+      }
+    }
+    loadClients();
+  }, []);
+
+  if (logos.length === 0) return null;
 
   return (
     <section className="w-full bg-white border-y border-black py-10">
@@ -552,14 +624,18 @@ function ClientLogos() {
               key={index} 
               className="h-12 w-28 sm:w-36 relative flex items-center justify-center opacity-95 hover:opacity-100 transition-opacity duration-200"
             >
-              <Image
-                src={logo.src}
-                alt={logo.alt}
-                fill
-                sizes="(max-w-7xl) 144px"
-                className="object-contain"
-                priority
-              />
+              {logo.src ? (
+                <Image
+                  src={logo.src}
+                  alt={logo.alt}
+                  fill
+                  sizes="(max-w-7xl) 144px"
+                  className="object-contain"
+                  priority
+                />
+              ) : (
+                <span className="font-montserrat text-[10px] font-bold text-gray-400">{logo.alt}</span>
+              )}
             </div>
           ))}
         </div>

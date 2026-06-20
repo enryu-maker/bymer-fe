@@ -1,10 +1,13 @@
+"use client";
+
 import Image from "next/image";
 import { ContactForm } from "./ContactForm";
+import { useCompanySettings } from "../layout/CompanySettingsContext";
 
 // 1. CONTACT HERO
 function ContactHero() {
   return (
-    <header className="relative w-full border-b border-[#e5e7eb] overflow-hidden bg-white min-h-[300px] sm:min-h-[350px] flex items-center justify-center">
+    <header className="relative w-full border-b border-[#e5e7eb] overflow-hidden bg-[#0a0a0a] min-h-[300px] sm:min-h-[350px] flex items-center justify-center">
       {/* Background Image Container */}
       <div className="absolute inset-0 z-0">
         <Image 
@@ -35,6 +38,14 @@ function ContactHero() {
 
 // 2. CONTACT DETAILS (INFO CARDS)
 function ContactDetails() {
+  const { profile } = useCompanySettings();
+
+  const email = profile?.email || "sales@bymer.com";
+  const altEmail = profile?.alternate_phone ? "info@bymer.com" : null;
+  const phone = profile?.phone || "+91 253 2381123";
+  const altPhone = profile?.alternate_phone || "+91 98220 79859";
+  const address = profile?.address || "Plot No. J-52 and J-42, MIDC Industrial Area, Ambad, Nashik - 422 010, Maharashtra, India.";
+
   return (
     <section className="w-full py-20 sm:py-24 bg-[#f5f5f5] border-b border-[#e5e7eb]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -62,12 +73,18 @@ function ContactDetails() {
               EMAIL ADDRESS
             </h3>
             <div className="flex flex-col gap-1.5 font-body text-sm text-[#4b5563]">
-              <a href="mailto:sales@bymer.com" className="hover:text-[#C75550] transition-colors font-medium">
-                sales@bymer.com
+              <a href={`mailto:${email}`} className="hover:text-[#C75550] transition-colors font-medium">
+                {email}
               </a>
-              <a href="mailto:info@bymer.com" className="hover:text-[#C75550] transition-colors font-medium">
-                info@bymer.com
-              </a>
+              {altEmail ? (
+                <a href={`mailto:${altEmail}`} className="hover:text-[#C75550] transition-colors font-medium">
+                  {altEmail}
+                </a>
+              ) : (
+                <a href="mailto:info@bymer.com" className="hover:text-[#C75550] transition-colors font-medium">
+                  info@bymer.com
+                </a>
+              )}
             </div>
           </div>
 
@@ -80,11 +97,11 @@ function ContactDetails() {
               PHONE NUMBERS
             </h3>
             <div className="flex flex-col gap-1.5 font-body text-sm text-[#4b5563] font-medium">
-              <a href="tel:+912532381123" className="hover:text-[#C75550] transition-colors">
-                +91 253 2381123
+              <a href={`tel:${phone}`} className="hover:text-[#C75550] transition-colors">
+                {phone}
               </a>
-              <a href="tel:+919822079859" className="hover:text-[#C75550] transition-colors">
-                +91 98220 79859
+              <a href={`tel:${altPhone}`} className="hover:text-[#C75550] transition-colors">
+                {altPhone}
               </a>
             </div>
           </div>
@@ -100,8 +117,8 @@ function ContactDetails() {
             <span className="font-montserrat text-[10px] font-bold text-[#1c1b1b] tracking-wider uppercase mb-2">
               BYMER ELASTOMERS
             </span>
-            <p className="font-body text-xs sm:text-sm text-[#4b5563] leading-relaxed max-w-[260px]">
-              Plot No. J-52 and J-42, MIDC Industrial Area, Ambad, Nashik - 422 010, Maharashtra, India.
+            <p className="font-body text-xs sm:text-sm text-[#4b5563] leading-relaxed max-w-[260px] whitespace-pre-line">
+              {address}
             </p>
           </div>
 

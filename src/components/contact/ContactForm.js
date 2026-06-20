@@ -1,18 +1,38 @@
 "use client";
 
 import { useState } from "react";
+import { submitContactInquiry } from "@/lib/api";
 
 export function ContactForm() {
   const [formState, setFormState] = useState({ name: "", email: "", phone: "", subject: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
+    setLoading(true);
+    setError(null);
+    try {
+      await submitContactInquiry({
+        name: formState.name,
+        email: formState.email,
+        phone: formState.phone,
+        subject: formState.subject,
+        message: formState.message,
+        source_page: "contact-us",
+      });
+      setSubmitted(true);
       setFormState({ name: "", email: "", phone: "", subject: "", message: "" });
-    }, 3000);
+      setTimeout(() => {
+        setSubmitted(false);
+      }, 5000);
+    } catch (err) {
+      console.error(err);
+      setError("Failed to send your request. Please check your network connection and try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -112,12 +132,19 @@ export function ContactForm() {
               />
             </div>
 
+            {error && (
+              <div className="bg-red-600 text-white p-4 font-body text-xs font-bold text-center uppercase tracking-wider w-full">
+                ⚠ {error}
+              </div>
+            )}
+
             {/* Submit Button */}
             <button 
               type="submit" 
-              className="bg-[#111111] hover:bg-[#2d3748] text-white font-montserrat px-8 py-4 text-xs sm:text-sm font-bold tracking-[0.15em] flex items-center justify-center gap-2 rounded-none cursor-pointer transition-colors duration-150 self-start"
+              disabled={loading}
+              className="bg-[#111111] hover:bg-[#2d3748] text-white font-montserrat px-8 py-4 text-xs sm:text-sm font-bold tracking-[0.15em] flex items-center justify-center gap-2 rounded-none cursor-pointer transition-colors duration-150 self-start disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              SUBMIT COMMENT <i className="fa-solid fa-paper-plane text-xs ml-1" />
+              {loading ? "SUBMITTING..." : "SUBMIT COMMENT"} <i className="fa-solid fa-paper-plane text-xs ml-1" />
             </button>
           </>
         )}
