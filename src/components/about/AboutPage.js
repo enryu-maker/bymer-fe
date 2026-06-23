@@ -65,15 +65,15 @@ function WhoWeAre() {
           {/* Right Column: Paragraphs & Certificates (7 cols) */}
           <div className="lg:col-span-7 flex flex-col items-start text-left">
             <p className="font-body text-base sm:text-lg font-semibold text-[#1c1b1b] leading-relaxed mb-6">
-              Bymer Elastomers is one of the leading rubber products manufacturing company, having two plants and working space of approx. 45,000 sq.ft. situated in the premium industrial area of Ambad, Nashik, Maharashtra, India.
+            Certified Rubber Components, Custom Compounds & Manufacturing Solutions for OEMs and Industrial Applications.
             </p>
             
             <p className="font-body text-sm sm:text-base text-[#4b5563] leading-relaxed mb-6">
-              We specialize in manufacturing high-end Rubber Compounds, Molded Rubber and Rubber To Metal Bonded Products, Extruded Rubber Profiles, and Low Pressure Rubber Hoses, meticulously engineered to cater to both Automotive and Non-Automotive Industries.
+            Bymer Elastomers is a certified elastomer manufacturer specializing in custom rubber components, rubber-to-metal bonded products, extruded rubber profiles, industrial hoses and custom rubber compounds.
             </p>
 
             <p className="font-body text-sm sm:text-base text-[#4b5563] leading-relaxed mb-10">
-              With an extensive international footprint, we reliably supply high-grade elastomer solutions to around 50 plus customers globally across domestic and overseas markets.
+            Bymer has two manufacturing units with a combined area of 45,000 sq. ft at Nashik, India. It provides to OEMs, automotive manufacturers, industrial equipment companies and engineering companies in domestic and international markets.
             </p>
 
             {/* Certification Badges Grid */}
@@ -127,10 +127,8 @@ function MissionVision() {
             </h3>
             <div className="flex flex-col gap-4 font-body text-xs sm:text-sm text-[#4b5563] leading-relaxed">
               <p>
-                Our Vision is to be a world-class Rubber Products manufacturing company, recognized for our excellence in quality, innovation, sustainability, and committed to 100% customer satisfaction.
-              </p>
-              <p>
-                We aim to set new industry standards while fostering a safe and dynamic work environment, ensuring long-term success for our customers, employees, and partners.
+              To be a globally trusted elastomer manufacturing partner, recognized for engineering excellence, manufacturing reliability, innovation, and sustainable growth. We aspire to set industry benchmarks in quality, process excellence, and customer partnership while creating lasting value for our customers, employees, and stakeholders across India and international markets.
+
               </p>
             </div>
           </div>
@@ -145,7 +143,7 @@ function MissionVision() {
             </h3>
             <div className="flex flex-col gap-4 font-body text-xs sm:text-sm text-[#4b5563] leading-relaxed">
               <p>
-                Our Mission at Bymer Elastomers is to deliver high-quality, innovative rubber solutions that exceed customer expectations. We are committed to continuous improvement, customer satisfaction, and continuous improvement in technology to provide reliable and cost-effective rubber products.
+              To deliver reliable elastomer solutions through engineering expertise, certified manufacturing systems, and continuous innovation. We are committed to helping OEMs and industrial manufacturers achieve consistent performance, operational reliability, and long-term value through custom rubber components, advanced compounds, and scalable production capabilities.
               </p>
             </div>
           </div>
@@ -302,7 +300,7 @@ function PillarsSection() {
                 EXPERTISE & BACKGROUND:
               </span>
               <p className="font-body text-xs sm:text-sm text-[#4b5563] leading-relaxed">
-                Mr. Yezdi Patel is a highly qualified rubber technologist from Mumbai University and holds a degree from the prestigious Plastics and Rubber Institute, London. He brings over 50 plus years of deep domain experience in the technical manufacturing of rubber products. All developmental activities within our plants are initiated and overseen by him.
+              Mr. Yezdi Patel has more than 60 years of experience in rubber technology and manufacturing to his expertise in elastomer engineering, product development, and process excellence. A qualified rubber technologist from the University of Mumbai and a graduate of the Plastics and Rubber Institute, London, he continues to lead the technical development and strategic growth of Bymer Elastomers, driving the company’s commitment to reliability, innovation and manufacturing excellence.
               </p>
             </div>
           </div>
@@ -335,7 +333,7 @@ function PillarsSection() {
                 EXPERTISE & BACKGROUND:
               </span>
               <p className="font-body text-xs sm:text-sm text-[#4b5563] leading-relaxed">
-                Our CFO Mr. Ruzbeh Patel is a Graduate in Science from Pune University. He possesses around 40 plus years of core execution and financial manufacturing track record in high-end Rubber Products. He manages business capitalization strategy while structural marketing and product developments are actively overseen by him.
+              Mr. Ruzbeh Patel, with over 40 years of experience in the rubber manufacturing industry, plays a pivotal role in spearheading business growth, customer engagement, and strategic development at Bymer Elastomers. He is a Science graduate from Savitribai Phule Pune University and is responsible for new business initiatives and market development, helping to strengthen Bymer’s position as a trusted elastomer manufacturing partner for OEMs and industrial customers.
               </p>
             </div>
           </div>
@@ -356,7 +354,53 @@ function PillarsSection() {
   );
 }
 
-// 6. COMMITMENT BANNER
+// 6. TEAM SECTION
+function TeamSection() {
+  return (
+    <section className="w-full py-20 sm:py-24 bg-[#f5f5f5] border-y border-[#e5e7eb]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          
+          {/* Left Column: Title & Copy */}
+          <div className="lg:col-span-5 flex flex-col items-start text-left">
+            <span className="font-montserrat text-xs sm:text-sm font-bold text-[#C75550] uppercase tracking-[0.2em] mb-2">
+              OUR TEAM
+            </span>
+            <h2 className="font-title text-3xl sm:text-4xl lg:text-[2.75rem] font-black text-[#1c1b1b] uppercase tracking-tight leading-[1.1]">
+              ENGINEERING EXPERTISE. MANUFACTURING EXCELLENCE. SHARED COMMITMENT.
+            </h2>
+            <div className="w-16 h-[4px] bg-[#fbbd05] mt-4" />
+          </div>
+
+          {/* Right Column: Body Text */}
+          <div className="lg:col-span-7 flex flex-col items-start text-left gap-6">
+            <p className="font-body text-sm sm:text-base text-[#4b5563] leading-relaxed">
+              Behind every component, compound, and customer partnership is a team driven by manufacturing excellence. Our engineers, manufacturing specialists, quality professionals and support teams work together to deliver consistent quality, dependable delivery and responsive customer support.
+            </p>
+            <p className="font-body text-sm sm:text-base text-[#4b5563] leading-relaxed">
+              Our team uses our technical expertise, a culture of accountability and a constant desire to improve to help turn customer needs into dependable elastomer solutions for a variety of industrial applications.
+            </p>
+          </div>
+        </div>
+
+        {/* Team Photo */}
+        <div className="mt-12 sm:mt-16 w-full border border-[#e5e7eb] bg-white p-2 sm:p-3 shadow-[0_1px_3px_rgba(0,0,0,0.05)]">
+          <div className="relative w-full aspect-[16/7] sm:aspect-[21/9] overflow-hidden">
+            <Image
+              src="/images/team-photo.png"
+              alt="Bymer Elastomers team at Nashik manufacturing plant"
+              fill
+              sizes="(max-width: 1280px) 100vw, 1280px"
+              className="object-cover object-center"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// 7. COMMITMENT BANNER
 function CommitmentBanner() {
   return (
     <section className="w-full bg-[#fbbd05] py-16 sm:py-20 border-b border-black text-center flex flex-col items-center justify-center px-4">
@@ -370,7 +414,7 @@ function CommitmentBanner() {
   );
 }
 
-// 7. CONTACT CTA BANNER
+// 8. CONTACT CTA BANNER
 function AboutContactCTA() {
   return (
     <section className="w-full py-20 bg-white border-t border-b border-[#f3f4f6] text-center flex flex-col items-center justify-center px-4">
@@ -408,6 +452,9 @@ export function AboutPage() {
 
       {/* Pillars Section */}
       <PillarsSection />
+
+      {/* Team Section */}
+      <TeamSection />
 
       {/* Commitment Banner */}
       <CommitmentBanner />

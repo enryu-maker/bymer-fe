@@ -17,7 +17,14 @@ export function Header() {
 
   const navLinks = [
     { name: "ABOUT", href: "/about" },
-    { name: "PRODUCTS", href: "/products" },
+    {
+      name: "PRODUCTS",
+      href: "/products",
+      submenu: [
+        { name: "AUTOMOTIVE", href: "/products/automotive" },
+        { name: "NON AUTOMOTIVE", href: "/products/non-automotive" },
+      ],
+    },
     { name: "COMPOUNDS", href: "/compounds" },
     { 
       name: "MACHINERY", 
@@ -43,7 +50,8 @@ export function Header() {
             <div className="hidden lg:flex items-center gap-8">
               {navLinks.map((link) => {
                 const isActive = link.submenu
-                  ? link.submenu.some((sub) => pathname === sub.href)
+                  ? link.submenu.some((sub) => pathname === sub.href) ||
+                    pathname === link.href
                   : pathname === link.href;
 
                 if (link.submenu) {

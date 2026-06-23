@@ -32,9 +32,9 @@ function Hero() {
       {/* Hero Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-20 w-full flex flex-col items-start gap-6">
         <h1 className="font-title text-4xl sm:text-6xl lg:text-7xl font-black uppercase text-[#1c1b1b] leading-[1.0] max-w-2xl tracking-tight">
-          ENGINEERING <br />
-          <span className="text-[#C75550]">TRUST</span> IN EVERY <br />
-          ELASTOMER
+        ENGINEERING RELIABLE <br />
+        <span className="text-[#C75550]">ELASTOMER SOLUTIONS</span> 
+        
         </h1>
 
         <p className="font-body text-sm sm:text-base text-[#4b5563] max-w-xl leading-relaxed mt-2">
@@ -260,32 +260,29 @@ function InstitutionalQuality() {
           <h2 className="font-title text-4xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-white leading-[1.0]">
             YOUR PARTNER <br />
             FOR QUALITY <br />
-            RUBBER <br />
+            RUBBER 
             PRODUCTS
           </h2>
 
           <p className="font-montserrat text-xs sm:text-sm font-bold text-[#fbbd05] uppercase tracking-wider leading-relaxed max-w-xl">
-            DELIVERING RELIABLE, COST-EFFECTIVE QUALITY RUBBER PRODUCTS ACROSS INDUSTRIES.
+          Certified Rubber Components, Custom Compounds & Manufacturing Solutions for OEMs and Industrial Applications
           </p>
           
           <div className="flex flex-col gap-4 font-body text-xs sm:text-sm text-[#9ca3af] leading-relaxed max-w-xl">
             <p>
-              Bymer Elastomers is one of the leading rubber products manufacturing company, having two plants and working space of approx. 45000 sq ft. situated in industrial area of Ambad, Nashik, Maharashtra, India.
+            Bymer Elastomers is a certified elastomer manufacturer specializing in custom rubber components, rubber-to-metal bonded products, extruded rubber profiles, industrial hoses and custom rubber compounds .
             </p>
             <p>
-              Bymer Elastomers is an IATF 16949:2016, ISO 9001:2015 and ISO 14001:2015 certified company.
+            Bymer has two manufacturing units with a combined area of 45,000 sq. ft at Nashik, India. It provides to OEMs, automotive manufacturers, industrial equipment companies and engineering companies in domestic and international markets.
             </p>
             <p>
-              We manufacture High end Rubber Compounds, Molded Rubber and Rubber To Metal Bonded Products, Extruded Rubber Profiles and Low pressure Rubber Hoses, catering to Automotive and Non automotive Industries.
-            </p>
-            <p>
-              We supply to around 50 plus customers in India and Overseas.
+            We are IATF 16949:2016, ISO 9001:2015 & ISO 14001:2015 certified manufacturing processes for consistent, reliable and scalable manufacturing for performance critical applications.
             </p>
           </div>
 
           <div className="border-l-4 border-white bg-[#C75550] p-6 max-w-xl select-none w-full">
             <p className="font-montserrat text-xs sm:text-sm font-bold text-white uppercase tracking-wider leading-relaxed">
-              WE ARE COMMITTED TO SUPPLY QUALITY RUBBER PRODUCTS TO OUR CUSTOMERS.
+            Delivering Reliable Elastomer Solutions for Performance-Critical Applications Worldwide.
             </p>
           </div>
         </div>

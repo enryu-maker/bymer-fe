@@ -23,7 +23,11 @@ export const metadata = {
   title: "Bymer Elastomers | Quality Rubber Products Manufacturer",
   description: "Bymer Elastomers is an IATF 16949:2016, ISO 9001:2015 and ISO 14001:2015 certified company, manufacturing high-end Rubber Compounds, Molded Rubber, Rubber To Metal Bonded Products, Extruded Rubber Profiles, and Low Pressure Hoses in MIDC Ambad, Nashik.",
   icons: {
-    icon: "/favicon.ico",
+    icon: [
+      { url: "/images/bymer-logo.png", type: "image/png" },
+    ],
+    shortcut: "/images/bymer-logo.png",
+    apple: "/images/bymer-logo.png",
   },
 };
 

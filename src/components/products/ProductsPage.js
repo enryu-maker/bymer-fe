@@ -310,6 +310,28 @@ const CATEGORIES = [
   "SPECIAL DAMPER MOUNTINGS",
 ];
 
+const AUTOMOTIVE_CATEGORY = "AUTOMOTIVE PRODUCTS";
+
+function getCategoriesForSegment(segment, allCategories) {
+  if (segment === "automotive") {
+    return allCategories.filter((category) => category === AUTOMOTIVE_CATEGORY);
+  }
+  if (segment === "non-automotive") {
+    return allCategories.filter((category) => category !== AUTOMOTIVE_CATEGORY);
+  }
+  return allCategories;
+}
+
+function getDefaultCategory(segment, segmentCategories) {
+  if (segment === "automotive") {
+    return AUTOMOTIVE_CATEGORY;
+  }
+  if (segment === "non-automotive" && segmentCategories.length > 0) {
+    return segmentCategories[0];
+  }
+  return AUTOMOTIVE_CATEGORY;
+}
+
 // 2. PRODUCTS HERO COMPONENT
 function ProductsHero() {
   return (
@@ -426,10 +448,12 @@ function ProductCard({ product, index }) {
 }
 
 // 4. MAIN DYNAMIC PRODUCTS CATALOG COMPONENT
-export function ProductsPage() {
+export function ProductsPage({ segment } = {}) {
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
-  const [activeCategory, setActiveCategory] = useState("AUTOMOTIVE PRODUCTS");
+  const [activeCategory, setActiveCategory] = useState(() =>
+    getDefaultCategory(segment, getCategoriesForSegment(segment, CATEGORIES))
+  );
   const [searchQuery, setSearchQuery] = useState("");
   const [loading, setLoading] = useState(true);
 
@@ -444,10 +468,8 @@ export function ProductsPage() {
         if (catsData && catsData.length > 0) {
           const catNames = catsData.map(c => c.name.toUpperCase());
           setCategories(catNames);
-          // Default to first category if available
-          if (catNames.length > 0) {
-            setActiveCategory(catNames[0]);
-          }
+          const segmentCategories = getCategoriesForSegment(segment, catNames);
+          setActiveCategory(getDefaultCategory(segment, segmentCategories));
         } else {
           setCategories([
             "AUTOMOTIVE PRODUCTS",
@@ -491,6 +513,18 @@ export function ProductsPage() {
     }
     loadData();
   }, []);
+
+  const displayedCategories = useMemo(
+    () => getCategoriesForSegment(segment, categories),
+    [segment, categories]
+  );
+
+  useEffect(() => {
+    if (!segment || displayedCategories.length === 0) return;
+    setActiveCategory((current) =>
+      displayedCategories.includes(current) ? current : displayedCategories[0]
+    );
+  }, [segment, displayedCategories]);
 
   // Memoized filtered products list based on category & search terms
   const filteredProducts = useMemo(() => {
@@ -578,7 +612,7 @@ export function ProductsPage() {
               </span>
               
               <div className="flex flex-col gap-3">
-                {categories.map((category) => {
+                {displayedCategories.map((category) => {
                   const isSelected = activeCategory === category;
                   return (
                     <button
