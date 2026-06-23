@@ -2,17 +2,17 @@ import Image from "next/image";
 import Link from "next/link";
 import { ContactBanner } from "../layout/ContactBanner";
 
-const TESTING_EQUIPMENT = [
-  { name: "Rheometers", icon: "fa-solid fa-chart-line" },
-  { name: "Viscometer", icon: "fa-solid fa-gauge-high" },
-  { name: "Universal Testing Machine", icon: "fa-solid fa-weight-hanging" },
-  { name: "Ozone Chamber", icon: "fa-solid fa-cloud" },
-  { name: "0 to -60°C Cold Chamber", icon: "fa-solid fa-snowflake" },
-  { name: "Ageing Ovens", icon: "fa-solid fa-fire" },
-  { name: "Muffle Furnace", icon: "fa-solid fa-temperature-high" },
-  { name: "Abrasion Testing", icon: "fa-solid fa-gear" },
-  { name: "Specific Gravity Balances", icon: "fa-solid fa-scale-balanced" },
-  { name: "Hardness Testers", icon: "fa-solid fa-hammer" },
+const TESTING_CAPABILITIES = [
+  { name: "Rheological Analysis", icon: "fa-solid fa-chart-line" },
+  { name: "Viscosity Testing", icon: "fa-solid fa-gauge-high" },
+  { name: "Tensile & Mechanical Property Testing", icon: "fa-solid fa-weight-hanging" },
+  { name: "Ozone Resistance Testing", icon: "fa-solid fa-cloud" },
+  { name: "Low-Temperature Performance Testing (-60°C)", icon: "fa-solid fa-snowflake" },
+  { name: "Accelerated Ageing Evaluation", icon: "fa-solid fa-fire" },
+  { name: "Abrasion Resistance Testing", icon: "fa-solid fa-gear" },
+  { name: "Specific Gravity Analysis", icon: "fa-solid fa-scale-balanced" },
+  { name: "Hardness Testing", icon: "fa-solid fa-hammer" },
+  { name: "Material Characterization & Validation", icon: "fa-solid fa-flask" },
 ];
 
 function QualityHero() {
@@ -22,15 +22,12 @@ function QualityHero() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-20 flex flex-col items-center gap-4">
         <span className="font-montserrat text-xs sm:text-sm font-bold tracking-[0.2em] text-[#9ca3af] uppercase leading-none">
-          PRECISION &amp; RELIABILITY
+          Quality Assurance at Bymer Elastomers
         </span>
         <h1 className="font-title text-4xl sm:text-5xl lg:text-6xl font-black uppercase text-white tracking-tight leading-[1.1] max-w-4xl">
-          TESTED AND PROVEN AT EVERY STEP.
+          Precision. Consistency. Reliability.
         </h1>
         <div className="w-16 h-[4px] bg-[#fbbd05] mt-1" />
-        <p className="font-montserrat text-sm sm:text-base font-bold text-[#fbbd05] uppercase tracking-wider mt-1">
-          Quality Assurance at Bymer Elastomers
-        </p>
       </div>
     </header>
   );
@@ -40,30 +37,57 @@ function QualityIntro() {
   return (
     <section className="w-full py-20 sm:py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto flex flex-col gap-6">
+          <p className="font-body text-sm sm:text-base text-[#4b5563] leading-relaxed">
+            Quality at Bymer Elastomers is not a final checkpoint, it is built-in at every step of
+            the manufacturing process. Each step, from raw material evaluation and compound
+            development to production, testing and final inspection is governed by strict quality
+            controls to ensure consistency, reliability and performance.
+          </p>
+
+          <div className="bg-[#111111] py-6 px-8 border-l-[6px] border-[#C75550] w-full">
+            <p className="font-title text-sm sm:text-base font-bold tracking-wider text-white uppercase leading-snug">
+              &ldquo;Doing Things Right the First Time&rdquo;
+            </p>
+          </div>
+
+          <p className="font-body text-sm sm:text-base text-[#4b5563] leading-relaxed">
+            Our philosophy of &ldquo;Doing Things Right the First Time&rdquo; drives a culture of
+            process discipline, continuous improvement and customer focused manufacturing
+            excellence.
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function EngineeringConfidenceSection() {
+  return (
+    <section className="w-full py-20 sm:py-24 bg-[#f5f5f5] border-y border-[#e5e7eb]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           <div className="lg:col-span-5 flex flex-col items-start text-left">
             <span className="font-montserrat text-xs sm:text-sm font-bold text-[#C75550] uppercase tracking-[0.2em] mb-2">
-              OUR APPROACH
+              Manufacturing Excellence
             </span>
             <h2 className="font-title text-3xl sm:text-4xl lg:text-5xl font-black text-[#1c1b1b] uppercase tracking-tight leading-[1.05]">
-              QUALITY AT EVERY STAGE OF PRODUCTION
+              Engineering Confidence Through Quality
             </h2>
             <div className="w-16 h-[4px] bg-[#fbbd05] mt-4" />
           </div>
 
           <div className="lg:col-span-7 flex flex-col gap-6">
             <p className="font-body text-sm sm:text-base text-[#4b5563] leading-relaxed">
-              At Bymer Elastomers, we prioritize quality at every stage of production, from raw
-              material inspection to the final product. Our commitment of Doing Things Right the
-              First Time ensures that every step is monitored and tested rigorously, preventing
-              rejections and maintaining our focus on customer satisfaction.
+              We are constantly investing in the latest manufacturing technologies and processes to
+              meet the demanding expectations of OEMs and industrial capabilities. Modern equipment,
+              controlled production environments, and robust quality systems enable us to deliver
+              elastomer solutions that perform consistently in demanding applications.
             </p>
-
-            <div className="bg-[#111111] py-6 px-8 border-l-[6px] border-[#C75550] w-full">
-              <p className="font-title text-sm sm:text-base font-bold tracking-wider text-white uppercase leading-snug">
-                &ldquo; Doing Things Right the First Time &rdquo;
-              </p>
-            </div>
+            <p className="font-body text-sm sm:text-base text-[#4b5563] leading-relaxed">
+              Every product is manufactured with a focus on dimensional accuracy, material
+              integrity, and long-term operational reliability.
+            </p>
           </div>
         </div>
       </div>
@@ -71,39 +95,38 @@ function QualityIntro() {
   );
 }
 
-function TechnologySection() {
+function AdvancedTestingSection() {
   return (
-    <section className="w-full py-20 sm:py-24 bg-[#f5f5f5] border-y border-[#e5e7eb]">
+    <section className="w-full py-20 sm:py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <div className="bg-white border border-[#e5e7eb] p-8 sm:p-10 flex flex-col gap-4 border-t-[4px] border-t-[#C75550]">
+          <div className="bg-[#f9fafb] border border-[#e5e7eb] p-8 sm:p-10 flex flex-col gap-4 border-t-[4px] border-t-[#C75550]">
             <div className="w-10 h-10 bg-[#C75550]/10 flex items-center justify-center text-[#C75550]">
-              <i className="fa-solid fa-industry text-base" />
-            </div>
-            <h3 className="font-title text-xl sm:text-2xl font-black text-[#1c1b1b] uppercase tracking-tight">
-              ADVANCED MANUFACTURING TECHNOLOGY
-            </h3>
-            <p className="font-body text-sm sm:text-base text-[#4b5563] leading-relaxed">
-              To meet the demands of international markets and ensure the highest quality rubber
-              products, we continuously invest in advanced technology, such as our DESMA rubber
-              injection molding machines and K4 intermix.
-            </p>
-          </div>
-
-          <div className="bg-white border border-[#e5e7eb] p-8 sm:p-10 flex flex-col gap-4 border-t-[4px] border-t-[#fbbd05]">
-            <div className="w-10 h-10 bg-[#fbbd05]/10 flex items-center justify-center text-[#fbbd05]">
               <i className="fa-solid fa-flask text-base" />
             </div>
             <h3 className="font-title text-xl sm:text-2xl font-black text-[#1c1b1b] uppercase tracking-tight">
-              IN-HOUSE RUBBER TESTING
+              Advanced Testing &amp; Validation
             </h3>
             <p className="font-body text-sm sm:text-base text-[#4b5563] leading-relaxed">
-              We maintain a fully equipped laboratory for comprehensive rubber testing, wherein 90%
-              of rubber testing is done in house. This allows us to ensure that our products meet
-              stringent quality standards and perform reliably under various conditions.
+              Our in-house laboratory is fully equipped for extensive testing of the materials and
+              products, so we can verify performance, maintain our processes consistent and meet our
+              customer&apos;s specifications.
+            </p>
+          </div>
+
+          <div className="bg-[#f9fafb] border border-[#e5e7eb] p-8 sm:p-10 flex flex-col gap-4 border-t-[4px] border-t-[#fbbd05]">
+            <div className="w-10 h-10 bg-[#fbbd05]/10 flex items-center justify-center text-[#fbbd05]">
+              <i className="fa-solid fa-microscope text-base" />
+            </div>
+            <h3 className="font-title text-xl sm:text-2xl font-black text-[#1c1b1b] uppercase tracking-tight">
+              In-House Validation
+            </h3>
+            <p className="font-body text-sm sm:text-base text-[#4b5563] leading-relaxed">
+              The majority of testing is performed in-house, allowing us to speed up validation,
+              enhance quality assurance, and exercise more control over product performance.
             </p>
             <span className="inline-flex self-start bg-[#C75550] text-white px-3 py-1 font-montserrat text-[10px] font-bold tracking-wider uppercase">
-              90% IN-HOUSE TESTING
+              Majority In-House Testing
             </span>
           </div>
         </div>
@@ -112,29 +135,25 @@ function TechnologySection() {
   );
 }
 
-function LaboratorySection() {
+function TestingCapabilitiesSection() {
   return (
-    <section className="w-full py-20 sm:py-24 bg-white">
+    <section className="w-full py-20 sm:py-24 bg-[#f5f5f5] border-y border-[#e5e7eb]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center justify-center text-center mb-14">
           <span className="font-montserrat text-xs sm:text-sm font-bold text-[#C75550] uppercase tracking-[0.2em] mb-2">
-            TESTING FACILITIES
+            Laboratory
           </span>
           <h2 className="font-title text-3xl sm:text-4xl lg:text-5xl font-black text-[#1c1b1b] uppercase tracking-tight">
-            SPECIALIZED LABORATORY EQUIPMENT
+            Testing Capabilities
           </h2>
           <div className="w-16 h-[4px] bg-[#fbbd05] mt-4" />
-          <p className="font-body text-sm sm:text-base text-[#4b5563] leading-relaxed max-w-2xl mt-6">
-            Our specialized testing facilities include the following equipment to validate material
-            performance, durability, and compliance at every stage.
-          </p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
-          {TESTING_EQUIPMENT.map((item) => (
+          {TESTING_CAPABILITIES.map((item) => (
             <div
               key={item.name}
-              className="bg-[#f9fafb] border border-[#e5e7eb] p-5 flex flex-col items-start gap-3 min-h-[120px] border-l-[3px] border-l-[#C75550]"
+              className="bg-white border border-[#e5e7eb] p-5 flex flex-col items-start gap-3 min-h-[120px] border-l-[3px] border-l-[#C75550]"
             >
               <i className={`${item.icon} text-[#C75550] text-lg`} />
               <span className="font-montserrat text-[11px] font-bold text-[#1c1b1b] tracking-wider uppercase leading-snug">
@@ -207,8 +226,9 @@ export function QualityPage({ certifications = [] }) {
     <div className="min-h-screen flex flex-col bg-white">
       <QualityHero />
       <QualityIntro />
-      <TechnologySection />
-      <LaboratorySection />
+      <EngineeringConfidenceSection />
+      <AdvancedTestingSection />
+      <TestingCapabilitiesSection />
       <CertificationsSection certifications={certifications} />
       <ContactBanner />
     </div>

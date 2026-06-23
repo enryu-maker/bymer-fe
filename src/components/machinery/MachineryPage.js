@@ -171,19 +171,20 @@ export function MachineryPage({ plant = 1 }) {
 
   useEffect(() => {
     async function loadMachinery() {
-      const plantParam = isPlantII ? "plant_2" : "plant_1";
       try {
-        const data = await fetchMachinery(plantParam);
+        const data = await fetchMachinery(plant);
         if (data && data.length > 0) {
           const mapped = data.map((mach) => {
-            // Build specifications list from model properties
             const specs = [];
             if (mach.tonnage_or_capacity) specs.push(`Capacity: ${mach.tonnage_or_capacity}`);
             if (mach.platen_size_or_dimensions) specs.push(`Platen Size: ${mach.platen_size_or_dimensions}`);
             if (mach.make) specs.push(`Make: ${mach.make}`);
             if (mach.year_of_purchase) specs.push(`Year: ${mach.year_of_purchase}`);
             if (mach.total_machines) specs.push(`Active Count: ${mach.total_machines} Units`);
-            
+
+            if (specs.length === 0 && Array.isArray(mach.specs)) {
+              specs.push(...mach.specs);
+            }
             if (specs.length === 0) {
               specs.push("High performance manufacturing unit");
               specs.push("Quality assurance tested");
@@ -191,25 +192,25 @@ export function MachineryPage({ plant = 1 }) {
 
             return {
               id: mach.id,
-              subtitle: `MACHINERY // ${mach.plant_display || (isPlantII ? "PLANT II" : "PLANT I")}`,
+              subtitle: `MACHINERY // ${mach.plant_display || `PLANT ${plant}`}`,
               title: mach.name,
               specs,
-              image: mach.image_url || "/images/machineryCard1.png",
+              image: mach.image_url || mach.image || "/images/machineryCard1.png",
             };
           });
           setMachinery(mapped);
         } else {
-          setMachinery(MACHINERY_CATALOG);
+          setMachinery([]);
         }
       } catch (err) {
         console.error("Failed to load machinery:", err);
-        setMachinery(MACHINERY_CATALOG);
+        setMachinery([]);
       } finally {
         setLoading(false);
       }
     }
     loadMachinery();
-  }, [isPlantII]);
+  }, [plant]);
 
   if (loading) {
     return (
@@ -236,21 +237,16 @@ export function MachineryPage({ plant = 1 }) {
 
       {/* Main Listing Section */}
       <main className="w-full py-16 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-white">
-        
-        {/* Active Heavy Assets Stripe Banner */}
-        <div className="w-full bg-[#f5f5f5] border border-[#e5e7eb] py-4.5 px-6 font-montserrat text-xs font-bold tracking-widest uppercase flex flex-col sm:flex-row items-center justify-between mb-16 gap-3">
-          <span className="text-[#1c1b1b]">■ ACTIVE HEAVY ASSETS // PROCESS TIMELINES & CAPABILITIES</span>
-          <span className="text-[#C75550]">SYSTEM ID: {isPlantII ? "BYM-PLANT-2-DECK" : "BYM-PLANT-1-DECK"}</span>
-        </div>
 
         {/* Vertical Stack of Machinery Cards (Alternating Left/Right Layout) */}
         <section className="flex flex-col gap-12">
-          {machinery.map((machine) => {
-            return (
-              <div 
-                key={machine.id}
-                className="w-full bg-white border border-[#e5e7eb] flex flex-col lg:flex-row items-stretch overflow-hidden rounded-none group transition-all duration-300 hover:border-[#C75550] hover:shadow-[0_10px_20px_rgba(0,0,0,0.05)]"
-              >
+          {machinery.length > 0 ? (
+            machinery.map((machine) => {
+              return (
+                <div
+                  key={machine.id}
+                  className="w-full bg-white border border-[#e5e7eb] flex flex-col lg:flex-row items-stretch overflow-hidden rounded-none group transition-all duration-300 hover:border-[#C75550] hover:shadow-[0_10px_20px_rgba(0,0,0,0.05)]"
+                >
                 {/* 1. IMAGE CONTAINER */}
                 <div className="w-full lg:w-[45%] relative min-h-[250px] lg:min-h-full flex-shrink-0 overflow-hidden">
                   {machine.image ? (
@@ -303,7 +299,22 @@ export function MachineryPage({ plant = 1 }) {
                 </div>
               </div>
             );
-          })}
+            })
+          ) : (
+            <div className="bg-[#f9fafb] border border-[#e5e7eb] py-16 px-6 text-center">
+              <i className="fa-solid fa-industry text-3xl text-[#C75550] mb-4" />
+              <p className="font-body text-sm sm:text-base text-[#4b5563] leading-relaxed max-w-md mx-auto">
+                No machinery listings are available for this plant yet. Please check back soon or
+                contact us for manufacturing capability details.
+              </p>
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center mt-6 bg-[#C75550] text-white px-6 py-3 font-title text-xs font-bold uppercase tracking-wider transition-all duration-200 hover:bg-[#b54a46] rounded-none gap-2"
+              >
+                CONTACT US <span className="font-sans font-bold text-xs">&gt;</span>
+              </Link>
+            </div>
+          )}
         </section>
 
       </main>

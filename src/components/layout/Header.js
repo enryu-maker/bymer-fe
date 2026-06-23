@@ -4,7 +4,7 @@ import { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Logo } from "./Logo";
-import { fetchProductCategories, getProductCategoryHref } from "@/lib/api";
+import { fetchProductCategories, fetchMachineryPlants, getProductCategoryHref, getMachineryPlantHref } from "@/lib/api";
 
 import { useCompanySettings } from "./CompanySettingsContext";
 
@@ -13,28 +13,47 @@ const DEFAULT_PRODUCT_SUBMENU = [
   { name: "NON AUTOMOTIVE", href: "/products/non-automotive" },
 ];
 
+const DEFAULT_MACHINERY_SUBMENU = [
+  { name: "PLANT 1", href: "/machinery" },
+  { name: "PLANT 2", href: "/machinery-plant-ii" },
+];
+
 export function Header() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [productSubmenu, setProductSubmenu] = useState(DEFAULT_PRODUCT_SUBMENU);
+  const [machinerySubmenu, setMachinerySubmenu] = useState(DEFAULT_MACHINERY_SUBMENU);
   const { profile } = useCompanySettings();
 
   const email = profile?.email || "sales@bymer.com";
   const phone = profile?.phone || "+919822079899";
 
   useEffect(() => {
-    async function loadProductCategories() {
-      const data = await fetchProductCategories();
-      if (data?.length > 0) {
+    async function loadNavData() {
+      const [categories, plants] = await Promise.all([
+        fetchProductCategories(),
+        fetchMachineryPlants(),
+      ]);
+
+      if (categories?.length > 0) {
         setProductSubmenu(
-          data.map((category) => ({
+          categories.map((category) => ({
             name: category.name.toUpperCase(),
             href: getProductCategoryHref(category.name),
           }))
         );
       }
+
+      if (plants?.length > 0) {
+        setMachinerySubmenu(
+          plants.map((plant) => ({
+            name: plant.name.toUpperCase(),
+            href: getMachineryPlantHref(plant),
+          }))
+        );
+      }
     }
-    loadProductCategories();
+    loadNavData();
   }, []);
 
   const navLinks = useMemo(
@@ -49,13 +68,10 @@ export function Header() {
       {
         name: "MACHINERY",
         href: "/machinery",
-        submenu: [
-          { name: "MACHINERY PLANT I", href: "/machinery" },
-          { name: "MACHINERY PLANT II", href: "/machinery-plant-ii" },
-        ],
+        submenu: machinerySubmenu,
       },
     ],
-    [productSubmenu]
+    [productSubmenu, machinerySubmenu]
   );
 
   return (

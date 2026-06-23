@@ -8,6 +8,8 @@ import {
   STATIC_COMPOUNDS,
   STATIC_MACHINERY,
   STATIC_CERTIFICATIONS,
+  STATIC_AWARDS,
+  STATIC_MACHINERY_PLANTS,
   STATIC_PRODUCT_CATEGORIES,
   STATIC_PRODUCT_CATEGORY_DETAILS,
 } from "./staticData";
@@ -221,11 +223,32 @@ export async function fetchProducts(categorySlug = null) {
   }
 }
 
-export async function fetchMachinery(plant = null) {
+export function getMachineryPlantHref(plant) {
+  if (plant.id === 1) return "/machinery";
+  if (plant.id === 2) return "/machinery-plant-ii";
+  return `/machinery/plant-${plant.id}`;
+}
+
+export async function fetchMachineryPlants() {
   try {
-    let url = `${BASE_URL}/api/catalog/machinery/`;
-    if (plant) {
-      url += `?plant=${plant}`;
+    const res = await fetch(`${BASE_URL}/api/machinery-plants/`, {
+      next: { revalidate: 3600 },
+    });
+    if (!res.ok) throw new Error("Failed to fetch machinery plants");
+    const data = await res.json();
+    const results = data.results || data;
+    return Array.isArray(results) ? results : STATIC_MACHINERY_PLANTS;
+  } catch (error) {
+    console.warn("Using fallback machinery plants due to:", error.message);
+    return STATIC_MACHINERY_PLANTS;
+  }
+}
+
+export async function fetchMachinery(plantId = null) {
+  try {
+    let url = `${BASE_URL}/api/machinery/`;
+    if (plantId != null) {
+      url += `?plant=${plantId}`;
     }
     const res = await fetch(url, {
       next: { revalidate: 1800 },
@@ -236,20 +259,17 @@ export async function fetchMachinery(plant = null) {
     if (Array.isArray(results)) {
       return results.map((mach) => ({
         ...mach,
-        image_url: mach.image_url ? formatImageUrl(mach.image_url) : null,
+        image_url: mach.image_url
+          ? formatImageUrl(mach.image_url)
+          : mach.image
+            ? formatImageUrl(mach.image)
+            : null,
       }));
     }
-    throw new Error("Invalid machinery data format");
+    return [];
   } catch (error) {
-    console.warn("Using fallback machinery list due to:", error.message);
-    if (plant) {
-      return STATIC_MACHINERY.map((m) => ({
-        ...m,
-        plant: plant,
-        plant_display: plant === "plant_1" ? "Plant I" : "Plant II",
-      }));
-    }
-    return STATIC_MACHINERY;
+    console.warn("Failed to fetch machinery:", error.message);
+    return [];
   }
 }
 
@@ -274,6 +294,27 @@ export async function fetchCertifications() {
   }
 }
 
+export async function fetchAwards() {
+  try {
+    const res = await fetch(`${BASE_URL}/api/awards/`, {
+      next: { revalidate: 3600 },
+    });
+    if (!res.ok) throw new Error("Failed to fetch awards");
+    const data = await res.json();
+    const results = data.results || data;
+    if (Array.isArray(results)) {
+      return results.map((award) => ({
+        ...award,
+        image: award.image ? formatImageUrl(award.image) : null,
+      }));
+    }
+    return STATIC_AWARDS;
+  } catch (error) {
+    console.warn("Using fallback awards due to:", error.message);
+    return STATIC_AWARDS;
+  }
+}
+
 export async function submitContactInquiry(payload) {
   try {
     const res = await fetch(`${BASE_URL}/api/forms/contact/`, {
@@ -290,6 +331,26 @@ export async function submitContactInquiry(payload) {
     return await res.json();
   } catch (error) {
     console.error("Error submitting form:", error.message);
+    throw error;
+  }
+}
+
+export async function submitCareerApplication(payload) {
+  try {
+    const res = await fetch(`${BASE_URL}/api/forms/career/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+    if (!res.ok) {
+      const errData = await res.json().catch(() => ({}));
+      throw new Error(JSON.stringify(errData) || "Career form submission failed");
+    }
+    return await res.json();
+  } catch (error) {
+    console.error("Error submitting career form:", error.message);
     throw error;
   }
 }

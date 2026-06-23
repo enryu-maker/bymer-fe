@@ -3,14 +3,30 @@
 import Link from "next/link";
 import { useCompanySettings } from "./CompanySettingsContext";
 
+const COMPANY_LINKS = [
+  { label: "About Us", href: "/about" },
+  { label: "Manufacturing Process", href: "/process" },
+  { label: "Quality Assurance", href: "/quality-assurance" },
+  { label: "Awards", href: "/awards" },
+  { label: "Careers", href: "/career" },
+  { label: "FAQs", href: "/faq" },
+  { label: "Privacy Policy", href: "/privacy" },
+  { label: "Terms of Service", href: "/terms" },
+];
+
 export function Footer() {
   const { profile, socialLinks } = useCompanySettings();
 
   const companyName = profile?.company_name || "BYMER ELASTOMERS";
-  const tagline = profile?.tagline || "Delivering precision-engineered elastomer solutions with uncompromising quality since 1999. IATF 16949:2016, ISO 9001:2015 and ISO 14001:2015 certified.";
+  const tagline =
+    profile?.tagline ||
+    "Delivering precision-engineered elastomer solutions with uncompromising quality since 1999. IATF 16949:2016, ISO 9001:2015 and ISO 14001:2015 certified.";
   const email = profile?.email || "sales@bymer.com";
-  const phone = profile?.phone || "+91 98228 79699";
-  const address = profile?.address || "Plot No. J-46 & 47 MIDC Area,\nAmbad, Nashik 422010,\nMaharashtra, India.";
+  const phone = profile?.phone || "+91 98220 79899";
+  const alternatePhone = profile?.alternate_phone || "+91 253 2381123";
+  const address =
+    profile?.address ||
+    "Plot No. J-46 & 47 MIDC Area,\nAmbad, Nashik 422010,\nMaharashtra, India.";
 
   const getSocialIcon = (platform) => {
     const p = platform.toLowerCase();
@@ -24,22 +40,17 @@ export function Footer() {
   };
 
   return (
-    <footer className="w-full bg-[#0a0a0a] text-[#f5f5f5] border-t border-[#111111] pt-16 pb-8 relative overflow-hidden">
-      
-      {/* Upper Footer Grid */}
-      <div className="w-full mx-auto px-4 sm:px-6 lg:px-8 pb-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 items-start">
-          
-          {/* Column 1: Brand Info (Occupies 4 columns) */}
-          <div className="lg:col-span-4 flex flex-col gap-6">
+    <footer className="w-full bg-[#0a0a0a] text-[#f5f5f5] border-t border-[#111111] pt-16 pb-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start pb-12">
+          <div className="flex flex-col gap-5">
             <span className="font-montserrat text-lg sm:text-xl font-black uppercase text-[#fbbd05] tracking-wide select-none">
               {companyName.toUpperCase()}
             </span>
-            <p className="font-body text-sm text-[#9ca3af] mt-1 leading-relaxed max-w-sm">
+            <p className="font-body text-sm text-[#9ca3af] leading-relaxed max-w-lg">
               {tagline}
             </p>
-            {/* Social Icons (Simple glyphs) */}
-            <div className="flex items-center gap-5 mt-2">
+            <div className="flex items-center gap-5 pt-1">
               {socialLinks && socialLinks.length > 0 ? (
                 socialLinks.map((link) => (
                   <a
@@ -50,146 +61,97 @@ export function Footer() {
                     className="text-white/60 hover:text-[#C75550] transition-colors duration-150"
                     aria-label={link.platform}
                   >
-                    <i className={`${getSocialIcon(link.platform)} text-base`}></i>
+                    <i className={`${getSocialIcon(link.platform)} text-base`} />
                   </a>
                 ))
               ) : (
                 <>
-                  <a 
-                    href="https://linkedin.com" 
-                    target="_blank" 
-                    rel="noreferrer" 
+                  <a
+                    href="https://linkedin.com"
+                    target="_blank"
+                    rel="noreferrer"
                     className="text-white/60 hover:text-[#C75550] transition-colors duration-150"
                     aria-label="LinkedIn"
                   >
-                    <i className="fa-brands fa-linkedin-in text-base"></i>
+                    <i className="fa-brands fa-linkedin-in text-base" />
                   </a>
-                  <a 
-                    href="https://youtube.com" 
-                    target="_blank" 
-                    rel="noreferrer" 
+                  <a
+                    href="https://youtube.com"
+                    target="_blank"
+                    rel="noreferrer"
                     className="text-white/60 hover:text-[#C75550] transition-colors duration-150"
                     aria-label="YouTube"
                   >
-                    <i className="fa-brands fa-youtube text-base"></i>
+                    <i className="fa-brands fa-youtube text-base" />
                   </a>
-                  <a 
-                    href={`mailto:${email}`} 
+                  <a
+                    href={`mailto:${email}`}
                     className="text-white/60 hover:text-[#C75550] transition-colors duration-150"
                     aria-label="Email"
                   >
-                    <i className="fa-regular fa-envelope text-base"></i>
+                    <i className="fa-regular fa-envelope text-base" />
                   </a>
                 </>
               )}
             </div>
           </div>
 
-          {/* Column 2: Capabilities (Occupies 2 columns, lg:col-start-6) */}
-          <div className="lg:col-span-2 lg:col-start-6 flex flex-col gap-6">
-            <h3 className="font-title text-xs sm:text-sm font-bold tracking-wider text-white uppercase border-b border-[#111111] pb-2">
-              CAPABILITIES
-            </h3>
-            <ul className="flex flex-col gap-3.5 font-body text-xs text-[#9ca3af] mt-2">
-              <li>
-                <Link href="/products?category=molded" className="hover:text-[#C75550] transition-colors duration-150">
-                  Molded Rubber
-                </Link>
-              </li>
-              <li>
-                <Link href="/products?category=metal" className="hover:text-[#C75550] transition-colors duration-150">
-                  Metal Bonding
-                </Link>
-              </li>
-              <li>
-                <Link href="/products?category=extruded" className="hover:text-[#C75550] transition-colors duration-150">
-                  Extruded Profiles
-                </Link>
-              </li>
-              <li>
-                <Link href="/compounds" className="hover:text-[#C75550] transition-colors duration-150">
-                  Rubber Compounds
-                </Link>
-              </li>
-            </ul>
-          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 lg:gap-12">
+            <div className="flex flex-col gap-5">
+              <h3 className="font-title text-xs sm:text-sm font-bold tracking-wider text-white uppercase border-b border-[#111111] pb-2">
+                Company
+              </h3>
+              <ul className="flex flex-col gap-3 font-body text-xs text-[#9ca3af]">
+                {COMPANY_LINKS.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className="hover:text-[#C75550] transition-colors duration-150"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-          {/* Column 3: Company (Occupies 2 columns) */}
-          <div className="lg:col-span-2 flex flex-col gap-6">
-            <h3 className="font-title text-xs sm:text-sm font-bold tracking-wider text-white uppercase border-b border-[#111111] pb-2">
-              COMPANY
-            </h3>
-            <ul className="flex flex-col gap-3.5 font-body text-xs text-[#9ca3af] mt-2">
-              <li>
-                <Link href="/about" className="hover:text-[#C75550] transition-colors duration-150">
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link href="/about#certifications" className="hover:text-[#C75550] transition-colors duration-150">
-                  ISO Certifications
-                </Link>
-              </li>
-              <li>
-                <Link href="/quality-assurance" className="hover:text-[#C75550] transition-colors duration-150">
-                  Quality Assurance
-                </Link>
-              </li>
-              <li>
-                <Link href="/faq" className="hover:text-[#C75550] transition-colors duration-150">
-                  FAQs
-                </Link>
-              </li>
-              <li>
-                <Link href="/privacy" className="hover:text-[#C75550] transition-colors duration-150">
-                  Privacy Policy
-                </Link>
-              </li>
-              <li>
-                <Link href="/terms" className="hover:text-[#C75550] transition-colors duration-150">
-                  Terms of Service
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Column 4: Get in Touch (Occupies 3 columns) */}
-          <div className="lg:col-span-3 flex flex-col gap-6 pl-0 lg:pl-4">
-            <h3 className="font-title text-xs sm:text-sm font-bold tracking-wider text-white uppercase border-b border-[#111111] pb-2">
-              GET IN TOUCH
-            </h3>
-            <div className="flex flex-col gap-3.5 font-body text-xs text-[#9ca3af] mt-2">
-              <a href={`tel:${phone}`} className="hover:text-[#C75550] transition-colors">
-                {phone}
-              </a>
-              {profile?.alternate_phone && (
-                <a href={`tel:${profile.alternate_phone}`} className="hover:text-[#C75550] transition-colors">
-                  {profile.alternate_phone}
+            <div className="flex flex-col gap-5">
+              <h3 className="font-title text-xs sm:text-sm font-bold tracking-wider text-white uppercase border-b border-[#111111] pb-2">
+                Get in Touch
+              </h3>
+              <div className="flex flex-col gap-3 font-body text-xs text-[#9ca3af]">
+                <a href={`tel:${phone}`} className="hover:text-[#C75550] transition-colors duration-150">
+                  {phone}
                 </a>
-              )}
-              <a href={`mailto:${email}`} className="hover:text-[#C75550] transition-colors lowercase">
-                {email}
-              </a>
-              <div className="leading-relaxed whitespace-pre-line text-left">
-                {address}
+                <a
+                  href={`tel:${alternatePhone}`}
+                  className="hover:text-[#C75550] transition-colors duration-150"
+                >
+                  {alternatePhone}
+                </a>
+                <a
+                  href={`mailto:${email}`}
+                  className="hover:text-[#C75550] transition-colors duration-150 lowercase"
+                >
+                  {email}
+                </a>
+                <address className="not-italic leading-relaxed whitespace-pre-line text-[#9ca3af]">
+                  {address}
+                </address>
+                <p className="font-montserrat text-xs uppercase tracking-wider pt-1">
+                  <span className="text-white font-bold">GSTIN: </span>
+                  <span className="text-[#fbbd05] font-bold">27AADP8030173</span>
+                </p>
               </div>
-              <p className="text-[#fbbd05] font-montserrat font-bold mt-1 uppercase select-none text-left">
-                GSTIN: 27AADP8030173
-              </p>
             </div>
           </div>
-
         </div>
 
-        {/* Division Border Line between Upper and Lower Footer */}
-        <div className="w-full border-t border-[#111111] mt-16 pt-8 z-10 relative">
-          <div className="flex flex-col items-center justify-center text-center">
-            <p className="font-montserrat text-[10px] sm:text-xs text-[#9ca3af] select-none uppercase tracking-wider">
-              © 2026 BYMER ELASTOMERS. ALL RIGHTS RESERVED.
-            </p>
-          </div>
+        <div className="border-t border-[#111111] pt-8">
+          <p className="font-montserrat text-[10px] sm:text-xs text-[#9ca3af] text-center uppercase tracking-wider select-none">
+            © 2026 BYMER ELASTOMERS. ALL RIGHTS RESERVED.
+          </p>
         </div>
-
       </div>
     </footer>
   );

@@ -730,3 +730,10 @@ export const STATIC_CERTIFICATIONS = [
     image: "https://bymer.pythonanywhere.com/media/certifications/ISO_9001_-_Ver_03_-_J42_-_2027_1.png",
   },
 ];
+
+export const STATIC_AWARDS = [];
+
+export const STATIC_MACHINERY_PLANTS = [
+  { id: 1, name: "Plant 1" },
+  { id: 2, name: "Plant 2" },
+];
