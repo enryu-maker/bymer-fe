@@ -1,40 +1,62 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Logo } from "./Logo";
+import { fetchProductCategories, getProductCategoryHref } from "@/lib/api";
 
 import { useCompanySettings } from "./CompanySettingsContext";
+
+const DEFAULT_PRODUCT_SUBMENU = [
+  { name: "AUTOMOTIVE", href: "/products/automotive" },
+  { name: "NON AUTOMOTIVE", href: "/products/non-automotive" },
+];
 
 export function Header() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+  const [productSubmenu, setProductSubmenu] = useState(DEFAULT_PRODUCT_SUBMENU);
   const { profile } = useCompanySettings();
 
   const email = profile?.email || "sales@bymer.com";
   const phone = profile?.phone || "+919822079899";
 
-  const navLinks = [
-    { name: "ABOUT", href: "/about" },
-    {
-      name: "PRODUCTS",
-      href: "/products",
-      submenu: [
-        { name: "AUTOMOTIVE", href: "/products/automotive" },
-        { name: "NON AUTOMOTIVE", href: "/products/non-automotive" },
-      ],
-    },
-    { name: "COMPOUNDS", href: "/compounds" },
-    { 
-      name: "MACHINERY", 
-      href: "/machinery",
-      submenu: [
-        { name: "MACHINERY PLANT I", href: "/machinery" },
-        { name: "MACHINERY PLANT II", href: "/machinery-plant-ii" },
-      ]
-    },
-  ];
+  useEffect(() => {
+    async function loadProductCategories() {
+      const data = await fetchProductCategories();
+      if (data?.length > 0) {
+        setProductSubmenu(
+          data.map((category) => ({
+            name: category.name.toUpperCase(),
+            href: getProductCategoryHref(category.name),
+          }))
+        );
+      }
+    }
+    loadProductCategories();
+  }, []);
+
+  const navLinks = useMemo(
+    () => [
+      { name: "ABOUT", href: "/about" },
+      {
+        name: "PRODUCTS",
+        href: "/products",
+        submenu: productSubmenu,
+      },
+      { name: "COMPOUNDS", href: "/compounds" },
+      {
+        name: "MACHINERY",
+        href: "/machinery",
+        submenu: [
+          { name: "MACHINERY PLANT I", href: "/machinery" },
+          { name: "MACHINERY PLANT II", href: "/machinery-plant-ii" },
+        ],
+      },
+    ],
+    [productSubmenu]
+  );
 
   return (
     <header className="w-full sticky top-0 z-50 flex flex-col bg-white border-b border-[#e5e7eb]">
@@ -74,7 +96,7 @@ export function Header() {
                           const isSubActive = pathname === sublink.href;
                           return (
                             <Link
-                              key={sublink.name}
+                              key={sublink.href}
                               href={sublink.href}
                               className={`font-montserrat text-[10px] font-bold tracking-wider uppercase px-4 py-3 border-b border-[#f9fafb] last:border-b-0 transition-colors duration-155 ${
                                 isSubActive
@@ -170,7 +192,7 @@ export function Header() {
                         const isSubActive = pathname === sublink.href;
                         return (
                           <Link
-                            key={sublink.name}
+                            key={sublink.href}
                             href={sublink.href}
                             onClick={() => setIsOpen(false)}
                             className={`block pl-6 pr-3 py-2.5 font-montserrat text-xs font-bold tracking-[0.15em] ${

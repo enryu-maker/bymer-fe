@@ -25,13 +25,43 @@ export const STATIC_STATISTICS = [
 ];
 
 export const STATIC_CLIENTS = [
-  { id: "c-1", name: "Liljas Plastic", logo_url: "/images/L14 2.png" },
-  { id: "c-2", name: "HL Automotive Suzhou", logo_url: "/images/L15 2.png" },
-  { id: "c-3", name: "Hindustan Hardy Ltd", logo_url: "/images/L16 2.png" },
-  { id: "c-4", name: "Air Force", logo_url: "/images/1728122557.png" },
-  { id: "c-5", name: "MSL", logo_url: "/images/L18 2.png" },
-  { id: "c-6", name: "Innova Rubbers", logo_url: "/images/L19 2.png" },
+  { id: 1, image: "/images/L14 2.png" },
+  { id: 2, image: "/images/L15 2.png" },
+  { id: 3, image: "/images/L16 2.png" },
+  { id: 4, image: "/images/1728122557.png" },
+  { id: 5, image: "/images/L18 2.png" },
+  { id: 6, image: "/images/L19 2.png" },
 ];
+
+export const STATIC_PRODUCT_CATEGORIES = [
+  { id: 1, name: "Automotive" },
+  { id: 2, name: "Non Automotive" },
+];
+
+export const STATIC_PRODUCT_CATEGORY_DETAILS = {
+  1: {
+    id: 1,
+    name: "Automotive",
+    customers: [
+      { id: 11, name: "ACCURA VALVES PVT. LTD., NASHIK, INDIA" },
+      { id: 4, name: "AUTO IGNITION LIMITED, SATARA, INDIA" },
+      { id: 3, name: "ELRINGKLINGER AUTOMOTIVE COMPONENTS (I) PVT. LTD., PUNE, INDIA" },
+      { id: 2, name: "GABRIEL INDIA LTD., NASHIK, HOSUR AND SANAND" },
+      { id: 1, name: "HORDAGRUPPEN AB, SWEDEN" },
+      { id: 8, name: "LILJAS PLASTIC SUZHOU CO., LTD., CHINA" },
+      { id: 5, name: "PIAGGIO VEHICLES PVT. LTD., BARAMATI, INDIA" },
+      { id: 6, name: "POONA SHIMS PRIVATE LIMITED, PUNE, INDIA" },
+      { id: 9, name: "SEAM ENGINEERS / NASH ROBOTICS, NASHIK INDIA" },
+      { id: 10, name: "SHORE AUTO RUBBER EXPORTS PVT. LTD." },
+      { id: 7, name: "SUNDARAM CLAYTON LTD., CHENNAI, INDIA" },
+    ],
+  },
+  2: {
+    id: 2,
+    name: "Non Automotive",
+    customers: [],
+  },
+};
 
 export const STATIC_CATEGORIES = [
   { id: "cat-1", name: "AUTOMOTIVE PRODUCTS", slug: "automotive-products" },
@@ -675,5 +705,28 @@ export const STATIC_MACHINERY = [
     year_of_purchase: 2015,
     tonnage_or_capacity: "300 - 600 kg/hr",
     total_machines: 1,
+  },
+];
+
+export const STATIC_CERTIFICATIONS = [
+  {
+    id: 2,
+    name: "IATF 16949:2016",
+    image: "https://bymer.pythonanywhere.com/media/certifications/IATF_16949-ENG-191027-2015-AQ-IND-IATF-3_J52.png",
+  },
+  {
+    id: 1,
+    name: "ISO 14001 : 2015",
+    image: "https://bymer.pythonanywhere.com/media/certifications/ISO-14001-2015.png",
+  },
+  {
+    id: 4,
+    name: "ISO 45001 : 2018",
+    image: "https://bymer.pythonanywhere.com/media/certifications/OHS_ISO_45001-2018_2026_J52.png",
+  },
+  {
+    id: 3,
+    name: "ISO 9001 : 2015",
+    image: "https://bymer.pythonanywhere.com/media/certifications/ISO_9001_-_Ver_03_-_J42_-_2027_1.png",
   },
 ];

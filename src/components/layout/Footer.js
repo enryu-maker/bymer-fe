@@ -131,6 +131,11 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/quality-assurance" className="hover:text-[#C75550] transition-colors duration-150">
+                  Quality Assurance
+                </Link>
+              </li>
+              <li>
                 <Link href="/faq" className="hover:text-[#C75550] transition-colors duration-150">
                   FAQs
                 </Link>

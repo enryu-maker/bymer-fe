@@ -329,7 +329,7 @@ function JourneySection() {
   const journeyItems = [
     {
       title: "ESTABLISHED LEGACY",
-      description: "Founded in 1992 as Blaze Enterprises, evolving into Bymer Elastomers with over 30 years of industry expertise."
+      description: "Founded in 1978 as Blaze Enterprises, evolving into Bymer Elastomers with over 40 years of industry expertise."
     },
     {
       title: "EXPANDING CLIENT REACH",
@@ -594,17 +594,14 @@ function ClientLogos() {
   useEffect(() => {
     async function loadClients() {
       const data = await fetchClients();
-      if (data && data.length > 0) {
-        setLogos(data.map((c) => ({ src: c.logo_url, alt: c.name })));
-      } else {
-        setLogos([
-          { src: "/images/L14 2.png", alt: "Liljas Plastic" },
-          { src: "/images/L15 2.png", alt: "HL Automotive Suzhou" },
-          { src: "/images/L16 2.png", alt: "Hindustan Hardy Ltd" },
-          { src: "/images/1728122557.png", alt: "Air Force" },
-          { src: "/images/L18 2.png", alt: "MSL" },
-          { src: "/images/L19 2.png", alt: "Innova Rubbers" }
-        ]);
+      if (data?.length > 0) {
+        setLogos(
+          data.map((client) => ({
+            id: client.id,
+            src: client.image,
+            alt: client.name || `Client logo ${client.id}`,
+          }))
+        );
       }
     }
     loadClients();
@@ -612,26 +609,41 @@ function ClientLogos() {
 
   if (logos.length === 0) return null;
 
+  const marqueeLogos = [...logos, ...logos];
+  const marqueeDuration = Math.max(logos.length * 2.5, 30);
+
   return (
-    <section className="w-full bg-white border-y border-black py-10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-wrap items-center justify-between gap-8 md:gap-12">
-          {logos.map((logo, index) => (
-            <div 
-              key={index} 
-              className="h-12 w-28 sm:w-36 relative flex items-center justify-center opacity-95 hover:opacity-100 transition-opacity duration-200"
+    <section className="w-full bg-white border-y border-black py-10 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6">
+        <p className="font-montserrat text-xs font-bold text-[#9ca3af] uppercase tracking-[0.2em] text-center">
+          Trusted by leading OEMs &amp; industrial partners worldwide
+        </p>
+      </div>
+
+      <div className="relative w-full overflow-hidden">
+        <div
+          className="client-marquee-inner flex flex-row flex-nowrap items-center gap-12 sm:gap-16 w-max px-6 hover:[animation-play-state:paused]"
+          style={{
+            animation: `client-marquee ${marqueeDuration}s linear infinite`,
+          }}
+        >
+          {marqueeLogos.map((logo, index) => (
+            <div
+              key={`${logo.id}-${index}`}
+              className="relative h-12 w-28 sm:h-14 sm:w-36 shrink-0 opacity-90 hover:opacity-100 transition-opacity duration-200"
             >
               {logo.src ? (
                 <Image
                   src={logo.src}
                   alt={logo.alt}
                   fill
-                  sizes="(max-w-7xl) 144px"
+                  sizes="144px"
                   className="object-contain"
-                  priority
                 />
               ) : (
-                <span className="font-montserrat text-[10px] font-bold text-gray-400">{logo.alt}</span>
+                <span className="font-montserrat text-[10px] font-bold text-gray-400">
+                  {logo.alt}
+                </span>
               )}
             </div>
           ))}

@@ -7,9 +7,12 @@ import {
   STATIC_PRODUCTS,
   STATIC_COMPOUNDS,
   STATIC_MACHINERY,
+  STATIC_CERTIFICATIONS,
+  STATIC_PRODUCT_CATEGORIES,
+  STATIC_PRODUCT_CATEGORY_DETAILS,
 } from "./staticData";
 
-const BASE_URL = process.env.NEXT_PUBLIC_API_URL || "https://bymerbe.pythonanywhere.com";
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL || "https://bymer.pythonanywhere.com";
 
 // Helper to handle absolute URL formatting for images served by Django
 export function formatImageUrl(url) {
@@ -70,7 +73,7 @@ export async function fetchStatistics() {
 
 export async function fetchClients() {
   try {
-    const res = await fetch(`${BASE_URL}/api/content/clients/`, {
+    const res = await fetch(`${BASE_URL}/api/clients/`, {
       next: { revalidate: 3600 },
     });
     if (!res.ok) throw new Error("Failed to fetch clients");
@@ -79,7 +82,7 @@ export async function fetchClients() {
     if (Array.isArray(results)) {
       return results.map((client) => ({
         ...client,
-        logo_url: formatImageUrl(client.logo_url),
+        image: formatImageUrl(client.image || client.logo_url),
       }));
     }
     return STATIC_CLIENTS;
@@ -87,6 +90,49 @@ export async function fetchClients() {
     console.warn("Using fallback client list due to:", error.message);
     return STATIC_CLIENTS;
   }
+}
+
+export function getProductCategoryHref(name) {
+  const slug = name.trim().toLowerCase().replace(/\s+/g, "-");
+  return `/products/${slug}`;
+}
+
+export async function fetchProductCategories() {
+  try {
+    const res = await fetch(`${BASE_URL}/api/product-categories/`, {
+      next: { revalidate: 3600 },
+    });
+    if (!res.ok) throw new Error("Failed to fetch product categories");
+    const data = await res.json();
+    const results = data.results || data;
+    return Array.isArray(results) ? results : STATIC_PRODUCT_CATEGORIES;
+  } catch (error) {
+    console.warn("Using fallback product categories due to:", error.message);
+    return STATIC_PRODUCT_CATEGORIES;
+  }
+}
+
+export async function fetchProductCategoryById(id) {
+  try {
+    const res = await fetch(`${BASE_URL}/api/product-categories/${id}/`, {
+      next: { revalidate: 3600 },
+    });
+    if (!res.ok) throw new Error("Failed to fetch product category");
+    return await res.json();
+  } catch (error) {
+    console.warn("Using fallback product category detail due to:", error.message);
+    return STATIC_PRODUCT_CATEGORY_DETAILS[id] || { id, name: "", customers: [] };
+  }
+}
+
+export async function resolveProductCategoryId(segment) {
+  if (!segment) return null;
+  const categories = await fetchProductCategories();
+  const match = categories.find(
+    (category) =>
+      category.name.trim().toLowerCase().replace(/\s+/g, "-") === segment
+  );
+  return match?.id ?? null;
 }
 
 export async function fetchCategories() {
@@ -104,6 +150,47 @@ export async function fetchCategories() {
   }
 }
 
+export async function fetchCustomerProducts(customerId) {
+  if (!customerId) return [];
+
+  try {
+    const res = await fetch(`${BASE_URL}/api/products/?customer=${customerId}`, {
+      next: { revalidate: 1800 },
+    });
+    if (!res.ok) throw new Error("Failed to fetch customer products");
+    const data = await res.json();
+    const results = data.results || data;
+    if (!Array.isArray(results)) return [];
+
+    return results.map((product) => ({
+      ...product,
+      image: product.image ? formatImageUrl(product.image) : null,
+    }));
+  } catch (error) {
+    console.warn("Failed to load customer products:", error.message);
+    return [];
+  }
+}
+
+export async function fetchProductById(id) {
+  if (!id) return null;
+
+  try {
+    const res = await fetch(`${BASE_URL}/api/products/${id}/`, {
+      next: { revalidate: 1800 },
+    });
+    if (!res.ok) throw new Error("Failed to fetch product");
+    const data = await res.json();
+    return {
+      ...data,
+      image: data.image ? formatImageUrl(data.image) : null,
+    };
+  } catch (error) {
+    console.warn("Failed to load product:", error.message);
+    return null;
+  }
+}
+
 export async function fetchProducts(categorySlug = null) {
   try {
     let url = `${BASE_URL}/api/catalog/products/`;
@@ -111,7 +198,7 @@ export async function fetchProducts(categorySlug = null) {
       url += `?category=${categorySlug}`;
     }
     const res = await fetch(url, {
-      next: { revalidate: 1800 }, // Cache for 30 mins
+      next: { revalidate: 1800 },
     });
     if (!res.ok) throw new Error("Failed to fetch products");
     const data = await res.json();
@@ -138,7 +225,6 @@ export async function fetchMachinery(plant = null) {
   try {
     let url = `${BASE_URL}/api/catalog/machinery/`;
     if (plant) {
-      // plant should be 'plant_1' or 'plant_2'
       url += `?plant=${plant}`;
     }
     const res = await fetch(url, {
@@ -164,6 +250,27 @@ export async function fetchMachinery(plant = null) {
       }));
     }
     return STATIC_MACHINERY;
+  }
+}
+
+export async function fetchCertifications() {
+  try {
+    const res = await fetch(`${BASE_URL}/api/certifications/`, {
+      next: { revalidate: 3600 },
+    });
+    if (!res.ok) throw new Error("Failed to fetch certifications");
+    const data = await res.json();
+    const results = data.results || data;
+    if (Array.isArray(results)) {
+      return results.map((cert) => ({
+        ...cert,
+        image: cert.image ? formatImageUrl(cert.image) : null,
+      }));
+    }
+    return STATIC_CERTIFICATIONS;
+  } catch (error) {
+    console.warn("Using fallback certifications due to:", error.message);
+    return STATIC_CERTIFICATIONS;
   }
 }
 

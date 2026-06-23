@@ -6,13 +6,13 @@ import Image from "next/image";
 // 1. HISTORICAL MILESTONES DATA
 const HISTORICAL_MILESTONES = [
   {
-    year: "1992",
+    year: "1978",
     shortTitle: "Founded",
     fullTitle: "FOUNDED WITH EXPERTISE",
     cardTitle: "FOUNDED WITH EXPERTISE",
     roadmapLabel: "FOUNDED",
-    description: "Bymer Elastomers, led by CEO Mr. Yezdi B. Patel, was established in 1992 with over 60 years of experience in rubber technology and manufacturing. This laid down the manufacturing headquarters at Nashik, Ambad MIDC to process severe-duty mechanical isolators and custom compounds.",
-    cardDescription: "Bymer Elastomers, led by CEO Mr. Yazdi B. Patel, was established in 1992 with over 60 years of experience in rubber technology and manufacturing.",
+    description: "Bymer Elastomers, led by CEO Mr. Yezdi B. Patel, was established in 1978 with over 60 years of experience in rubber technology and manufacturing. This laid down the manufacturing headquarters at Nashik, Ambad MIDC to process severe-duty mechanical isolators and custom compounds.",
+    cardDescription: "Bymer Elastomers, led by CEO Mr. Yazdi B. Patel, was established in 1978 with over 60 years of experience in rubber technology and manufacturing.",
     image: "/images/section1.png"
   },
   {
