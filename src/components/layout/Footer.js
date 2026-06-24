@@ -1,23 +1,57 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
+import { Logo } from "./Logo";
+import { fetchProductCategories, getProductCategoryHref } from "@/lib/api";
+import {
+  DEFAULT_PRODUCT_SUBMENU,
+  INSIGHTS_SUBMENU,
+  LEGAL_LINKS,
+  MANUFACTURING_SUBMENU,
+} from "@/lib/navConfig";
 import { useCompanySettings } from "./CompanySettingsContext";
 
-const COMPANY_LINKS = [
-  { label: "About Us", href: "/about" },
-  { label: "Manufacturing Process", href: "/process" },
-  { label: "Quality Assurance", href: "/quality-assurance" },
-  { label: "Awards", href: "/awards" },
-  { label: "Careers", href: "/career" },
-  { label: "FAQs", href: "/faq" },
-  { label: "Privacy Policy", href: "/privacy" },
-  { label: "Terms of Service", href: "/terms" },
-];
+function FooterColumn({ title, links }) {
+  return (
+    <div className="flex flex-col gap-4">
+      <h3 className="font-title text-xs sm:text-sm font-bold tracking-wider text-white uppercase border-b border-[#111111] pb-2">
+        {title}
+      </h3>
+      <ul className="flex flex-col gap-3 font-body text-xs text-[#9ca3af]">
+        {links.map((link) => (
+          <li key={link.href}>
+            <Link href={link.href} className="hover:text-[#C75550] transition-colors duration-150">
+              {link.label}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
 
 export function Footer() {
   const { profile, socialLinks } = useCompanySettings();
+  const [productLinks, setProductLinks] = useState(
+    DEFAULT_PRODUCT_SUBMENU.map((item) => ({ label: item.name, href: item.href }))
+  );
 
-  const companyName = profile?.company_name || "BYMER ELASTOMERS";
+  useEffect(() => {
+    async function loadProductCategories() {
+      const categories = await fetchProductCategories();
+      if (categories?.length > 0) {
+        setProductLinks(
+          categories.map((category) => ({
+            label: category.name.toUpperCase(),
+            href: getProductCategoryHref(category.name),
+          }))
+        );
+      }
+    }
+    loadProductCategories();
+  }, []);
+
   const tagline =
     profile?.tagline ||
     "Delivering precision-engineered elastomer solutions with uncompromising quality since 1999. IATF 16949:2016, ISO 9001:2015 and ISO 14001:2015 certified.";
@@ -39,17 +73,37 @@ export function Footer() {
     return "fa-solid fa-link";
   };
 
+  const productsColumnLinks = [
+    { label: "ALL PRODUCTS", href: "/products" },
+    ...productLinks,
+    { label: "COMPOUNDS", href: "/compounds" },
+  ];
+
+  const manufacturingColumnLinks = MANUFACTURING_SUBMENU.map((item) => ({
+    label: item.name,
+    href: item.href,
+  }));
+
+  const insightsColumnLinks = [
+    ...INSIGHTS_SUBMENU.map((item) => ({ label: item.name, href: item.href })),
+    ...LEGAL_LINKS.map((item) => ({ label: item.name, href: item.href })),
+  ];
+
   return (
     <footer className="w-full bg-[#0a0a0a] text-[#f5f5f5] border-t border-[#111111] pt-16 pb-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start pb-12">
-          <div className="flex flex-col gap-5">
-            <span className="font-montserrat text-lg sm:text-xl font-black uppercase text-[#fbbd05] tracking-wide select-none">
-              {companyName.toUpperCase()}
-            </span>
-            <p className="font-body text-sm text-[#9ca3af] leading-relaxed max-w-lg">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 items-start pb-12">
+          <div className="sm:col-span-2 lg:col-span-4 flex flex-col gap-5">
+            <Logo variant="footer" />
+            <p className="font-body text-sm text-[#9ca3af] leading-relaxed max-w-md">
               {tagline}
             </p>
+            <Link
+              href="/about"
+              className="font-montserrat text-xs font-bold tracking-wider uppercase text-[#9ca3af] hover:text-[#C75550] transition-colors duration-150 w-fit"
+            >
+              About Us
+            </Link>
             <div className="flex items-center gap-5 pt-1">
               {socialLinks && socialLinks.length > 0 ? (
                 socialLinks.map((link) => (
@@ -96,53 +150,51 @@ export function Footer() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 lg:gap-12">
-            <div className="flex flex-col gap-5">
-              <h3 className="font-title text-xs sm:text-sm font-bold tracking-wider text-white uppercase border-b border-[#111111] pb-2">
-                Company
-              </h3>
-              <ul className="flex flex-col gap-3 font-body text-xs text-[#9ca3af]">
-                {COMPANY_LINKS.map((link) => (
-                  <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className="hover:text-[#C75550] transition-colors duration-150"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          <div className="lg:col-span-2">
+            <FooterColumn title="Products" links={productsColumnLinks} />
+          </div>
 
-            <div className="flex flex-col gap-5">
-              <h3 className="font-title text-xs sm:text-sm font-bold tracking-wider text-white uppercase border-b border-[#111111] pb-2">
-                Get in Touch
-              </h3>
-              <div className="flex flex-col gap-3 font-body text-xs text-[#9ca3af]">
-                <a href={`tel:${phone}`} className="hover:text-[#C75550] transition-colors duration-150">
-                  {phone}
-                </a>
-                <a
-                  href={`tel:${alternatePhone}`}
-                  className="hover:text-[#C75550] transition-colors duration-150"
-                >
-                  {alternatePhone}
-                </a>
-                <a
-                  href={`mailto:${email}`}
-                  className="hover:text-[#C75550] transition-colors duration-150 lowercase"
-                >
-                  {email}
-                </a>
-                <address className="not-italic leading-relaxed whitespace-pre-line text-[#9ca3af]">
-                  {address}
-                </address>
-                <p className="font-montserrat text-xs uppercase tracking-wider pt-1">
-                  <span className="text-white font-bold">GSTIN: </span>
-                  <span className="text-[#fbbd05] font-bold">27AADP8030173</span>
-                </p>
-              </div>
+          <div className="lg:col-span-2">
+            <FooterColumn title="Manufacturing" links={manufacturingColumnLinks} />
+          </div>
+
+          <div className="lg:col-span-2">
+            <FooterColumn title="Insights" links={insightsColumnLinks} />
+          </div>
+
+          <div className="sm:col-span-2 lg:col-span-2 flex flex-col gap-4">
+            <h3 className="font-title text-xs sm:text-sm font-bold tracking-wider text-white uppercase border-b border-[#111111] pb-2">
+              Get in Touch
+            </h3>
+            <div className="flex flex-col gap-3 font-body text-xs text-[#9ca3af]">
+              <a href={`tel:${phone}`} className="hover:text-[#C75550] transition-colors duration-150">
+                {phone}
+              </a>
+              <a
+                href={`tel:${alternatePhone}`}
+                className="hover:text-[#C75550] transition-colors duration-150"
+              >
+                {alternatePhone}
+              </a>
+              <a
+                href={`mailto:${email}`}
+                className="hover:text-[#C75550] transition-colors duration-150 lowercase"
+              >
+                {email}
+              </a>
+              <address className="not-italic leading-relaxed whitespace-pre-line">
+                {address}
+              </address>
+              <p className="font-montserrat text-xs uppercase tracking-wider pt-1">
+                <span className="text-white font-bold">GSTIN: </span>
+                <span className="text-[#fbbd05] font-bold">27AADP8030173</span>
+              </p>
+              <Link
+                href="/contact"
+                className="inline-flex w-fit items-center justify-center mt-1 bg-[#fbbd05] text-[#1c1b1b] px-5 py-2.5 font-montserrat text-[10px] font-bold tracking-[0.15em] uppercase border border-[#111111] hover:bg-[#e5a804] transition-colors duration-150"
+              >
+                Request a Quote
+              </Link>
             </div>
           </div>
         </div>
