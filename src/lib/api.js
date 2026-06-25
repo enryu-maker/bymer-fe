@@ -229,6 +229,75 @@ export function getMachineryPlantHref(plant) {
   return `/machinery/plant-${plant.id}`;
 }
 
+export function getMachineryPlantListHref(plantId) {
+  if (plantId === 1) return "/machinery";
+  if (plantId === 2) return "/machinery-plant-ii";
+  return `/machinery/plant-${plantId}`;
+}
+
+export function getMachineryHref(id) {
+  return `/machinery/${id}`;
+}
+
+export function normalizeMachinery(mach) {
+  const plant = mach.plant;
+  const plantId = typeof plant === "object" ? plant?.id : plant;
+  const plantName = typeof plant === "object" ? plant?.name : plantId ? `Plant ${plantId}` : null;
+
+  return {
+    id: mach.id,
+    name: mach.name || "",
+    image: mach.image_url
+      ? formatImageUrl(mach.image_url)
+      : mach.image
+        ? formatImageUrl(mach.image)
+        : null,
+    qty: mach.qty ?? mach.total_machines ?? null,
+    plantId,
+    plantName,
+    capacity: mach.capacity || mach.tonnage_or_capacity || null,
+    make: mach.make || null,
+    year: mach.year ?? mach.year_of_purchase ?? null,
+    platenSize: mach.platen_size || mach.platen_size_or_dimensions || null,
+    createdAt: mach.created_at || null,
+    updatedAt: mach.updated_at || null,
+  };
+}
+
+function isMeaningfulValue(value) {
+  if (value == null || value === "") return false;
+  if (typeof value === "string" && value.trim() === "-") return false;
+  return true;
+}
+
+export function getMachinerySpecLines(machine) {
+  const lines = [];
+
+  if (isMeaningfulValue(machine.make)) {
+    lines.push({ label: "Make", value: machine.make });
+  }
+  if (machine.qty != null) {
+    lines.push({
+      label: "Quantity",
+      value: `${machine.qty} Unit${machine.qty === 1 ? "" : "s"}`,
+    });
+  }
+  if (isMeaningfulValue(machine.capacity)) {
+    lines.push({ label: "Capacity", value: machine.capacity });
+  }
+  if (isMeaningfulValue(machine.platenSize)) {
+    lines.push({ label: "Platen Size", value: machine.platenSize });
+  }
+  if (machine.year != null) {
+    lines.push({ label: "Year of Purchase", value: String(machine.year) });
+  }
+  if (isMeaningfulValue(machine.plantName)) {
+    lines.push({ label: "Plant", value: machine.plantName });
+  }
+
+  return lines;
+}
+
 export async function fetchMachineryPlants() {
   try {
     const res = await fetch(`${BASE_URL}/api/machinery-plants/`, {
@@ -257,19 +326,26 @@ export async function fetchMachinery(plantId = null) {
     const data = await res.json();
     const results = data.results || data;
     if (Array.isArray(results)) {
-      return results.map((mach) => ({
-        ...mach,
-        image_url: mach.image_url
-          ? formatImageUrl(mach.image_url)
-          : mach.image
-            ? formatImageUrl(mach.image)
-            : null,
-      }));
+      return results.map((mach) => normalizeMachinery(mach));
     }
     return [];
   } catch (error) {
     console.warn("Failed to fetch machinery:", error.message);
     return [];
+  }
+}
+
+export async function fetchMachineryById(id) {
+  try {
+    const res = await fetch(`${BASE_URL}/api/machinery/${id}/`, {
+      next: { revalidate: 1800 },
+    });
+    if (!res.ok) return null;
+    const data = await res.json();
+    return normalizeMachinery(data);
+  } catch (error) {
+    console.warn("Failed to fetch machinery detail:", error.message);
+    return null;
   }
 }
 

@@ -34,27 +34,7 @@ function Hero() {
         <h1 className="font-title text-4xl sm:text-6xl lg:text-7xl font-black uppercase text-[#1c1b1b] leading-[1.0] max-w-2xl tracking-tight">
         ENGINEERING RELIABLE <br />
         <span className="text-[#C75550]">ELASTOMER SOLUTIONS</span> 
-        
         </h1>
-
-        <p className="font-body text-sm sm:text-base text-[#4b5563] max-w-xl leading-relaxed mt-2">
-          Bymer Elastomers is one of the leading rubber products manufacturing company, having two plants and working space of approx. 45000 sq ft. situated in industrial area of Ambad, Nashik.
-        </p>
-
-        <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mt-4">
-          <Link 
-            href="/contact" 
-            className="btn-black font-montserrat px-8 py-4 text-xs font-bold tracking-[0.15em] text-center flex items-center justify-center gap-2"
-          >
-            REQUEST A QUOTE <span className="font-sans text-sm">→</span>
-          </Link>
-          <Link 
-            href="#capabilities" 
-            className="btn-outline font-montserrat bg-white border-[#d1d5db] px-8 py-4 text-xs font-bold tracking-[0.15em] text-center flex items-center justify-center gap-2 text-[#1c1b1b]"
-          >
-            VIEW CAPABILITIES <span className="font-sans text-sm">→</span>
-          </Link>
-        </div>
       </div>
     </header>
   );
@@ -136,114 +116,65 @@ function TopStatsBar() {
   );
 }
 
-// 3. PRODUCTION CAPABILITIES SECTION
+// 3. WHY CHOOSE BYMER SECTION
 function Capabilities() {
   const cards = [
     {
-      title: "MOLDED RUBBER",
+      title: "ENGINEERING RELIABILITY",
       icon: "fa-solid fa-gears",
-      bullets: [
-        "Custom Molded Components",
-        "Rubber To Metal Bonded",
-        "Custom Tooling Design",
-        "Complex Geometry Solutions"
-      ]
+      description:
+        "Precision-driven manufacturing processes, advanced tooling, and controlled production systems ensure consistent quality and dependable performance across every batch.",
     },
     {
-      title: "COMPOUNDS & HOSES",
-      icon: "fa-solid fa-layer-group",
-      bullets: [
-        "High End Rubber Compounds",
-        "Low Pressure Rubber Hoses",
-        "Automotive Applications",
-        "Non-automotive Industries"
-      ]
+      title: "ELASTOMER EXPERTISE",
+      icon: "fa-solid fa-flask",
+      description:
+        "With decades of manufacturing experience, our team provides application-focused solutions with in-depth material knowledge, process understanding and engineering support.",
     },
     {
-      title: "EXTRUDED PROFILES",
-      icon: "fa-solid fa-ruler-combined",
-      bullets: [
-        "Custom Seal Profiles",
-        "Continuous Vulcanization",
-        "Tight Tolerance Controls",
-        "Tailored Specifications"
-      ]
-    }
+      title: "OEM & INDUSTRIAL PARTNERSHIP",
+      icon: "fa-solid fa-handshake",
+      description:
+        "We work closely with OEMs and industrial manufacturers from concept to production, delivering responsive support, technical collaboration, and long-term manufacturing reliability.",
+    },
+    {
+      title: "CERTIFIED QUALITY SYSTEMS",
+      icon: "fa-solid fa-certificate",
+      description:
+        "Our IATF 16949:2016, ISO 9001:2015, and ISO 14001:2015 certified processes guarantee traceability, consistency, compliance, and manufacturing excellence in line with global standards.",
+    },
   ];
 
   return (
     <section id="capabilities" className="w-full py-24 bg-[#f5f5f5]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Capabilities Header */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-16 border-b border-[#e5e7eb] pb-8">
-          <div className="flex flex-col items-start">
-            <span className="font-montserrat text-xs sm:text-sm font-bold text-[#C75550] uppercase tracking-[0.2em] mb-2">
-              OUR
-            </span>
-            <h2 className="font-title text-4xl sm:text-5xl font-black text-[#1c1b1b] uppercase tracking-tight">
-              CAPABILITIES
-            </h2>
-          </div>
-          <div className="flex flex-col items-start lg:items-end gap-3 max-w-xl text-left lg:text-right">
-            <p className="font-body text-sm sm:text-base text-[#4b5563] leading-relaxed">
-              We manufacture High end Rubber Compounds, Molded Rubber and Rubber To Metal Bonded Products, Extruded Rubber Profiles and Low pressure Rubber Hoses.
-            </p>
-            <Link 
-              href="/products" 
-              className="font-montserrat text-[11px] font-bold text-[#C75550] hover:text-[#1c1b1b] transition-colors tracking-[0.15em] flex items-center gap-1.5 uppercase mt-1"
-            >
-              VIEW ALL CAPABILITIES <span className="font-sans text-sm">→</span>
-            </Link>
-          </div>
+        <div className="mb-16 border-b border-[#e5e7eb] pb-8">
+          <h2 className="font-title text-3xl sm:text-4xl lg:text-5xl font-black text-[#1c1b1b] tracking-tight max-w-4xl">
+            Why do manufacturers choose Bymer Elastomers?
+          </h2>
         </div>
 
-        {/* Capabilities Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {cards.map((card, idx) => (
-            <div 
-              key={idx}
-              className="group bg-white border border-[#e5e7eb] transition-all duration-300 p-8 sm:p-10 flex flex-col justify-between items-start gap-8 min-h-[380px]"
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+          {cards.map((card) => (
+            <div
+              key={card.title}
+              className="group bg-white border border-[#e5e7eb] transition-all duration-300 p-8 flex flex-col items-start gap-6 min-h-[320px] hover:-translate-y-1 hover:shadow-md"
             >
-              <div className="flex flex-col gap-8 w-full items-start">
-                
-                {/* Header: Icon + Title side by side */}
-                <div className="flex items-center gap-4 w-full">
-                  {/* Icon Container */}
-                  <div className="w-12 h-12 flex-shrink-0 flex items-center justify-center bg-[#f5f5f5] text-[#1c1b1b] transition-colors duration-200 group-hover:bg-[#C75550] group-hover:text-white">
-                    <i className={`${card.icon} text-lg`} />
-                  </div>
-
-                  {/* Card Title */}
-                  <h3 className="font-montserrat text-lg sm:text-xl font-bold text-[#1c1b1b] uppercase tracking-wide">
-                    {card.title}
-                  </h3>
+              <div className="flex items-center gap-4 w-full">
+                <div className="w-12 h-12 flex-shrink-0 flex items-center justify-center bg-[#f5f5f5] text-[#1c1b1b] transition-colors duration-200 group-hover:bg-[#C75550] group-hover:text-white">
+                  <i className={`${card.icon} text-lg`} />
                 </div>
-
-                {/* Bullets List */}
-                <ul className="flex flex-col gap-3.5 font-body text-sm text-[#4b5563] leading-relaxed w-full">
-                  {card.bullets.map((bullet, bIdx) => (
-                    <li key={bIdx} className="flex gap-1 items-start text-left">
-                      <span className="text-[#9ca3af] group-hover:text-[#C75550] transition-colors duration-200 font-bold select-none mr-2 font-mono">
-                        &gt;
-                      </span>
-                      <span className="font-medium text-[#4b5563]">{bullet}</span>
-                    </li>
-                  ))}
-                </ul>
+                <h3 className="font-montserrat text-sm sm:text-base font-bold text-[#1c1b1b] uppercase tracking-wide leading-snug">
+                  {card.title}
+                </h3>
               </div>
 
-              {/* Action Link */}
-              <Link 
-                href="/products"
-                className="font-montserrat text-[11px] font-bold text-[#C75550] hover:text-[#1c1b1b] transition-colors tracking-[0.15em] flex items-center gap-1.5 uppercase mt-4"
-              >
-                DETAILS <span className="font-sans text-sm">→</span>
-              </Link>
+              <p className="font-body text-sm text-[#4b5563] leading-relaxed">
+                {card.description}
+              </p>
             </div>
           ))}
         </div>
-
       </div>
     </section>
   );
@@ -279,12 +210,6 @@ function InstitutionalQuality() {
             We are IATF 16949:2016, ISO 9001:2015 & ISO 14001:2015 certified manufacturing processes for consistent, reliable and scalable manufacturing for performance critical applications.
             </p>
           </div>
-
-          <div className="border-l-4 border-white bg-[#C75550] p-6 max-w-xl select-none w-full">
-            <p className="font-montserrat text-xs sm:text-sm font-bold text-white uppercase tracking-wider leading-relaxed">
-            Delivering Reliable Elastomer Solutions for Performance-Critical Applications Worldwide.
-            </p>
-          </div>
         </div>
 
         {/* Right Column: Image (6 cols) */}
@@ -315,10 +240,8 @@ function CommitmentBanner() {
       <div className="w-10 h-10 bg-white flex items-center justify-center border-r-[3px] border-b-[3px] border-[#fbbd05]">
         <i className="fa-solid fa-play text-[#1c1b1b] text-sm ml-0.5"></i>
       </div>
-      <h2 className="font-title text-3xl sm:text-5xl lg:text-6xl font-black uppercase text-white tracking-wide leading-tight max-w-4xl mt-6">
-        WE ARE COMMITTED TO SUPPLY <br />
-        <span className="text-[#fbbd05]">QUALITY RUBBER PRODUCTS</span> <br />
-        TO OUR CUSTOMERS.
+      <h2 className="font-title text-3xl sm:text-3xl lg:text-4xl font-black uppercase text-white tracking-wide leading-tight max-w-4xl mt-6">
+      Delivering Reliable Elastomer Solutions <br /> <span className="text-[#fbbd05]">for Performance-Critical Applications Worldwide.</span> 
       </h2>
     </section>
   );
@@ -326,83 +249,79 @@ function CommitmentBanner() {
 
 // 4.6. JOURNEY TO EXCELLENCE SECTION
 function JourneySection() {
-  const journeyItems = [
+  const glanceCards = [
     {
-      title: "ESTABLISHED LEGACY",
-      description: "Founded in 1978 as Blaze Enterprises, evolving into Bymer Elastomers with over 40 years of industry expertise."
+      title: "LEGACY & LEADERSHIP",
+      icon: "fa-solid fa-landmark",
+      items: [
+        "Established in 1978",
+        "40+ Years of Manufacturing Excellence",
+        "60+ Years of Technical Leadership",
+      ],
     },
     {
-      title: "EXPANDING CLIENT REACH",
-      description: "Proudly serving 50+ clients across India and overseas, delivering reliable rubber solutions."
+      title: "INFRASTRUCTURE & CAPABILITY",
+      icon: "fa-solid fa-industry",
+      items: [
+        "45,000 Sq. Ft. Manufacturing Infrastructure",
+        "2 Manufacturing Facilities",
+        "In-House Compound Development & Mixing Capability",
+      ],
     },
     {
-      title: "CUSTOMER-CENTRIC PRODUCTION",
-      description: "Specializing in custom made rubber products tailored to meet unique client specifications and needs."
-    }
-  ];
-
-  const stats = [
-    { number: "1150+", label: "PROJECTS COMPLETED", icon: "fa-solid fa-chart-line" },
-    { number: "760+", label: "PROJECTS RUNNING", icon: "fa-solid fa-gears" },
-    { number: "70+", label: "INDUSTRIES SERVED", icon: "fa-solid fa-industry" },
-    { number: "150+", label: "SATISFIED CLIENTS", icon: "fa-solid fa-face-smile" }
+      title: "GLOBAL REACH",
+      icon: "fa-solid fa-globe",
+      items: ["50+ Customers Across India & Global Markets"],
+    },
+    {
+      title: "CERTIFIED QUALITY",
+      icon: "fa-solid fa-certificate",
+      items: [
+        "IATF 16949:2016 Certified",
+        "ISO 9001:2015 Certified",
+        "ISO 14001:2015 Certified",
+      ],
+    },
   ];
 
   return (
     <section className="w-full py-24 bg-white border-t border-b border-[#e5e7eb]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-        
-        {/* Left Column: Timeline */}
-        <div className="lg:col-span-6 flex flex-col items-start justify-center">
-          <h2 className="font-title text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-[#1c1b1b] mb-12">
-            OUR JOURNEY TO <br /> EXCELLENCE
-          </h2>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 className="font-title text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-[#1c1b1b] mb-4">
+          OUR JOURNEY TO EXCELLENCE
+        </h2>
+        <span className="font-montserrat text-xs sm:text-sm font-bold text-[#C75550] uppercase tracking-[0.2em] mb-10 block">
+          Bymer at a Glance
+        </span>
 
-          <div className="flex flex-col w-full">
-            {journeyItems.map((item, idx) => (
-              <div key={idx} className="flex gap-6 relative pb-10 last:pb-0">
-                {/* Vertical line connecting bullets */}
-                {idx < journeyItems.length - 1 && (
-                  <div className="absolute left-[9px] top-[26px] bottom-0 w-0.5 bg-gray-200" />
-                )}
-                
-                {/* Timeline Bullet */}
-                <div className="relative z-10 flex-shrink-0 w-5 h-5 rounded-full bg-[#C75550] border-4 border-white shadow-sm mt-1" />
-                
-                {/* Content */}
-                <div className="flex flex-col gap-1 items-start text-left">
-                  <h3 className="font-montserrat text-sm sm:text-base font-bold text-[#1c1b1b] uppercase tracking-wider">
-                    {item.title}
-                  </h3>
-                  <p className="font-body text-xs sm:text-sm text-[#4b5563] leading-relaxed max-w-md">
-                    {item.description}
-                  </p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          {glanceCards.map((card) => (
+            <div
+              key={card.title}
+              className="bg-white border border-[#e5e7eb] p-6 sm:p-8 flex flex-col items-start gap-5 hover:shadow-md transition-shadow duration-200 min-h-[220px]"
+            >
+              <div className="flex items-center gap-3 w-full">
+                <div className="w-10 h-10 flex-shrink-0 flex items-center justify-center bg-white border border-[#e5e7eb] text-[#C75550]">
+                  <i className={`${card.icon} text-base`} />
                 </div>
+                <h3 className="font-montserrat text-xs sm:text-sm font-bold text-[#1c1b1b] uppercase tracking-wider leading-snug">
+                  {card.title}
+                </h3>
               </div>
-            ))}
-          </div>
-        </div>
 
-        {/* Right Column: Grid Cards */}
-        <div className="lg:col-span-6 w-full">
-          <div className="grid grid-cols-2 gap-6">
-            {stats.map((stat, idx) => (
-              <div 
-                key={idx}
-                className="bg-white border border-[#e5e7eb] p-6 sm:p-8 flex flex-col items-center justify-center text-center gap-3 hover:shadow-md transition-shadow duration-200"
-              >
-                <i className={`${stat.icon} text-2xl text-[#C75550]`} />
-                <span className="font-title text-2xl sm:text-3xl font-black text-[#1c1b1b]">
-                  {stat.number}
-                </span>
-                <span className="font-montserrat text-[9px] sm:text-[10px] font-bold text-[#6b7280] tracking-wider uppercase leading-snug">
-                  {stat.label}
-                </span>
-              </div>
-            ))}
-          </div>
+              <ul className="flex flex-col gap-3 w-full">
+                {card.items.map((item) => (
+                  <li key={item} className="flex items-start gap-2.5 text-left">
+                    <i className="fa-solid fa-check text-[#C75550] text-xs mt-1 flex-shrink-0" />
+                    <span className="font-body text-xs sm:text-sm text-[#4b5563] leading-relaxed">
+                      {item}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
-
       </div>
     </section>
   );
@@ -615,7 +534,7 @@ function ClientLogos() {
   return (
     <section className="w-full bg-white border-y border-black py-10 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6">
-        <p className="font-montserrat text-xs font-bold text-[#9ca3af] uppercase tracking-[0.2em] text-center">
+        <p className="font-montserrat text-sm sm:text-base lg:text-base font-bold text-[#9ca3af] uppercase tracking-[0.15em] text-center">
           Trusted by leading OEMs &amp; industrial partners worldwide
         </p>
       </div>
@@ -630,14 +549,14 @@ function ClientLogos() {
           {marqueeLogos.map((logo, index) => (
             <div
               key={`${logo.id}-${index}`}
-              className="relative h-12 w-28 sm:h-14 sm:w-36 shrink-0 opacity-90 hover:opacity-100 transition-opacity duration-200"
+              className="relative h-20 w-28 sm:h-20 sm:w-36 shrink-0 opacity-90 hover:opacity-100 transition-opacity duration-200"
             >
               {logo.src ? (
                 <Image
                   src={logo.src}
                   alt={logo.alt}
                   fill
-                  sizes="144px"
+                  sizes="200px"
                   className="object-contain"
                 />
               ) : (

@@ -253,6 +253,41 @@ function OurOperationalStatistics() {
 }
 
 // 5. PILLARS OF BYMER ELASTOMERS
+function LeadershipCard({ name, title, imageSrc, imageAlt, bio }) {
+  return (
+    <div className="bg-[#f9fafb] p-8 sm:p-10 flex flex-col items-start border border-gray-200/40 h-full">
+      <div className="flex flex-col-reverse sm:flex-row sm:items-center sm:justify-between w-full gap-5 sm:gap-6 pb-6 border-b border-gray-200/60">
+        <div className="flex flex-col items-center sm:items-start gap-1.5 flex-1 min-w-0">
+          <h3 className="font-title text-2xl sm:text-3xl font-black text-[#1c1b1b] uppercase tracking-tight leading-none text-center sm:text-left">
+            {name}
+          </h3>
+          <span className="font-montserrat text-xs font-bold text-[#C75550] tracking-wider uppercase">
+            {title}
+          </span>
+        </div>
+
+        <div className="relative w-32 h-40 sm:w-36 sm:h-44 shrink-0 overflow-hidden border border-gray-200 bg-white mx-auto sm:mx-0">
+          <Image
+            src={imageSrc}
+            alt={imageAlt}
+            fill
+            sizes="(max-width: 640px) 128px, 144px"
+            className="object-cover object-top grayscale"
+            priority
+          />
+        </div>
+      </div>
+
+      <div className="flex flex-col items-start text-left w-full mt-6 gap-2">
+        <span className="font-montserrat text-[10px] sm:text-xs font-bold text-[#9ca3af] tracking-wider uppercase">
+          EXPERTISE & BACKGROUND:
+        </span>
+        <p className="font-body text-xs sm:text-sm text-[#4b5563] leading-relaxed">{bio}</p>
+      </div>
+    </div>
+  );
+}
+
 function PillarsSection() {
   return (
     <section className="w-full py-20 sm:py-24 bg-white">
@@ -271,73 +306,20 @@ function PillarsSection() {
 
         {/* Leadership Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto w-full">
-          
-          {/* Pillar 1: Yezdi Patel */}
-          <div className="bg-[#f9fafb] p-8 sm:p-10 flex flex-col justify-between items-start min-h-[320px] border border-gray-200/40">
-            <div className="flex justify-between items-start w-full gap-4 pb-6 border-b border-gray-200/60">
-              <div className="flex flex-col items-start gap-1">
-                <h3 className="font-title text-2xl sm:text-3xl font-black text-[#1c1b1b] uppercase tracking-tight leading-none">
-                  YEZDI PATEL
-                </h3>
-                <span className="font-montserrat text-xs font-bold text-[#C75550] tracking-wider uppercase">
-                  PARTNER / CEO
-                </span>
-              </div>
-              <div className="relative w-24 h-24 sm:w-28 sm:h-28 flex-shrink-0 border border-gray-200 bg-white">
-                <Image
-                  src="/images/Yezdi Patel.png"
-                  alt="YEZDI PATEL"
-                  fill
-                  sizes="112px"
-                  className="object-cover object-top filter grayscale"
-                  priority
-                />
-              </div>
-            </div>
-            
-            <div className="flex flex-col items-start text-left w-full mt-6 gap-2">
-              <span className="font-montserrat text-[10px] sm:text-xs font-bold text-[#9ca3af] tracking-wider uppercase">
-                EXPERTISE & BACKGROUND:
-              </span>
-              <p className="font-body text-xs sm:text-sm text-[#4b5563] leading-relaxed">
-              Mr. Yezdi Patel has more than 60 years of experience in rubber technology and manufacturing to his expertise in elastomer engineering, product development, and process excellence. A qualified rubber technologist from the University of Mumbai and a graduate of the Plastics and Rubber Institute, London, he continues to lead the technical development and strategic growth of Bymer Elastomers, driving the company’s commitment to reliability, innovation and manufacturing excellence.
-              </p>
-            </div>
-          </div>
-
-          {/* Pillar 2: Ruzbeh Patel */}
-          <div className="bg-[#f9fafb] p-8 sm:p-10 flex flex-col justify-between items-start min-h-[320px] border border-gray-200/40">
-            <div className="flex justify-between items-start w-full gap-4 pb-6 border-b border-gray-200/60">
-              <div className="flex flex-col items-start gap-1">
-                <h3 className="font-title text-2xl sm:text-3xl font-black text-[#1c1b1b] uppercase tracking-tight leading-none">
-                  RUZBEH PATEL
-                </h3>
-                <span className="font-montserrat text-xs font-bold text-[#C75550] tracking-wider uppercase">
-                  PARTNER / CFO
-                </span>
-              </div>
-              <div className="relative w-24 h-24 sm:w-28 sm:h-28 flex-shrink-0 border border-gray-200 bg-white">
-                <Image
-                  src="/images/Ruzbeh Patel.png"
-                  alt="RUZBEH PATEL"
-                  fill
-                  sizes="112px"
-                  className="object-cover object-top filter grayscale"
-                  priority
-                />
-              </div>
-            </div>
-            
-            <div className="flex flex-col items-start text-left w-full mt-6 gap-2">
-              <span className="font-montserrat text-[10px] sm:text-xs font-bold text-[#9ca3af] tracking-wider uppercase">
-                EXPERTISE & BACKGROUND:
-              </span>
-              <p className="font-body text-xs sm:text-sm text-[#4b5563] leading-relaxed">
-              Mr. Ruzbeh Patel, with over 40 years of experience in the rubber manufacturing industry, plays a pivotal role in spearheading business growth, customer engagement, and strategic development at Bymer Elastomers. He is a Science graduate from Savitribai Phule Pune University and is responsible for new business initiatives and market development, helping to strengthen Bymer’s position as a trusted elastomer manufacturing partner for OEMs and industrial customers.
-              </p>
-            </div>
-          </div>
-
+          <LeadershipCard
+            name="YEZDI PATEL"
+            title="PARTNER / CEO"
+            imageSrc="/images/Yezdi Patel.png"
+            imageAlt="YEZDI PATEL"
+            bio="Mr. Yezdi Patel has more than 60 years of experience in rubber technology and manufacturing to his expertise in elastomer engineering, product development, and process excellence. A qualified rubber technologist from the University of Mumbai and a graduate of the Plastics and Rubber Institute, London, he continues to lead the technical development and strategic growth of Bymer Elastomers, driving the company's commitment to reliability, innovation and manufacturing excellence."
+          />
+          <LeadershipCard
+            name="RUZBEH PATEL"
+            title="PARTNER / CFO"
+            imageSrc="/images/Ruzbeh Patel.png"
+            imageAlt="RUZBEH PATEL"
+            bio="Mr. Ruzbeh Patel, with over 40 years of experience in the rubber manufacturing industry, plays a pivotal role in spearheading business growth, customer engagement, and strategic development at Bymer Elastomers. He is a Science graduate from Savitribai Phule Pune University and is responsible for new business initiatives and market development, helping to strengthen Bymer's position as a trusted elastomer manufacturing partner for OEMs and industrial customers."
+          />
         </div>
 
         {/* Bottom Banner */}
