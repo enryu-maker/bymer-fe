@@ -1,19 +1,19 @@
 import { PageShell } from "@/components/layout/PageShell";
-import { InsightsPlaceholderPage } from "@/components/insights/InsightsPlaceholderPage";
+import { TestimonialsPage } from "@/components/testimonials/TestimonialsPage";
+import { fetchTestimonials } from "@/lib/api";
 
 export const metadata = {
   title: "Testimonials | Bymer Elastomers",
   description:
-    "Read what OEM and industrial customers say about partnering with Bymer Elastomers for elastomer solutions.",
+    "Read testimonials from customers and suppliers who partner with Bymer Elastomers for elastomer solutions.",
 };
 
-export default function Testimonials() {
+export default async function Testimonials() {
+  const testimonials = await fetchTestimonials();
+
   return (
     <PageShell>
-      <InsightsPlaceholderPage
-        title="Testimonials"
-        description="Customer experiences and feedback on quality, reliability, and partnership with Bymer Elastomers."
-      />
+      <TestimonialsPage testimonials={testimonials} />
     </PageShell>
   );
 }

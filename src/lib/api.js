@@ -391,6 +391,27 @@ export async function fetchAwards() {
   }
 }
 
+export async function fetchTestimonials() {
+  try {
+    const res = await fetch(`${BASE_URL}/api/testimonials/`, {
+      next: { revalidate: 3600 },
+    });
+    if (!res.ok) throw new Error("Failed to fetch testimonials");
+    const data = await res.json();
+    const results = data.results || data;
+    if (Array.isArray(results)) {
+      return results.map((testimonial) => ({
+        ...testimonial,
+        image: testimonial.image ? formatImageUrl(testimonial.image) : null,
+      }));
+    }
+    return [];
+  } catch (error) {
+    console.warn("Failed to fetch testimonials:", error.message);
+    return [];
+  }
+}
+
 export async function submitContactInquiry(payload) {
   try {
     const res = await fetch(`${BASE_URL}/api/forms/contact/`, {
