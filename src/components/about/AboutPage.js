@@ -32,12 +32,11 @@ function AboutHero() {
         </span>
 
         <h1 className="font-title text-4xl sm:text-5xl lg:text-6xl font-black uppercase text-[#1c1b1b] leading-[1.1] max-w-3xl tracking-tight">
-          YOUR PARTNER FOR <br />
-          <span className="text-[#C75550]">QUALITY RUBBER PRODUCTS</span>
+        Precision-Engineered Elastomer Solutions 
         </h1>
 
         <p className="font-body text-sm sm:text-base text-[#4b5563] max-w-2xl leading-relaxed mt-1">
-          Delivering reliable, cost-effective quality rubber products across industries worldwide.
+        Delivering precision elastomer solutions through decades of manufacturing expertise, certified quality, and engineering-driven innovation.
         </p>
       </div>
     </header>
@@ -69,11 +68,11 @@ function WhoWeAre() {
             </p>
             
             <p className="font-body text-sm sm:text-base text-[#4b5563] leading-relaxed mb-6">
-            Bymer Elastomers is a certified elastomer manufacturer specializing in custom rubber components, rubber-to-metal bonded products, extruded rubber profiles, industrial hoses and custom rubber compounds.
+            Bymer Elastomers is a certified elastomer manufacturer specializing in custom rubber components, rubber-to-metal bonded products, extruded rubber profiles, industrial hoses, and custom rubber compound formulations. We serve OEMs, automotive manufacturers, industrial equipment companies, and engineering organizations in domestic and international markets.
             </p>
 
             <p className="font-body text-sm sm:text-base text-[#4b5563] leading-relaxed mb-10">
-            Bymer has two manufacturing units with a combined area of 45,000 sq. ft at Nashik, India. It provides to OEMs, automotive manufacturers, industrial equipment companies and engineering companies in domestic and international markets.
+            We operate two manufacturing facilities in Nashik, Maharashtra—with a combined area of 45,000 sq. ft.—housing component manufacturing and in-house compound development under a single certified production system. This integration gives us direct control over material formulation, process execution, and quality verification at every stage of production.
             </p>
 
             {/* Certification Badges Grid */}
@@ -348,8 +347,8 @@ function TeamSection() {
             <span className="font-montserrat text-xs sm:text-sm font-bold text-[#C75550] uppercase tracking-[0.2em] mb-2">
               OUR TEAM
             </span>
-            <h2 className="font-title text-3xl sm:text-4xl lg:text-[2.75rem] font-black text-[#1c1b1b] uppercase tracking-tight leading-[1.1]">
-              ENGINEERING EXPERTISE. MANUFACTURING EXCELLENCE. SHARED COMMITMENT.
+            <h2 className="font-title text-3xl sm:text-4xl lg:text-5xl font-black text-[#1c1b1b] uppercase tracking-tight leading-[1.1]">
+            Engineering Expertise. <br />  Manufacturing Precision. <br /> Shared Commitment.
             </h2>
             <div className="w-16 h-[4px] bg-[#fbbd05] mt-4" />
           </div>
@@ -390,7 +389,8 @@ function CommitmentBanner() {
         COMMITMENT STATEMENT
       </span>
       <h2 className="font-title text-2xl sm:text-3xl lg:text-4xl font-black text-[#1c1b1b] uppercase tracking-wide leading-tight max-w-5xl">
-        WE ARE COMMITTED TO SUPPLY QUALITY RUBBER PRODUCTS TO OUR CUSTOMERS.
+      We are committed to Manufacturing High-Quality
+      Rubber Components and Custom Elastomer Solutions for OEMs and industrial manufacturers 
       </h2>
     </section>
   );
@@ -401,16 +401,16 @@ function AboutContactCTA() {
   return (
     <section className="w-full py-20 bg-white border-t border-b border-[#f3f4f6] text-center flex flex-col items-center justify-center px-4">
       <h2 className="font-title text-3xl sm:text-4xl lg:text-[38px] font-black text-[#1c1b1b] uppercase tracking-tight leading-tight max-w-3xl mb-4">
-        GET IN TOUCH, & WE'LL RESPOND SOON!
+      Let's Discuss Your Requirement
       </h2>
       <p className="font-body text-sm sm:text-base text-[#4b5563] max-w-xl leading-relaxed mb-8">
-        Reach out to our engineering production management desks to consult on design frameworks, timeline metrics, or custom rubber profile compositions.
+      Share your application, technical drawings, or product specifications. Our engineering team will review your requirements and recommend the right elastomer solution.
       </p>
       <Link 
         href="/contact" 
         className="inline-flex items-center justify-center bg-[#C75550] text-white px-8 py-3.5 font-title text-sm font-bold uppercase tracking-wider transition-all duration-200 hover:bg-[#b54a46] rounded-none cursor-pointer gap-2"
       >
-        CONTACT NOW <span className="font-sans font-bold text-xs">&gt;</span>
+        CONTACT NOW <span className="font-sans text-sm">→</span>
       </Link>
     </section>
   );

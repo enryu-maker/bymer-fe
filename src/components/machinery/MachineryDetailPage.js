@@ -1,14 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { ContactBanner } from "../layout/ContactBanner";
-import {
-  fetchMachineryById,
-  getMachineryPlantListHref,
-} from "@/lib/api";
+import { PageLoader } from "../shared/PageLoader";
+import { getMachineryPlantListHref } from "@/lib/api";
+import { useMachineDetail } from "./MachineryCatalogContext";
 
 function SpecField({ label, value }) {
   if (!value) return null;
@@ -26,48 +25,24 @@ function SpecField({ label, value }) {
 export function MachineryDetailPage() {
   const params = useParams();
   const machineId = params?.id;
-  const [machine, setMachine] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
+  const { machine, loading, ensureMachineDetail } = useMachineDetail(machineId);
 
   useEffect(() => {
-    async function loadMachine() {
-      if (!machineId) return;
-      setLoading(true);
-      setError(false);
-      try {
-        const data = await fetchMachineryById(machineId);
-        if (!data) {
-          setError(true);
-          setMachine(null);
-        } else {
-          setMachine(data);
-        }
-      } catch {
-        setError(true);
-        setMachine(null);
-      } finally {
-        setLoading(false);
-      }
-    }
-    loadMachine();
-  }, [machineId]);
+    ensureMachineDetail();
+  }, [ensureMachineDetail]);
 
   if (loading) {
     return (
       <div className="min-h-screen flex flex-col bg-white">
         <main className="w-full py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center min-h-[400px]">
-          <div className="w-12 h-12 border-t-4 border-b-4 border-[#C75550] rounded-full animate-spin mb-4" />
-          <span className="font-montserrat text-xs font-bold tracking-widest text-[#4b5563] uppercase">
-            LOADING MACHINE DETAILS...
-          </span>
+          <PageLoader className="min-h-[120px]" />
         </main>
         <ContactBanner />
       </div>
     );
   }
 
-  if (error || !machine) {
+  if (!machine) {
     return (
       <div className="min-h-screen flex flex-col bg-white">
         <main className="w-full py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center text-center min-h-[400px]">

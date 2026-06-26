@@ -6,66 +6,91 @@ const FAQ_ITEMS = [
     id: "I",
     question: "What types of rubber products does Bymer Elastomers manufacture?",
     answer:
-      "Bymer Elastomers manufactures custom molded rubber parts, rubber bonded to metal products, rubber extrusion profiles, low pressure hoses and formulated rubber compounds for OEM and industrial applications.",
+      "Bymer Elastomers manufactures five main product categories: custom molded rubber components (by compression, transfer, and injection molding), rubber-to-metal bonded products, extruded rubber profiles, industrial hoses, and custom rubber compounds. Products are manufactured for automotive OEMs, industrial equipment manufacturers, electrical system integrators, and engineering companies across domestic and international markets.",
   },
   {
     id: "II",
     question: "Which rubber materials does Bymer work with?",
     answer:
-      "We manufacture products from Natural Rubber and a wide range of synthetic elastomers like Nitrile (NBR), Neoprene (CR), EPDM, Silicone (VMQ), FKM, Polyacrylate (ACM), Ethylene Acrylic (AEM), HNBR, Butyl (IIR) and ECO, as per the requirements of the application.",
+      "Bymer formulates and manufactures compounds in Natural Rubber (NR), Nitrile (NBR), Neoprene (CR), EPDM, Silicone (VMQ), FKM/Viton, Polyacrylate (ACM), Ethylene Acrylic (AEM), HNBR, Butyl (IIR), and Epichlorohydrin (ECO). Material selection is based on the application's operating temperature, fluid exposure, mechanical requirements, and regulatory constraints — not substituted from general-purpose grades.",
   },
   {
     id: "III",
-    question: "Does Bymer Elastomers develop custom rubber solutions?",
+    question: "Can Bymer support both low-volume and high-volume production?",
     answer:
-      "Yes. We specialize in application-specific elastomer solutions, developing products and compounds tailored to customer specifications, performance requirements, and operating environments.",
+      "Yes. Our manufacturing infrastructure supports prototype and development programs, specialized small-volume production runs, and scalable high-volume manufacturing programs. We work with customers at every lifecycle stage — from initial compound development through long-term series production supply.",
   },
   {
     id: "IV",
-    question: "What industries does Bymer Elastomers serve?",
+    question: "What is Bymer Elastomers?",
     answer:
-      "We support customers in the automotive, electrical & switchgear, industrial equipment, oil & chemical processing, home appliances, defense, aerospace, and other engineering-driven industries.",
+      "Bymer Elastomers is a certified precision manufacturer of rubber and elastomer products based in Nashik, Maharashtra, India. Established in 1978, the company manufactures custom molded rubber components, rubber-to-metal bonded products, extruded rubber profiles, industrial hoses, and custom elastomer compounds for automotive OEMs, industrial equipment manufacturers, and engineering companies across India and international markets. Manufacturing processes are certified to IATF 16949:2016, ISO 9001:2015, and ISO 14001:2015.",
   },
   {
     id: "V",
-    question: "Does Bymer supply customers outside India?",
+    question: "Where is Bymer Elastomers located?",
     answer:
-      "Yes. Bymer Elastomers serves customers across India and international markets, supporting global supply requirements through certified manufacturing systems and quality-focused processes.",
+      "Bymer Elastomers operates two manufacturing facilities in Nashik, Maharashtra, India — with a combined manufacturing area of 45,000 sq. ft. Nashik is an established industrial manufacturing centre in Maharashtra. The company was founded in 1978 and supplies customers across India and international markets from its Nashik manufacturing base.",
   },
   {
     id: "VI",
-    question: "What certifications does Bymer Elastomers hold?",
-    answer: "Bymer Elastomers operates under internationally recognized management systems and is certified to:",
-    list: ["IATF 16949:2016", "ISO 9001:2015", "ISO 14001:2015"],
+    question: "Is Bymer Elastomers IATF 16949 certified?",
+    answer:
+      "Yes. Bymer Elastomers is certified to IATF 16949:2016 — the international quality management system standard for automotive production and service parts suppliers. Bymer also holds ISO 9001:2015 and ISO 14001:2015 certification. IATF 16949 confirms that Bymer's manufacturing processes, documentation, and quality controls meet automotive OEM supply chain requirements globally.",
   },
   {
     id: "VII",
-    question: "Does Bymer offer in-house compound development?",
+    question: "What rubber materials does Bymer Elastomers work with?",
     answer:
-      "Yes. We can create elastomer compounds that are suited to particular application, performance, and environmental requirements thanks to our in-house compound development and mixing capabilities.",
+      "Bymer Elastomers formulates compounds in Natural Rubber (NR), Nitrile (NBR), EPDM, Silicone (VMQ), FKM/Viton, HNBR, Neoprene (CR), Polyacrylate (ACM), Ethylene Acrylic (AEM), Butyl (IIR), and Epichlorohydrin (ECO). All compounds are developed in-house, with material selection determined by the application's operating temperature, fluid exposure, mechanical loading, and regulatory requirements — not substituted from general-purpose grades.",
   },
   {
     id: "VIII",
-    question: "How is product quality guaranteed by Bymer?",
+    question: "What is the difference between EPDM and NBR rubber?",
     answer:
-      "Through material verification, process controls, internal testing, product validation, and certified quality management systems, quality is integrated throughout our manufacturing process.",
+      "EPDM (Ethylene Propylene Diene Monomer) offers excellent resistance to ozone, weathering, steam, and hot water — but is not compatible with petroleum oils or fuels. NBR (Nitrile Butadiene Rubber) provides excellent resistance to petroleum oils, fuels, and hydraulic fluids — but degrades under ozone and outdoor weathering. EPDM is used in automotive weatherseals, cooling hoses, and outdoor infrastructure. NBR is used in engine oil seals, fuel system components, and hydraulic seals.",
   },
   {
     id: "IX",
-    question: "Can Bymer support both low-volume and high-volume production requirements?",
+    question: "What rubber material is used for EV busbar seals?",
     answer:
-      "Yes. Our manufacturing infrastructure and process capabilities support product development, specialized production runs and scalable manufacturing programs.",
+      "Silicone rubber (VMQ) is the primary material for EV busbar seals due to its wide operating temperature range (−60°C to +200°C), high dielectric strength, high volume resistivity, long service life, and compatibility with thermal management fluids in EV battery systems. EPDM is an alternative for lower-voltage applications at moderate operating temperatures.",
   },
   {
     id: "X",
-    question: "How can I discuss my application requirements with Bymer?",
+    question: "What is rubber-to-metal bonding?",
     answer:
-      "Our team works with customers to understand technical needs and recommend suitable elastomer solutions.",
-    footerLink: {
-      before: "Please feel free to ",
-      linkText: "leave a query on our website or contact us directly",
-      after: ".",
-    },
+      "Rubber-to-metal bonding is a manufacturing process where rubber compound is chemically bonded to a metal insert during vulcanization in a mold. Metal inserts are surface-treated and coated with bonding adhesive before being positioned in the mold. Under heat and pressure, the rubber vulcanizes and simultaneously forms a chemical bond with the metal. The result is a structural composite combining the load-bearing rigidity of metal with the vibration-isolating, elastic, or sealing properties of rubber. Engine mounts, suspension bushings, and industrial vibration isolators are common applications.",
+  },
+  {
+    id: "XI",
+    question: "What is the difference between compression molding and injection molding for rubber?",
+    answer:
+      "In compression molding, a preformed rubber charge is placed in an open mold cavity, which is then closed and heated to vulcanize the rubber. In injection molding, heated compound is injected under pressure into closed mold cavities. Injection molding produces tighter dimensional tolerances, minimal flash, shorter cycle times, and better cavity-to-cavity consistency — but requires higher tooling investment. Compression molding is more economical for lower volumes and simpler geometries. Transfer molding sits between the two in precision and complexity.",
+  },
+  {
+    id: "XII",
+    question: "What manufacturing processes does Bymer Elastomers operate?",
+    answer:
+      "Bymer Elastomers operates compression molding, transfer molding, injection molding, rubber extrusion, rubber-to-metal bonding, industrial hose production, and in-house elastomer compound development and mixing — all within IATF 16949:2016 certified manufacturing systems at two facilities in Nashik, India, with a combined area of 45,000 sq. ft.",
+  },
+  {
+    id: "XIII",
+    question: "What does IATF 16949 certification mean for a rubber manufacturer?",
+    answer:
+      "IATF 16949:2016 is the international QMS standard for automotive production and service parts suppliers. For a rubber manufacturer, it confirms documented process controls, production planning, non-conformance management, traceability systems, and continuous improvement programs meeting automotive OEM requirements. It is required or strongly preferred by most automotive OEM procurement teams globally and provides deeper manufacturing system assurance than ISO 9001 alone.",
+  },
+  {
+    id: "XIV",
+    question: "What in-house rubber testing does Bymer perform?",
+    answer:
+      "Bymer Elastomers conducts in-house testing covering: rheological analysis (Moving Die Rheometer) for cure characteristics; Mooney viscosity for processability; Universal Testing Machine for tensile strength and elongation; Shore A hardness; compression set; accelerated heat ageing; ozone resistance; low-temperature performance to −60°C; abrasion resistance (DIN 53516); specific gravity; and electrical properties for EV and high-voltage applications.",
+  },
+  {
+    id: "XV",
+    question: "What is compression set in rubber and why does it matter?",
+    answer:
+      "Compression set is the permanent deformation a rubber component retains after being compressed under a defined load, temperature, and time. Expressed as a percentage of the original deflection not recovered after load removal. For sealing applications, low compression set is critical — a seal with high compression set loses contact force over time, leading to leakage. Compression set testing (ISO 815 / ASTM D395) validates long-term sealing performance of compounds for static and dynamic seal applications.",
   },
 ];
 
@@ -102,32 +127,12 @@ function FaqItem({ item }) {
           </h2>
         </div>
         <span className="flex-shrink-0 w-7 h-7 border border-[#e5e7eb] flex items-center justify-center text-[#9ca3af] group-open:bg-[#C75550] group-open:border-[#C75550] group-open:text-white transition-colors duration-200 mt-0.5">
-          <i className="fa-solid fa-plus text-[10px] group-open:hidden" />
-          <i className="fa-solid fa-minus text-[10px] hidden group-open:block" />
+          <i className="fa-solid fa-chevron-down text-[10px] transition-transform duration-200 group-open:rotate-180" />
         </span>
       </summary>
 
       <div className="px-5 sm:px-6 pb-5 sm:pb-6 pl-14 sm:pl-[4.25rem] border-t border-[#f3f4f6]">
-        <p className="font-body text-sm sm:text-base text-[#4b5563] leading-relaxed">
-          {item.answer}
-          {item.footerLink && (
-            <>
-              {" "}
-              {item.footerLink.before}
-              <Link href="/contact" className="text-[#C75550] font-semibold hover:underline">
-                {item.footerLink.linkText}
-              </Link>
-              {item.footerLink.after}
-            </>
-          )}
-        </p>
-        {item.list && (
-          <ul className="list-disc pl-5 mt-3 flex flex-col gap-2 font-body text-sm sm:text-base text-[#4b5563] leading-relaxed">
-            {item.list.map((entry) => (
-              <li key={entry}>{entry}</li>
-            ))}
-          </ul>
-        )}
+        <p className="font-body text-sm sm:text-base text-[#4b5563] leading-relaxed">{item.answer}</p>
       </div>
     </details>
   );
@@ -140,6 +145,16 @@ function FaqContent() {
         {FAQ_ITEMS.map((item) => (
           <FaqItem key={item.id} item={item} />
         ))}
+
+        <div className="mt-4 border border-[#e5e7eb] bg-white p-6 sm:p-8 text-center">
+          <p className="font-body text-sm sm:text-base text-[#4b5563] leading-relaxed">
+            Have more questions about your application?{" "}
+            <Link href="/contact" className="text-[#C75550] font-semibold hover:underline">
+              Contact our team
+            </Link>{" "}
+            to discuss technical requirements and elastomer solutions.
+          </p>
+        </div>
       </div>
     </section>
   );

@@ -1,14 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ContactBanner } from "../layout/ContactBanner";
-import {
-  fetchMachinery,
-  getMachineryHref,
-  getMachinerySpecLines,
-} from "@/lib/api";
+import { PageLoader } from "../shared/PageLoader";
+import { getMachineryHref } from "@/lib/api";
+import { useMachineryCatalog } from "./MachineryCatalogContext";
 
 function MachineryHero({ plant }) {
   const isPlantII = plant === 2;
@@ -29,115 +27,72 @@ function MachineryHero({ plant }) {
 
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-20 flex flex-col items-center gap-3">
         <span className="font-montserrat text-xs sm:text-sm font-bold tracking-[0.2em] text-[#9ca3af] uppercase leading-none">
-          HOME / {isPlantII ? "MACHINERY / PLANT II" : "MACHINERY / PLANT I"}
+          HOME / MANUFACTURING / {isPlantII ? "PLANT II" : "PLANT I"}
         </span>
         <h1 className="font-title text-4xl sm:text-6xl font-black uppercase text-white tracking-tight leading-none mb-1">
-          {isPlantII ? "MACHINERY - PLANT II" : "MACHINERY - PLANT I"}
+          OUR MANUFACTURING CAPABILITIES
         </h1>
+        <p className="font-montserrat text-xs sm:text-sm font-bold text-[#fbbd05] uppercase tracking-wider">
+          {isPlantII ? "Plant II" : "Plant I"} — Advanced Technology for Precision Engineering
+        </p>
         <p className="font-body text-xs sm:text-sm text-[#9ca3af] max-w-xl leading-relaxed">
-          Complete lineup of rubber mixing, moulding, vacuum-assisted presses, and material preparation
-          assets used across our Nashik manufacturing footprint{isPlantII ? " - Plant II" : " - Plant I"}.
+          We leverage sophisticated machinery to ensure the highest quality and consistency across
+          rubber mixing, moulding, vacuum-assisted presses, and material preparation at our Nashik
+          manufacturing footprint.
         </p>
       </div>
     </header>
   );
 }
 
-function MachineCard({ machine }) {
-  const specLines = getMachinerySpecLines(machine);
-  const subtitle = `MACHINERY // ${machine.plantName?.toUpperCase() || "PLANT"}`;
-
+function MachineTile({ machine }) {
   return (
-    <div className="w-full bg-white border border-[#e5e7eb] flex flex-col lg:flex-row items-stretch overflow-hidden rounded-none group transition-all duration-300 hover:border-[#C75550] hover:shadow-[0_10px_20px_rgba(0,0,0,0.05)]">
-      <div className="w-full lg:w-[45%] relative min-h-[250px] lg:min-h-[320px] flex-shrink-0 overflow-hidden">
-        {machine.image ? (
-          <Image
-            src={machine.image}
-            alt={machine.name}
-            fill
-            sizes="(max-width: 1024px) 100vw, 500px"
-            className="object-cover filter group-hover:grayscale-0 group-hover:scale-[1.02] transition-all duration-500"
-            unoptimized
-          />
-        ) : (
-          <div className="w-full h-full min-h-[250px] bg-[#f3f4f6] flex items-center justify-center font-montserrat text-xs text-[#9ca3af]">
-            NO IMAGE
-          </div>
-        )}
-      </div>
-
-      <div className="w-full lg:w-[55%] p-8 sm:p-10 lg:p-12 flex flex-col justify-between items-start text-left">
-        <div className="w-full flex flex-col items-start gap-1">
-          <span className="font-montserrat text-xs font-bold text-[#9ca3af] uppercase tracking-widest leading-none">
-            {subtitle}
-          </span>
-          <h2 className="font-title text-2xl sm:text-3xl lg:text-4xl font-black text-[#1c1b1b] uppercase leading-tight tracking-tight mt-1">
-            {machine.name}
-          </h2>
-
-          <div className="w-full border-t border-[#e5e7eb] my-4" />
-
-          <ul className="flex flex-col gap-3 leading-relaxed text-left w-full">
-            {specLines.map((spec) => (
-              <li
-                key={`${machine.id}-${spec.label}`}
-                className="flex gap-3 items-start font-body text-sm sm:text-base text-[#4b5563]"
-              >
-                <span className="flex-shrink-0 flex items-center justify-center w-5 h-5 rounded-full bg-[#C75550] text-white text-[9px] mt-0.5 select-none">
-                  <i className="fa-solid fa-chevron-right" />
-                </span>
-                <span className="tracking-wide">
-                  <span className="font-montserrat text-[10px] font-bold text-[#9ca3af] uppercase tracking-wider mr-2">
-                    {spec.label}:
-                  </span>
-                  {spec.value}
-                </span>
-              </li>
-            ))}
-          </ul>
+    <Link
+      href={getMachineryHref(machine.id)}
+      className="group relative block w-full aspect-[4/3] overflow-hidden border border-[#e5e7eb] bg-[#f3f4f6] transition-all duration-300 hover:border-[#C75550] hover:shadow-[0_12px_24px_rgba(0,0,0,0.08)]"
+    >
+      {machine.image ? (
+        <Image
+          src={machine.image}
+          alt={machine.name}
+          fill
+          sizes="(max-width: 640px) 100vw, 50vw"
+          className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+          unoptimized
+        />
+      ) : (
+        <div className="absolute inset-0 flex items-center justify-center font-montserrat text-xs text-[#9ca3af]">
+          NO IMAGE
         </div>
+      )}
 
-        <Link
-          href={getMachineryHref(machine.id)}
-          className="font-montserrat text-xs sm:text-sm font-bold tracking-[0.15em] text-[#C75550] hover:text-[#a53b36] transition-colors mt-8 flex items-center gap-1 uppercase self-start"
-        >
-          MORE MACHINE CAPACITY <span className="font-sans text-sm">→</span>
-        </Link>
+      <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/90 via-[#0a0a0a]/35 to-transparent transition-opacity duration-300 group-hover:from-[#0a0a0a]/95" />
+
+      <div className="absolute inset-0 flex flex-col justify-end p-5 sm:p-6">
+        <h2 className="font-title text-base sm:text-lg lg:text-xl font-black text-white uppercase leading-snug tracking-tight">
+          {machine.name}
+        </h2>
+        <span className="inline-flex items-center gap-1.5 mt-3 font-montserrat text-[10px] sm:text-xs font-bold text-white/90 uppercase tracking-[0.15em] opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+          View machine details <i className="fa-solid fa-arrow-right text-[10px]" />
+        </span>
       </div>
-    </div>
+    </Link>
   );
 }
 
 export function MachineryPage({ plant = 1 }) {
-  const [machinery, setMachinery] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const { machinery, loading, ensureMachineryList } = useMachineryCatalog(plant);
 
   useEffect(() => {
-    async function loadMachinery() {
-      try {
-        const data = await fetchMachinery(plant);
-        setMachinery(Array.isArray(data) ? data : []);
-      } catch (err) {
-        console.error("Failed to load machinery:", err);
-        setMachinery([]);
-      } finally {
-        setLoading(false);
-      }
-    }
-    loadMachinery();
-  }, [plant]);
+    ensureMachineryList();
+  }, [ensureMachineryList]);
 
   if (loading) {
     return (
       <div className="min-h-screen flex flex-col bg-white">
         <MachineryHero plant={plant} />
         <main className="w-full py-16 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-white flex flex-col items-center justify-center min-h-[400px]">
-          <div className="flex flex-col items-center gap-4 animate-pulse">
-            <div className="w-12 h-12 border-t-4 border-b-4 border-[#C75550] rounded-full animate-spin" />
-            <span className="font-montserrat text-xs font-bold tracking-widest text-[#1c1b1b] uppercase">
-              LOADING HEAVY MACHINERY ASSETS...
-            </span>
-          </div>
+          <PageLoader className="min-h-[120px]" />
         </main>
         <div className="w-full mt-16">
           <ContactBanner />
@@ -151,9 +106,13 @@ export function MachineryPage({ plant = 1 }) {
       <MachineryHero plant={plant} />
 
       <main className="w-full py-16 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-white">
-        <section className="flex flex-col gap-12">
+        <section>
           {machinery.length > 0 ? (
-            machinery.map((machine) => <MachineCard key={machine.id} machine={machine} />)
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-8">
+              {machinery.map((machine) => (
+                <MachineTile key={machine.id} machine={machine} />
+              ))}
+            </div>
           ) : (
             <div className="bg-[#f9fafb] border border-[#e5e7eb] py-16 px-6 text-center">
               <i className="fa-solid fa-industry text-3xl text-[#C75550] mb-4" />

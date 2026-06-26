@@ -2,8 +2,9 @@ import { PageShell } from "@/components/layout/PageShell";
 import { MachineryPage } from "@/components/machinery/MachineryPage";
 
 export const metadata = {
-  title: "Manufacturing Machinery & Plant I Infrastructure | Bymer Elastomers",
-  description: "Discover Bymer Elastomers' high-tonnage moulding lines, vacuum-assisted compression presses, and material preparation assets deployed across our Nashik manufacturing Plant I.",
+  title: "Manufacturing Capabilities & Plant I Infrastructure | Bymer Elastomers",
+  description:
+    "Explore Bymer Elastomers manufacturing capabilities, including rubber mixing, moulding, vacuum-assisted presses, and material preparation assets at Plant I, Nashik.",
 };
 
 export default function Machinery() {

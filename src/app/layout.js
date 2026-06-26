@@ -32,6 +32,8 @@ export const metadata = {
 };
 
 import { CompanySettingsProvider } from "@/components/layout/CompanySettingsContext";
+import { ProductsCatalogProvider } from "@/components/products/ProductsCatalogContext";
+import { MachineryCatalogProvider } from "@/components/machinery/MachineryCatalogContext";
 
 export default function RootLayout({ children }) {
   return (
@@ -50,7 +52,11 @@ export default function RootLayout({ children }) {
       </head>
       <body className="min-h-full flex flex-col bg-[#FCF9F8] text-[#1C1B1B]">
         <CompanySettingsProvider>
-          {children}
+          <ProductsCatalogProvider>
+            <MachineryCatalogProvider>
+              {children}
+            </MachineryCatalogProvider>
+          </ProductsCatalogProvider>
         </CompanySettingsProvider>
       </body>
     </html>

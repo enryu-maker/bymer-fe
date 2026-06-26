@@ -54,7 +54,7 @@ export function Footer() {
 
   const tagline =
     profile?.tagline ||
-    "Delivering precision-engineered elastomer solutions with uncompromising quality since 1999. IATF 16949:2016, ISO 9001:2015 and ISO 14001:2015 certified.";
+    "Bymer Elastomers engineers precision rubber and elastomer components for automotive, industrial and OEM applications. We are IATF 16949:2016, ISO 9001:2015 and ISO 14001:2015 certified and have been providing reliable solutions since 1999.";
   const email = profile?.email || "sales@bymer.com";
   const phone = profile?.phone || "+91 98220 79899";
   const alternatePhone = profile?.alternate_phone || "+91 253 2381123";
@@ -98,12 +98,6 @@ export function Footer() {
             <p className="font-body text-sm text-[#9ca3af] leading-relaxed max-w-md">
               {tagline}
             </p>
-            <Link
-              href="/about"
-              className="font-montserrat text-xs font-bold tracking-wider uppercase text-[#9ca3af] hover:text-[#C75550] transition-colors duration-150 w-fit"
-            >
-              About Us
-            </Link>
             <div className="flex items-center gap-5 pt-1">
               {socialLinks && socialLinks.length > 0 ? (
                 socialLinks.map((link) => (

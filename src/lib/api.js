@@ -174,6 +174,28 @@ export async function fetchCustomerProducts(customerId) {
   }
 }
 
+export async function fetchProductsByCategory(categoryId) {
+  if (!categoryId) return [];
+
+  try {
+    const res = await fetch(`${BASE_URL}/api/products/?category=${categoryId}`, {
+      next: { revalidate: 1800 },
+    });
+    if (!res.ok) throw new Error("Failed to fetch category products");
+    const data = await res.json();
+    const results = data.results || data;
+    if (!Array.isArray(results)) return [];
+
+    return results.map((product) => ({
+      ...product,
+      image: product.image ? formatImageUrl(product.image) : null,
+    }));
+  } catch (error) {
+    console.warn("Failed to load category products:", error.message);
+    return [];
+  }
+}
+
 export async function fetchProductById(id) {
   if (!id) return null;
 

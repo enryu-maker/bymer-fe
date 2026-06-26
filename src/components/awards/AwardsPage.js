@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { ContactBanner } from "../layout/ContactBanner";
+import { ImageLightbox } from "../shared/ImageLightbox";
 
 function AwardsHero() {
   return (
@@ -41,70 +42,19 @@ function AwardsIntro() {
 }
 
 function AwardLightbox({ award, onClose }) {
-  useEffect(() => {
-    if (!award) return undefined;
-
-    const handleKeyDown = (event) => {
-      if (event.key === "Escape") onClose();
-    };
-
-    document.body.style.overflow = "hidden";
-    window.addEventListener("keydown", handleKeyDown);
-
-    return () => {
-      document.body.style.overflow = "";
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [award, onClose]);
-
-  if (!award) return null;
-
   return (
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8 bg-black/80"
-      onClick={onClose}
-      role="dialog"
-      aria-modal="true"
-      aria-label={`View award ${award.name}`}
-    >
-      <button
-        type="button"
-        onClick={onClose}
-        className="absolute top-4 right-4 z-10 w-10 h-10 flex items-center justify-center bg-white text-[#1c1b1b] hover:bg-[#C75550] hover:text-white transition-colors"
-        aria-label="Close preview"
-      >
-        <i className="fa-solid fa-xmark text-lg" />
-      </button>
-
-      <div
-        className="relative w-full max-w-5xl max-h-[90vh] bg-white border border-[#e5e7eb] flex flex-col overflow-hidden"
-        onClick={(event) => event.stopPropagation()}
-      >
-        <div className="relative w-full min-h-[50vh] max-h-[75vh] bg-[#f9fafb]">
-          {award.image ? (
-            <Image
-              src={award.image}
-              alt={award.name}
-              fill
-              unoptimized
-              sizes="100vw"
-              className="object-contain p-4 sm:p-6"
-              priority
-            />
-          ) : (
-            <div className="absolute inset-0 flex items-center justify-center text-[#9ca3af]">
-              <i className="fa-solid fa-award text-5xl" />
-            </div>
-          )}
-        </div>
-
-        <div className="border-t border-[#e5e7eb] p-5 sm:p-6">
-          <h2 className="font-montserrat text-sm sm:text-base font-bold text-[#1c1b1b] tracking-wide uppercase leading-snug text-center">
-            {award.name}
-          </h2>
-        </div>
-      </div>
-    </div>
+    <ImageLightbox
+      item={
+        award
+          ? {
+              image: award.image,
+              title: award.name,
+            }
+          : null
+      }
+      onClose={onClose}
+      ariaLabel={award ? `View award ${award.name}` : undefined}
+    />
   );
 }
 

@@ -27,14 +27,14 @@ const DEVELOPMENT_PROCESS = [
 ];
 
 const MATERIAL_FAMILIES = [
-  { name: "EPDM", icon: "fa-solid fa-sun" },
-  { name: "NBR", icon: "fa-solid fa-oil-can" },
-  { name: "Silicone", icon: "fa-solid fa-droplet" },
-  { name: "HNBR", icon: "fa-solid fa-shield-halved" },
-  { name: "FKM", icon: "fa-solid fa-fire" },
-  { name: "Neoprene", icon: "fa-solid fa-cloud" },
-  { name: "Natural Rubber", icon: "fa-solid fa-seedling" },
-  { name: "Custom Formulations", icon: "fa-solid fa-gears" },
+  "EPDM",
+  "NBR",
+  "Silicone",
+  "HNBR",
+  "FKM",
+  "Neoprene",
+  "Natural Rubber",
+  "Custom Elastomer Compounds",
 ];
 
 const PERFORMANCE_REQUIREMENTS = [
@@ -149,8 +149,7 @@ function EngineeringFoundation() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           <div className="lg:col-span-7 flex flex-col gap-6">
             <p className="font-body text-sm sm:text-base text-[#4b5563] leading-relaxed">
-              Material engineering is the starting point of performance. Reliable materials are the
-              base of reliable products.
+              Material engineering is the starting point of performance. Most elastomer component failures trace back to the compound not the component geometry. A seal that hardens under thermal cycling. A bushing that loses stiffness in oil exposure. A profile that cracks under ozone. Each failure is a formulation decision that didn’t match the application conditions.
             </p>
             <p className="font-body text-sm sm:text-base text-[#4b5563] leading-relaxed">
               The way the compound is formulated has an effect on how an elastomer part performs in
@@ -163,6 +162,8 @@ function EngineeringFoundation() {
               achieve predictable performance, improved operational reliability, and increased
               confidence in demanding environments.
             </p>
+            <p className="font-body text-sm sm:text-base text-[#4b5563] leading-relaxed">Bymer’s in-house compound development capability means customers receive formulations engineered specifically for their operating environment—temperature range, fluid exposure, mechanical loading, electrical requirements, and service life. Not adapted from a general-purpose catalogue grade. Engineered for the application.
+</p>
             <div className="bg-[#111111] py-6 px-8 border-l-[6px] border-[#C75550] w-full">
               <p className="font-title text-sm sm:text-base font-bold tracking-wider text-white uppercase leading-snug">
                 This is why compound engineering is the basis of every successful elastomer solution.
@@ -238,18 +239,18 @@ function MaterialFamiliesSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
           eyebrow="Material Families"
-          title="Material Platforms We Work With"
+          title="Elastomer Materials & Compound Expertise"
+          description="We formulate and manufacture application-specific elastomer compounds using EPDM, NBR, silicone, HNBR, FKM, neoprene, natural rubber, and other specialty materials—engineered to meet the performance requirements of OEM and industrial applications."
         />
 
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
           {MATERIAL_FAMILIES.map((material) => (
             <div
-              key={material.name}
-              className="bg-[#f9fafb] border border-[#e5e7eb] p-5 sm:p-6 flex flex-col items-center justify-center gap-3 text-center min-h-[120px] border-t-[3px] border-t-[#fbbd05] hover:border-[#C75550]/30 hover:shadow-[0_4px_12px_rgba(0,0,0,0.04)] transition-all duration-200"
+              key={material}
+              className="group bg-[#f9fafb] border border-[#e5e7eb] p-6 sm:p-8 flex items-center justify-center text-center min-h-[120px] border-t-[3px] border-t-[#fbbd05] hover:border-[#C75550]/30 hover:shadow-[0_4px_12px_rgba(0,0,0,0.04)] transition-all duration-200"
             >
-              <i className={`${material.icon} text-[#C75550] text-xl`} />
-              <span className="font-montserrat text-[10px] sm:text-[11px] font-bold text-[#1c1b1b] tracking-wider uppercase leading-snug">
-                {material.name}
+              <span className="font-title text-lg sm:text-xl lg:text-2xl font-black text-[#1c1b1b] uppercase tracking-tight leading-snug transition-colors duration-200 group-hover:text-[#C75550]">
+                {material}
               </span>
             </div>
           ))}
@@ -265,7 +266,7 @@ function PerformanceRequirementsSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
           eyebrow="Customer Needs"
-          title="Performance Requirements We Engineer For"
+          title="Engineered to meet the performance demands of every application. "
           description="We focus on what your application must deliver — not just the polymer family, but the performance outcome your product depends on."
         />
 

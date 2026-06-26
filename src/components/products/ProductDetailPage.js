@@ -1,41 +1,21 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { ContactBanner } from "../layout/ContactBanner";
-import { fetchProductById, getProductCategoryHref } from "@/lib/api";
+import { getProductCategoryHref } from "@/lib/api";
+import { useProductDetail } from "./ProductsCatalogContext";
 
 export function ProductDetailPage() {
   const params = useParams();
   const productId = params?.id;
-  const [product, setProduct] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
+  const { product, loading, ensureProductDetail } = useProductDetail(productId);
 
   useEffect(() => {
-    async function loadProduct() {
-      if (!productId) return;
-      setLoading(true);
-      setError(false);
-      try {
-        const data = await fetchProductById(productId);
-        if (!data) {
-          setError(true);
-          setProduct(null);
-        } else {
-          setProduct(data);
-        }
-      } catch {
-        setError(true);
-        setProduct(null);
-      } finally {
-        setLoading(false);
-      }
-    }
-    loadProduct();
-  }, [productId]);
+    ensureProductDetail();
+  }, [ensureProductDetail]);
 
   const categoryHref = product?.category?.name
     ? getProductCategoryHref(product.category.name)
@@ -55,7 +35,7 @@ export function ProductDetailPage() {
     );
   }
 
-  if (error || !product) {
+  if (!product) {
     return (
       <div className="min-h-screen flex flex-col bg-white">
         <main className="w-full py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center text-center min-h-[400px]">

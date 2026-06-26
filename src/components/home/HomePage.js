@@ -30,11 +30,10 @@ function Hero() {
       />
 
       {/* Hero Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-20 w-full flex flex-col items-start gap-6">
-        <h1 className="font-title text-4xl sm:text-6xl lg:text-7xl font-black uppercase text-[#1c1b1b] leading-[1.0] max-w-2xl tracking-tight">
-        ENGINEERING RELIABLE <br />
-        <span className="text-[#C75550]">ELASTOMER SOLUTIONS</span> 
-        </h1>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24 relative z-20 w-full">
+        <div className="flex flex-col items-start gap-5 sm:gap-6 max-w-2xl lg:max-w-3xl">
+        
+        </div>
       </div>
     </header>
   );
@@ -129,7 +128,7 @@ function Capabilities() {
       title: "ELASTOMER EXPERTISE",
       icon: "fa-solid fa-flask",
       description:
-        "With decades of manufacturing experience, our team provides application-focused solutions with in-depth material knowledge, process understanding and engineering support.",
+        "60 years of technical leadership in rubber technology. Deep material knowledge across NR, NBR, EPDM, silicone, FKM, HNBR, and specialty grades with in-house compound development capability enabling formulation matched to application requirements."
     },
     {
       title: "OEM & INDUSTRIAL PARTNERSHIP",
@@ -150,7 +149,7 @@ function Capabilities() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-16 border-b border-[#e5e7eb] pb-8">
           <h2 className="font-title text-3xl sm:text-4xl lg:text-5xl font-black text-[#1c1b1b] tracking-tight max-w-4xl">
-            Why do manufacturers choose Bymer Elastomers?
+          Why OEMs & industrial manufacturers choose Bymer Elastomers?
           </h2>
         </div>
 
@@ -189,10 +188,8 @@ function InstitutionalQuality() {
         {/* Left Column: Content (6 cols) */}
         <div className="lg:col-span-6 flex flex-col gap-6 items-start justify-center">
           <h2 className="font-title text-4xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-white leading-[1.0]">
-            YOUR PARTNER <br />
-            FOR QUALITY <br />
-            RUBBER 
-            PRODUCTS
+          Precision-Engineered Elastomer Solutions 
+
           </h2>
 
           <p className="font-montserrat text-xs sm:text-sm font-bold text-[#fbbd05] uppercase tracking-wider leading-relaxed max-w-xl">
@@ -201,13 +198,19 @@ function InstitutionalQuality() {
           
           <div className="flex flex-col gap-4 font-body text-xs sm:text-sm text-[#9ca3af] leading-relaxed max-w-xl">
             <p>
-            Bymer Elastomers is a certified elastomer manufacturer specializing in custom rubber components, rubber-to-metal bonded products, extruded rubber profiles, industrial hoses and custom rubber compounds .
+              Bymer Elastomers is a certified elastomer manufacturer specializing in custom rubber
+              components, rubber-to-metal bonded products, extruded rubber profiles, industrial hoses,
+              and custom rubber compounds.
             </p>
             <p>
-            Bymer has two manufacturing units with a combined area of 45,000 sq. ft at Nashik, India. It provides to OEMs, automotive manufacturers, industrial equipment companies and engineering companies in domestic and international markets.
+              Bymer has two manufacturing units with a combined area of 45,000 sq. ft. at Nashik,
+              India. We supply OEMs, automotive manufacturers, industrial equipment companies, and
+              engineering firms across domestic and international markets.
             </p>
             <p>
-            We are IATF 16949:2016, ISO 9001:2015 & ISO 14001:2015 certified manufacturing processes for consistent, reliable and scalable manufacturing for performance critical applications.
+              Our IATF 16949:2016, ISO 9001:2015, and ISO 14001:2015 certified manufacturing
+              processes deliver consistent, reliable, and scalable production for performance-critical
+              applications.
             </p>
           </div>
         </div>
@@ -247,34 +250,38 @@ function CommitmentBanner() {
   );
 }
 
-// 4.6. JOURNEY TO EXCELLENCE SECTION
+// 4.6. BYMER AT A GLANCE
 function JourneySection() {
   const glanceCards = [
     {
-      title: "LEGACY & LEADERSHIP",
+      title: "MANUFACTURING LEGACY",
       icon: "fa-solid fa-landmark",
       items: [
         "Established in 1978",
         "40+ Years of Manufacturing Excellence",
-        "60+ Years of Technical Leadership",
+        "60+ Years of combined technical leadership",
       ],
     },
     {
-      title: "INFRASTRUCTURE & CAPABILITY",
+      title: "INFRASTRUCTURE & CAPACITY",
       icon: "fa-solid fa-industry",
       items: [
         "45,000 Sq. Ft. Manufacturing Infrastructure",
-        "2 Manufacturing Facilities",
+        "2 Manufacturing units",
         "In-House Compound Development & Mixing Capability",
       ],
     },
     {
-      title: "GLOBAL REACH",
+      title: "CUSTOMER REACH",
       icon: "fa-solid fa-globe",
-      items: ["50+ Customers Across India & Global Markets"],
+      items: [
+        "50+ Customers Across India and Global Markets",
+        "OEM & Industrial Manufacturing Expertise",
+        "Long-Term manufacturing partnerships",
+      ],
     },
     {
-      title: "CERTIFIED QUALITY",
+      title: "QUALITY & COMPLIANCE",
       icon: "fa-solid fa-certificate",
       items: [
         "IATF 16949:2016 Certified",
@@ -284,15 +291,21 @@ function JourneySection() {
     },
   ];
 
+  const coreCapabilities = [
+    "Custom Rubber Molding",
+    "Rubber-to-Metal Bonded Components",
+    "Precision Elastomer Components",
+    "Automotive Rubber Parts",
+    "Industrial Rubber Solutions",
+    "Material Development & Compounding",
+  ];
+
   return (
     <section className="w-full py-24 bg-white border-t border-b border-[#e5e7eb]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="font-title text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-[#1c1b1b] mb-4">
-          OUR JOURNEY TO EXCELLENCE
-        </h2>
-        <span className="font-montserrat text-xs sm:text-sm font-bold text-[#C75550] uppercase tracking-[0.2em] mb-10 block">
+        <h2 className="font-title text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-[#1c1b1b] mb-10">
           Bymer at a Glance
-        </span>
+        </h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {glanceCards.map((card) => (
@@ -321,6 +334,28 @@ function JourneySection() {
               </ul>
             </div>
           ))}
+
+          <div className="sm:col-span-2 bg-white border border-[#e5e7eb] p-6 sm:p-8 flex flex-col items-start gap-5 hover:shadow-md transition-shadow duration-200">
+            <div className="flex items-center gap-3 w-full">
+              <div className="w-10 h-10 flex-shrink-0 flex items-center justify-center bg-white border border-[#e5e7eb] text-[#C75550]">
+                <i className="fa-solid fa-gears text-base" />
+              </div>
+              <h3 className="font-montserrat text-xs sm:text-sm font-bold text-[#1c1b1b] uppercase tracking-wider leading-snug">
+                Core Capabilities
+              </h3>
+            </div>
+
+            <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 w-full">
+              {coreCapabilities.map((item) => (
+                <li key={item} className="flex items-start gap-2.5 text-left">
+                  <i className="fa-solid fa-check text-[#C75550] text-xs mt-1 flex-shrink-0" />
+                  <span className="font-body text-xs sm:text-sm text-[#4b5563] leading-relaxed">
+                    {item}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </section>
@@ -380,25 +415,23 @@ function QuoteSection() {
         <div className="lg:col-span-5 bg-[#f9fafb] px-6 sm:px-10 lg:px-16 py-16 lg:py-24 flex flex-col justify-between items-start gap-12 lg:border-r lg:border-[#e5e7eb]">
           <div className="flex flex-col gap-6 items-start">
             <span className="font-montserrat text-xs sm:text-sm font-bold text-[#C75550] uppercase tracking-[0.2em] mb-1">
-              GET A FREE QUOTE
+            LET'S DISCUSS YOUR APPLICATION 
             </span>
             <h2 className="font-title text-4xl sm:text-5xl font-black uppercase text-[#1c1b1b] leading-[1.1] tracking-tight">
-              LET'S BUILD YOUR <br /> FUTURE TODAY
+            Have a Component or Compound Requirement?
             </h2>
             <p className="font-body text-sm sm:text-base text-[#4b5563] leading-relaxed max-w-md mt-2 text-left">
-              Partner with an engineering powerhouse. From prototype to mass production, we ensure your components meet the highest industrial standards globally.
+            Every application is different. Tell us what your component needs to achieve, and we'll engineer a solution that performs.
             </p>
           </div>
 
           <div className="flex flex-col gap-4 text-left w-full">
-            <span className="font-montserrat text-xs font-bold text-[#1c1b1b] tracking-wider uppercase">
-              GET IN TOUCH, & WE'LL RESPOND SOON!
-            </span>
             <Link 
               href="/contact" 
               className="btn-black font-montserrat py-4 px-8 text-xs font-bold tracking-[0.15em] text-center uppercase w-full sm:w-auto self-start"
             >
-              CONTACT NOW
+              Discuss Your Requirement <span className="font-sans text-sm">→</span>
+
             </Link>
           </div>
         </div>
@@ -406,7 +439,7 @@ function QuoteSection() {
         {/* Right Column: Quote Form (7 cols) */}
         <div className="lg:col-span-7 bg-white px-6 sm:px-10 lg:px-16 py-16 lg:py-24 w-full flex flex-col justify-center">
           <h3 className="font-title text-2xl font-black text-[#1c1b1b] uppercase tracking-wide mb-6 border-b border-[#e5e7eb] pb-4 text-left">
-            REQUEST A FREE QUOTE
+            REQUEST A FREE QUOTE 
           </h3>
 
           <form onSubmit={handleSubmit} className="flex flex-col gap-8">
@@ -549,14 +582,14 @@ function ClientLogos() {
           {marqueeLogos.map((logo, index) => (
             <div
               key={`${logo.id}-${index}`}
-              className="relative h-20 w-28 sm:h-20 sm:w-36 shrink-0 opacity-90 hover:opacity-100 transition-opacity duration-200"
+              className="relative h-24 w-36 sm:h-28 sm:w-44 lg:h-32 lg:w-52 shrink-0 opacity-90 hover:opacity-100 transition-opacity duration-200"
             >
               {logo.src ? (
                 <Image
                   src={logo.src}
                   alt={logo.alt}
                   fill
-                  sizes="200px"
+                  sizes="280px"
                   className="object-contain"
                 />
               ) : (

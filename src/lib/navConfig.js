@@ -4,9 +4,9 @@ export const DEFAULT_PRODUCT_SUBMENU = [
 ];
 
 export const MANUFACTURING_SUBMENU = [
-  { name: "COMPONENT MFG.", href: "/machinery" },
+  { name: "COMPONENT MANUFACTURING", href: "/machinery" },
   { name: "COMPOUND MIXING", href: "/machinery-plant-ii" },
-  { name: "QA", href: "/quality-assurance" },
+  { name: "QUALITY ASSURANCE", href: "/quality-assurance" },
   { name: "PROCESS", href: "/process" },
 ];
 
