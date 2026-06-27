@@ -117,7 +117,7 @@ export function Footer() {
               ) : (
                 <>
                   <a
-                    href="https://linkedin.com"
+                    href="https://www.linkedin.com/company/bymer-elastomers/"
                     target="_blank"
                     rel="noreferrer"
                     className="text-white/60 hover:text-[#C75550] transition-colors duration-150"
@@ -126,13 +126,13 @@ export function Footer() {
                     <i className="fa-brands fa-linkedin-in text-base" />
                   </a>
                   <a
-                    href="https://youtube.com"
+                    href="https://www.instagram.com/bymer_elastomers?igsh=MWNwczR6NHJvdW1yMA=="
                     target="_blank"
                     rel="noreferrer"
                     className="text-white/60 hover:text-[#C75550] transition-colors duration-150"
-                    aria-label="YouTube"
+                    aria-label="Instagram"
                   >
-                    <i className="fa-brands fa-youtube text-base" />
+                    <i className="fa-brands fa-instagram text-base" />
                   </a>
                   <a
                     href={`mailto:${email}`}

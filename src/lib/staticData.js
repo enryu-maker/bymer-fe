@@ -12,9 +12,10 @@ export const STATIC_COMPANY_PROFILE = {
 };
 
 export const STATIC_SOCIAL_LINKS = [
-  { id: "s-1", platform: "LinkedIn", url: "https://linkedin.com" },
-  { id: "s-2", platform: "YouTube", url: "https://youtube.com" },
-  { id: "s-3", platform: "Email", url: "mailto:sales@bymer.com" },
+  { id: "s-1", platform: "LinkedIn", url: "https://www.linkedin.com/company/bymer-elastomers/" },
+  { id: "s-2", platform: "Instagram", url: "https://www.instagram.com/bymer_elastomers?igsh=MWNwczR6NHJvdW1yMA==" },
+  { id: "s-3", platform: "YouTube", url: "https://youtube.com" },
+  { id: "s-4", platform: "Email", url: "mailto:sales@bymer.com" },
 ];
 
 export const STATIC_STATISTICS = [

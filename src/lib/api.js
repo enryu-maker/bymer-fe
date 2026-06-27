@@ -42,6 +42,35 @@ export async function fetchCompanyProfile() {
   }
 }
 
+const SOCIAL_URL_OVERRIDES = {
+  linkedin: "https://www.linkedin.com/company/bymer-elastomers/",
+  instagram: "https://www.instagram.com/bymer_elastomers?igsh=MWNwczR6NHJvdW1yMA==",
+};
+
+function applySocialLinkOverrides(links) {
+  if (!Array.isArray(links) || links.length === 0) return STATIC_SOCIAL_LINKS;
+
+  const updated = links.map((link) => {
+    const platform = link.platform?.toLowerCase() || "";
+    const overrideUrl = Object.entries(SOCIAL_URL_OVERRIDES).find(([key]) =>
+      platform.includes(key)
+    )?.[1];
+    return overrideUrl ? { ...link, url: overrideUrl } : link;
+  });
+
+  for (const [platform, url] of Object.entries(SOCIAL_URL_OVERRIDES)) {
+    if (!updated.some((link) => link.platform?.toLowerCase().includes(platform))) {
+      updated.push({
+        id: `social-${platform}`,
+        platform: platform.charAt(0).toUpperCase() + platform.slice(1),
+        url,
+      });
+    }
+  }
+
+  return updated;
+}
+
 export async function fetchSocialLinks() {
   try {
     const res = await fetch(`${BASE_URL}/api/globals/social-links/`, {
@@ -51,7 +80,9 @@ export async function fetchSocialLinks() {
     const data = await res.json();
     // Handle paginated responses or simple arrays
     const results = data.results || data;
-    return Array.isArray(results) ? results : STATIC_SOCIAL_LINKS;
+    return applySocialLinkOverrides(
+      Array.isArray(results) ? results : STATIC_SOCIAL_LINKS
+    );
   } catch (error) {
     console.warn("Using fallback social links due to:", error.message);
     return STATIC_SOCIAL_LINKS;

@@ -31,7 +31,7 @@ function ProductsHero() {
           PRODUCT CATALOG
         </h1>
         <p className="font-body text-xs sm:text-sm text-[#9ca3af] max-w-xl leading-relaxed">
-        Browse custom rubber components, rubber-to-metal bonded products, extruded profiles, hoses, and elastomer solutions engineered for OEMs and industrial manufacturers.
+        Browse precision-engineered rubber and elastomer components by Product or Customer. Discover custom manufacturing solutions developed for OEMs and industrial manufacturers across automotive, electrical, EV, infrastructure, and industrial applications.
         </p>
       </div>
     </header>
