@@ -13,12 +13,13 @@ function Hero() {
       <div className="absolute inset-0 z-0 bg-white">
         <Image
           src="/images/hero-global-map.png"
-          alt="Bymer Elastomers global reach from India"
-          width={1024}
-          height={534}
+          alt=""
+          aria-hidden="true"
+          fill
           unoptimized
           priority
-          className="absolute right-0 top-1/2 -translate-y-1/2 h-full w-auto max-w-none object-contain object-right"
+          sizes="100vw"
+          className="object-contain object-right"
         />
       </div>
 
@@ -26,19 +27,26 @@ function Hero() {
         className="absolute inset-0 z-10 pointer-events-none"
         style={{
           background:
-            "linear-gradient(90deg, #ffffff 0%, #ffffff 32%, rgba(255,255,255,0.92) 45%, rgba(255,255,255,0.55) 58%, rgba(255,255,255,0.15) 72%, rgba(255,255,255,0) 85%)",
+            "linear-gradient(90deg, #ffffff 0%, #ffffff 30%, rgba(255,255,255,0.95) 42%, rgba(255,255,255,0.6) 55%, rgba(255,255,255,0.15) 70%, rgba(255,255,255,0) 82%)",
         }}
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24 relative z-20 w-full">
-        <div className="flex flex-col items-start gap-4 sm:gap-5 max-w-xl">
-          <h1 className="font-title text-4xl sm:text-5xl lg:text-6xl font-black uppercase text-[#1c1b1b] leading-[1.05] tracking-tight">
+        <div className="flex flex-col items-start gap-5 sm:gap-6 max-w-xl pl-5 sm:pl-6 border-l-4 border-[#C75550]">
+          <h1 className="font-title text-4xl sm:text-5xl lg:text-[3.75rem] font-black uppercase text-[#1c1b1b] leading-[1.02] tracking-tight">
             Bymer{" "}
             <span className="text-[#C75550]">Elastomers</span>
           </h1>
-          <p className="font-body text-base sm:text-lg lg:text-xl text-[#4b5563] leading-relaxed">
+          <div className="w-14 h-1 bg-[#fbbd05]" />
+          <p className="font-body text-base sm:text-lg lg:text-xl text-[#4b5563] leading-relaxed max-w-md">
             We engineer reliable Elastomer Solutions
           </p>
+          <Link
+            href="/about"
+            className="btn-black font-montserrat py-4 px-8 text-xs font-bold tracking-[0.15em] uppercase self-start mt-1"
+          >
+            Discover More <span className="font-sans text-sm">→</span>
+          </Link>
         </div>
       </div>
     </header>
@@ -264,7 +272,7 @@ function JourneySection() {
       icon: "fa-solid fa-landmark",
       items: [
         "Established in 1978",
-        "40+ Years of Manufacturing Excellence",
+        "40+ Years of manufacturing excellence",
         "60+ Years of combined technical leadership",
       ],
     },
@@ -272,18 +280,18 @@ function JourneySection() {
       title: "INFRASTRUCTURE & CAPACITY",
       icon: "fa-solid fa-industry",
       items: [
-        "45,000 Sq. Ft. Manufacturing Infrastructure",
+        "45,000 Sq. Ft. manufacturing infrastructure",
         "2 Manufacturing units",
-        "In-House Compound Development & Mixing Capability",
+        "In-house compound development & mixing capability",
       ],
     },
     {
       title: "CUSTOMER REACH",
       icon: "fa-solid fa-globe",
       items: [
-        "50+ Customers Across India and Global Markets",
-        "OEM & Industrial Manufacturing Expertise",
-        "Long-Term manufacturing partnerships",
+        "50+ customers across India and global markets",
+        "OEM & industrial manufacturing expertise",
+        "Long-term manufacturing partnerships",
       ],
     },
     {
