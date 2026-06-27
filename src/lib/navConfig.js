@@ -3,6 +3,12 @@ export const DEFAULT_PRODUCT_SUBMENU = [
   { name: "NON AUTOMOTIVE", href: "/products/non-automotive" },
 ];
 
+export const INDUSTRIES_LINK = {
+  name: "INDUSTRIES",
+  footerName: "INDUSTRIES WE SERVE",
+  href: "/industries",
+};
+
 export const MANUFACTURING_SUBMENU = [
   { name: "COMPONENT MANUFACTURING", href: "/machinery" },
   { name: "COMPOUND MIXING", href: "/machinery-plant-ii" },

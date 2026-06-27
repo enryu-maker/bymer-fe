@@ -6,6 +6,7 @@ import { Logo } from "./Logo";
 import { fetchProductCategories, getProductCategoryHref } from "@/lib/api";
 import {
   DEFAULT_PRODUCT_SUBMENU,
+  INDUSTRIES_LINK,
   INSIGHTS_SUBMENU,
   LEGAL_LINKS,
   MANUFACTURING_SUBMENU,
@@ -77,6 +78,7 @@ export function Footer() {
     { label: "ALL PRODUCTS", href: "/products" },
     ...productLinks,
     { label: "COMPOUNDS", href: "/compounds" },
+    { label: INDUSTRIES_LINK.footerName, href: INDUSTRIES_LINK.href },
   ];
 
   const manufacturingColumnLinks = MANUFACTURING_SUBMENU.map((item) => ({

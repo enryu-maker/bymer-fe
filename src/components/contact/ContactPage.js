@@ -159,15 +159,16 @@ export function ContactPage() {
               
               {/* Boxed Google Map Iframe */}
               <div className="w-full border border-[#e5e7eb] bg-[#f9fafb] h-[380px] relative shadow-[0_1px_3px_rgba(0,0,0,0.05)]">
-                <iframe 
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3749.6583997092147!2d73.7196024153724!3d19.980860586574317!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bddec011d619985%3A0xe10283c749eb40!2sBymer%20Elastomers%20-%20Plant%201!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
-                  width="100%" 
-                  height="100%" 
-                  style={{ border: 0,  }} 
-                  allowFullScreen="" 
-                  loading="lazy" 
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="Bymer Elastomers Ambad Nashik Plant Map Location"
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3750.446463426043!2d73.71827277549234!3d19.947717824028437!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bddeccaca3438f1%3A0x7218d22a36753acf!2sBymer%20Elastomers!5e0!3m2!1sen!2sin!4v1782546918497!5m2!1sen!2sin"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  title="Bymer Elastomers — Nashik Factory Location"
+                  className="absolute inset-0 w-full h-full"
                 />
               </div>
             </div>

@@ -33,12 +33,15 @@ function MachineryHero({ plant }) {
           OUR MANUFACTURING CAPABILITIES
         </h1>
         <p className="font-montserrat text-xs sm:text-sm font-bold text-[#fbbd05] uppercase tracking-wider">
-          {isPlantII ? "Plant II" : "Plant I"} — Advanced Technology for Precision Engineering
+          {isPlantII ? "Plant II - In-House Compound Development & Material Engineering " : "Plant I - Precision Manufacturing for Elastomer Components"} 
         </p>
         <p className="font-body text-xs sm:text-sm text-[#9ca3af] max-w-xl leading-relaxed">
-          We leverage sophisticated machinery to ensure the highest quality and consistency across
-          rubber mixing, moulding, vacuum-assisted presses, and material preparation at our Nashik
-          manufacturing footprint.
+          {
+            isPlantII
+            ? "Our dedicated compounding facility develops and processes custom elastomer compounds using advanced mixing technologies and controlled manufacturing processes. This enables us to deliver application-specific materials with consistent quality, reliable performance, and complete traceability for OEM and industrial applications."
+:"Our integrated manufacturing facility combines advanced molding technologies, precision production systems, and certified quality processes to manufacture custom rubber components, rubber-to-metal bonded parts, and elastomer solutions for OEM and industrial applications."
+          }
+
         </p>
       </div>
     </header>

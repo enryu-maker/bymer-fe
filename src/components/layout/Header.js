@@ -7,6 +7,7 @@ import { Logo } from "./Logo";
 import { fetchProductCategories, getProductCategoryHref } from "@/lib/api";
 import {
   DEFAULT_PRODUCT_SUBMENU,
+  INDUSTRIES_LINK,
   INSIGHTS_SUBMENU,
   MANUFACTURING_SUBMENU,
 } from "@/lib/navConfig";
@@ -99,6 +100,7 @@ export function Header() {
   const navLinks = useMemo(
     () => [
       { name: "ABOUT", href: "/about" },
+      { name: INDUSTRIES_LINK.name, href: INDUSTRIES_LINK.href },
       {
         name: "PRODUCTS",
         href: "/products",
