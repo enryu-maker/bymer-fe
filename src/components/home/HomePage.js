@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { fetchStatistics, fetchClients, submitContactInquiry } from "@/lib/api";
+import { fetchStatistics, fetchClients, submitQuoteInquiry } from "@/lib/api";
 
 // 1. HERO SECTION
 function Hero() {
@@ -363,39 +363,71 @@ function JourneySection() {
 }
 
 // 5. B2B CONSULTATION RFP ENGINE
+const INITIAL_QUOTE_FORM = {
+  fullName: "",
+  companyName: "",
+  email: "",
+  phone: "",
+  industry: "",
+  productRequired: "",
+  projectRequirements: "",
+};
+
+const quoteInputClassName =
+  "border-b border-gray-300 focus:border-[#C75550] bg-transparent outline-none py-2 w-full font-body text-sm text-[#1c1b1b] placeholder-gray-400/70 transition-colors duration-150 rounded-none";
+
+function QuoteField({ label, required = false, children }) {
+  return (
+    <div className="flex flex-col gap-2 w-full text-left">
+      <label className="font-montserrat text-[10px] sm:text-xs text-[#64748B] font-bold tracking-widest uppercase">
+        {label}
+        {required && <span className="text-[#C75550]"> *</span>}
+      </label>
+      {children}
+    </div>
+  );
+}
+
 function QuoteSection() {
-  const [formState, setFormState] = useState({ 
-    companyName: "", 
-    fullName: "", 
-    email: "", 
-    phone: "", 
-    message: ""
-  });
+  const [formState, setFormState] = useState(INITIAL_QUOTE_FORM);
+  const [drawingFile, setDrawingFile] = useState(null);
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+
+  const handleChange = (field) => (event) => {
+    setFormState((current) => ({ ...current, [field]: event.target.value }));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError(null);
     try {
-      await submitContactInquiry({
-        name: formState.fullName,
-        email: formState.email,
-        phone: formState.phone,
-        subject: `Request a Free Quote - ${formState.companyName}`,
-        message: formState.message,
-        source_page: "home-quote",
-      });
+      const messageParts = [
+        formState.industry.trim() && `Industry: ${formState.industry.trim()}`,
+        formState.productRequired.trim() &&
+          `Product Required: ${formState.productRequired.trim()}`,
+        `Project Requirements:\n${formState.projectRequirements.trim()}`,
+      ].filter(Boolean);
+
+      await submitQuoteInquiry(
+        {
+          name: formState.fullName.trim(),
+          email: formState.email.trim(),
+          phone: formState.phone.trim(),
+          company_name: formState.companyName.trim(),
+          industry: formState.industry.trim(),
+          product_required: formState.productRequired.trim(),
+          subject: `Request a Quote - ${formState.companyName.trim()}`,
+          message: messageParts.join("\n\n"),
+          source_page: "home-quote",
+        },
+        drawingFile
+      );
       setSubmitted(true);
-      setFormState({ 
-        companyName: "", 
-        fullName: "", 
-        email: "", 
-        phone: "", 
-        message: ""
-      });
+      setFormState(INITIAL_QUOTE_FORM);
+      setDrawingFile(null);
       setTimeout(() => {
         setSubmitted(false);
       }, 5000);
@@ -439,7 +471,7 @@ function QuoteSection() {
         {/* Right Column: Quote Form (7 cols) */}
         <div className="lg:col-span-7 bg-white px-6 sm:px-10 lg:px-16 py-16 lg:py-24 w-full flex flex-col justify-center">
           <h3 className="font-title text-2xl font-black text-[#1c1b1b] uppercase tracking-wide mb-6 border-b border-[#e5e7eb] pb-4 text-left">
-            REQUEST A FREE QUOTE 
+            REQUEST A QUOTE
           </h3>
 
           <form onSubmit={handleSubmit} className="flex flex-col gap-8">
@@ -454,76 +486,104 @@ function QuoteSection() {
                     ⚠ {error}
                   </div>
                 )}
-                {/* Full Name & Company Name */}
+
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 w-full">
-                  <div className="flex flex-col gap-2 w-full text-left">
-                    <label className="font-montserrat text-[10px] sm:text-xs text-[#64748B] font-bold tracking-widest uppercase">NAME</label>
-                    <input 
-                      type="text" 
-                      placeholder="JOHN DOE" 
+                  <QuoteField label="Full Name" required>
+                    <input
+                      type="text"
+                      placeholder="John Doe"
                       required
                       value={formState.fullName}
-                      onChange={(e) => setFormState({ ...formState, fullName: e.target.value })}
-                      className="border-b border-gray-300 focus:border-[#C75550] bg-transparent outline-none py-2 w-full font-body text-sm text-[#1c1b1b] placeholder-gray-400/70 transition-colors duration-150 rounded-none"
+                      onChange={handleChange("fullName")}
+                      className={quoteInputClassName}
                     />
-                  </div>
-                  
-                  <div className="flex flex-col gap-2 w-full text-left">
-                    <label className="font-montserrat text-[10px] sm:text-xs text-[#64748B] font-bold tracking-widest uppercase">COMPANY</label>
-                    <input 
-                      type="text" 
-                      placeholder="ENGINEERING COMPANY" 
+                  </QuoteField>
+
+                  <QuoteField label="Company Name" required>
+                    <input
+                      type="text"
+                      placeholder="Engineering Company"
                       required
                       value={formState.companyName}
-                      onChange={(e) => setFormState({ ...formState, companyName: e.target.value })}
-                      className="border-b border-gray-300 focus:border-[#C75550] bg-transparent outline-none py-2 w-full font-body text-sm text-[#1c1b1b] placeholder-gray-400/70 transition-colors duration-150 rounded-none"
+                      onChange={handleChange("companyName")}
+                      className={quoteInputClassName}
                     />
-                  </div>
+                  </QuoteField>
                 </div>
 
-                {/* Email Address & Phone Number */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 w-full">
-                  <div className="flex flex-col gap-2 w-full text-left">
-                    <label className="font-montserrat text-[10px] sm:text-xs text-[#64748B] font-bold tracking-widest uppercase">EMAIL ADDRESS</label>
-                    <input 
-                      type="email" 
-                      placeholder="email@example.com" 
+                  <QuoteField label="Business Email" required>
+                    <input
+                      type="email"
+                      placeholder="email@company.com"
                       required
                       value={formState.email}
-                      onChange={(e) => setFormState({ ...formState, email: e.target.value })}
-                      className="border-b border-gray-300 focus:border-[#C75550] bg-transparent outline-none py-2 w-full font-body text-sm text-[#1c1b1b] placeholder-gray-400/70 transition-colors duration-150 rounded-none"
+                      onChange={handleChange("email")}
+                      className={quoteInputClassName}
                     />
-                  </div>
-                  
-                  <div className="flex flex-col gap-2 w-full text-left">
-                    <label className="font-montserrat text-[10px] sm:text-xs text-[#64748B] font-bold tracking-widest uppercase">PHONE NUMBER</label>
-                    <input 
-                      type="text" 
-                      placeholder="+91..." 
+                  </QuoteField>
+
+                  <QuoteField label="Phone Number" required>
+                    <input
+                      type="tel"
+                      placeholder="+91..."
                       required
                       value={formState.phone}
-                      onChange={(e) => setFormState({ ...formState, phone: e.target.value })}
-                      className="border-b border-gray-300 focus:border-[#C75550] bg-transparent outline-none py-2 w-full font-body text-sm text-[#1c1b1b] placeholder-gray-400/70 transition-colors duration-150 rounded-none"
+                      onChange={handleChange("phone")}
+                      className={quoteInputClassName}
                     />
-                  </div>
+                  </QuoteField>
                 </div>
 
-                {/* Project Description */}
-                <div className="flex flex-col gap-2 w-full text-left">
-                  <label className="font-montserrat text-[10px] sm:text-xs text-[#64748B] font-bold tracking-widest uppercase">PROJECT DESCRIPTION</label>
-                  <input 
-                    type="text" 
-                    placeholder="Tell us about your requirements..." 
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 w-full">
+                  <QuoteField label="Industry">
+                    <input
+                      type="text"
+                      placeholder="Automotive, Industrial, OEM..."
+                      value={formState.industry}
+                      onChange={handleChange("industry")}
+                      className={quoteInputClassName}
+                    />
+                  </QuoteField>
+
+                  <QuoteField label="Product Required">
+                    <input
+                      type="text"
+                      placeholder="Molded component, hose, compound..."
+                      value={formState.productRequired}
+                      onChange={handleChange("productRequired")}
+                      className={quoteInputClassName}
+                    />
+                  </QuoteField>
+                </div>
+
+                <QuoteField label="Project Requirements" required>
+                  <textarea
+                    rows={4}
+                    placeholder="Describe application, performance requirements, quantities, standards..."
                     required
-                    value={formState.message}
-                    onChange={(e) => setFormState({ ...formState, message: e.target.value })}
-                    className="border-b border-gray-300 focus:border-[#C75550] bg-transparent outline-none py-2 w-full font-body text-sm text-[#1c1b1b] placeholder-gray-400/70 transition-colors duration-150 rounded-none"
+                    value={formState.projectRequirements}
+                    onChange={handleChange("projectRequirements")}
+                    className={`${quoteInputClassName} resize-none`}
                   />
-                </div>
+                </QuoteField>
 
-                {/* Submit Button */}
-                <button 
-                  type="submit" 
+                <QuoteField label="Drawing Upload (Optional)">
+                  <input
+                    type="file"
+                    accept=".pdf,.dwg,.dxf,.step,.stp,.iges,.igs,.png,.jpg,.jpeg"
+                    onChange={(event) => setDrawingFile(event.target.files?.[0] || null)}
+                    className="w-full font-body text-sm text-[#4b5563] file:mr-4 file:py-2 file:px-4 file:border file:border-[#e5e7eb] file:bg-[#f9fafb] file:font-montserrat file:text-[10px] file:font-bold file:uppercase file:tracking-wider file:text-[#1c1b1b] file:cursor-pointer hover:file:border-[#C75550] file:transition-colors"
+                  />
+                  {drawingFile && (
+                    <span className="font-body text-xs text-[#4b5563] mt-1">
+                      Selected: {drawingFile.name}
+                    </span>
+                  )}
+                </QuoteField>
+
+                <button
+                  type="submit"
                   disabled={loading}
                   className="bg-[#C75550] hover:bg-[#a53b36] text-white font-montserrat px-10 py-4 text-xs font-bold tracking-[0.15em] mt-4 flex items-center justify-center gap-2 w-fit cursor-pointer transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                 >

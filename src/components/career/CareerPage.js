@@ -23,7 +23,7 @@ function CareerHero() {
           href="#career-form"
           className="inline-flex items-center justify-center bg-[#C75550] text-white px-8 py-3.5 font-title text-sm font-bold uppercase tracking-wider transition-all duration-200 hover:bg-[#b54a46] rounded-none gap-2 mt-2"
         >
-          Apply Now <span className="font-sans font-bold text-xs">&gt;</span>
+          Apply Now <span className="font-sans text-sm">→</span>
         </Link>
       </div>
     </header>

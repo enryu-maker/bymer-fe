@@ -342,20 +342,19 @@ function CompoundsCta() {
     <section className="w-full py-16 sm:py-20 bg-white border-b border-[#e5e7eb]">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center gap-6">
         <span className="font-montserrat text-xs font-bold text-[#C75550] uppercase tracking-[0.2em]">
-          Partner With Us
+        CUSTOM COMPOUND DEVELOPMENT
         </span>
         <h2 className="font-title text-2xl sm:text-3xl lg:text-4xl font-black text-[#1c1b1b] uppercase tracking-tight leading-tight">
-          Need a Compound Engineered for Your Application?
+        Need a Custom Elastomer Compound for Your Application?
         </h2>
         <p className="font-body text-sm sm:text-base text-[#4b5563] leading-relaxed max-w-2xl">
-          Share your performance requirements and our compound development team will work with you to
-          formulate a material solution built for reliable, repeatable production.
+        Develop application-specific elastomer compounds engineered to meet your performance, processing, and manufacturing requirements.
         </p>
         <Link
           href="/contact"
           className="inline-flex items-center justify-center bg-[#C75550] text-white px-8 py-3.5 font-title text-sm font-bold uppercase tracking-wider transition-all duration-200 hover:bg-[#b54a46] rounded-none gap-2"
         >
-          DISCUSS COMPOUND REQUIREMENTS <span className="font-sans font-bold text-xs">&gt;</span>
+         DISCUSS YOUR COMPOUND REQUIREMENTS <span className="font-sans text-sm">→</span>
         </Link>
       </div>
     </section>

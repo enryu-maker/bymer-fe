@@ -124,7 +124,7 @@ export function MachineryPage({ plant = 1 }) {
                 href="/contact"
                 className="inline-flex items-center justify-center mt-6 bg-[#C75550] text-white px-6 py-3 font-title text-xs font-bold uppercase tracking-wider transition-all duration-200 hover:bg-[#b54a46] rounded-none gap-2"
               >
-                CONTACT US <span className="font-sans font-bold text-xs">&gt;</span>
+                CONTACT US <span className="font-sans text-sm">→</span>
               </Link>
             </div>
           )}

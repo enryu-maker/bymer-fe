@@ -95,30 +95,78 @@ function ProductCard({ product, index }) {
   );
 }
 
-function CustomerCard({ customer, index }) {
-  const entryNumber = String(index + 1).padStart(2, "0");
+function ProductDetailPanel({ product }) {
+  if (!product) return null;
 
   return (
-    <div className="bg-white border border-[#e5e7eb] p-6 flex flex-col h-full justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(0,0,0,0.05)] hover:border-[#C75550] rounded-none">
-      <div className="flex flex-col items-start w-full">
-        <div className="w-full aspect-[4/3] mb-5 bg-[#f9fafb] border border-[#e5e7eb] p-6 flex items-center justify-center">
-          <div className="w-16 h-16 rounded-full bg-[#C75550]/10 flex items-center justify-center text-[#C75550]">
-            <i className="fa-solid fa-building text-2xl" />
-          </div>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10 items-start w-full">
+      <div className="w-full">
+        <div className="relative w-full aspect-square bg-[#f9fafb] border border-[#e5e7eb] p-4 sm:p-6">
+          {product.image ? (
+            <Image
+              key={product.id}
+              src={product.image}
+              alt={product.name}
+              fill
+              sizes="(max-width: 768px) 100vw, 400px"
+              className="object-contain p-4"
+              unoptimized
+            />
+          ) : (
+            <div className="absolute inset-0 flex items-center justify-center border border-dashed border-[#cbd5e1] bg-white m-6">
+              <span className="text-gray-300 text-xs uppercase font-montserrat tracking-wider">
+                NO IMAGE
+              </span>
+            </div>
+          )}
+        </div>
+      </div>
+
+      <div className="flex flex-col gap-5 sm:gap-6">
+        <div>
+          <span className="font-montserrat text-xs font-bold text-[#C75550] uppercase tracking-[0.2em]">
+            PRODUCT DETAIL
+          </span>
+          <h2 className="font-title text-2xl sm:text-3xl font-black text-[#1c1b1b] uppercase tracking-tight leading-tight mt-2">
+            {product.name}
+          </h2>
+          <div className="w-16 h-[4px] bg-[#fbbd05] mt-4" />
         </div>
 
-        <span className="font-montserrat text-[10px] font-bold text-[#9ca3af] tracking-widest uppercase mb-1.5 leading-none">
-          CUSTOMER {entryNumber}
-        </span>
+        {product.customer?.name && (
+          <div className="bg-[#f9fafb] border border-[#e5e7eb] p-5">
+            <span className="font-montserrat text-[10px] font-bold text-[#9ca3af] tracking-wider uppercase block mb-1">
+              CUSTOMER
+            </span>
+            <p className="font-body text-sm text-[#1c1b1b] leading-relaxed">{product.customer.name}</p>
+          </div>
+        )}
 
-        <h3 className="font-title text-lg sm:text-xl font-black text-[#1c1b1b] uppercase tracking-tight leading-snug text-left">
-          {customer.name}
-        </h3>
+        {product.category?.name && (
+          <div className="bg-[#f9fafb] border border-[#e5e7eb] p-5">
+            <span className="font-montserrat text-[10px] font-bold text-[#9ca3af] tracking-wider uppercase block mb-1">
+              CATEGORY
+            </span>
+            <p className="font-body text-sm text-[#1c1b1b] leading-relaxed">{product.category.name}</p>
+          </div>
+        )}
 
-        {customer.category?.name && (
-          <span className="mt-3 inline-block font-montserrat text-[10px] font-bold tracking-widest uppercase bg-[#f9fafb] border border-[#e5e7eb] text-[#4b5563] px-3 py-1">
-            {customer.category.name}
-          </span>
+        {product.specification && (
+          <div className="bg-[#f9fafb] border-l-4 border-[#fbbd05] p-5">
+            <span className="font-montserrat text-[10px] font-bold text-[#9ca3af] tracking-wider uppercase block mb-1">
+              SPECIFICATION
+            </span>
+            <p className="font-body text-sm text-[#4b5563] leading-relaxed">{product.specification}</p>
+          </div>
+        )}
+
+        {product.description && (
+          <div>
+            <span className="font-montserrat text-[10px] font-bold text-[#9ca3af] tracking-wider uppercase block mb-2">
+              DESCRIPTION
+            </span>
+            <p className="font-body text-sm text-[#4b5563] leading-relaxed">{product.description}</p>
+          </div>
         )}
       </div>
     </div>
@@ -135,8 +183,37 @@ function BlankCatalogState() {
         SELECT A FILTER TO BEGIN
       </h4>
       <p className="font-body text-xs text-[#4b5563] max-w-md mt-2 leading-relaxed">
-        Choose whether to browse by customer or by product. The catalog will load once you pick a filter mode.
+        Choose By Customer or By Product above to browse the catalog.
       </p>
+    </div>
+  );
+}
+
+const CATALOG_FILTER_OPTIONS = [
+  { value: "customer", label: "BY CUSTOMER" },
+  { value: "product", label: "BY PRODUCT" },
+];
+
+function CatalogFilterButtons({ filterMode, onChange }) {
+  return (
+    <div className="flex flex-wrap gap-2 w-full sm:w-auto">
+      {CATALOG_FILTER_OPTIONS.map((option) => {
+        const isActive = filterMode === option.value;
+        return (
+          <button
+            key={option.value}
+            type="button"
+            onClick={() => onChange(option.value)}
+            className={`font-montserrat text-xs font-bold tracking-wider uppercase px-6 py-3 border transition-colors duration-150 ${
+              isActive
+                ? "bg-[#C75550] border-[#C75550] text-white"
+                : "bg-white border-[#e5e7eb] text-[#1c1b1b] hover:border-[#C75550] hover:text-[#C75550]"
+            }`}
+          >
+            {option.label}
+          </button>
+        );
+      })}
     </div>
   );
 }
@@ -222,27 +299,16 @@ export function ProductsPage({ segment } = {}) {
   );
 
   const activeProduct = useMemo(
-    () => categoryProducts.find((product) => product.id === activeProductId) || null,
+    () =>
+      categoryProducts.find(
+        (product) => String(product.id) === String(activeProductId)
+      ) || null,
     [categoryProducts, activeProductId]
   );
 
-  const customersForProduct = useMemo(() => {
-    if (!activeProduct) return [];
-
-    const relatedProducts = categoryProducts.filter(
-      (product) => product.name === activeProduct.name
-    );
-    const customerMap = new Map();
-    relatedProducts.forEach((product) => {
-      if (product.customer) {
-        customerMap.set(product.customer.id, product.customer);
-      }
-    });
-    return Array.from(customerMap.values());
-  }, [activeProduct, categoryProducts]);
-
   function handleFilterModeChange(mode) {
-    setFilterMode(mode || null);
+    if (filterMode === mode) return;
+    setFilterMode(mode);
   }
 
   const showCatalog = !isSegmentPage || filterMode !== null;
@@ -279,21 +345,10 @@ export function ProductsPage({ segment } = {}) {
       <main className="w-full py-16 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-white">
         <div className="w-full flex flex-col sm:flex-row gap-4 items-center justify-between mb-10 border-b border-[#e5e7eb] pb-8">
           {isSegmentPage && (
-            <div className="w-full sm:w-auto flex-shrink-0">
-              <label className="sr-only" htmlFor="catalog-filter-mode">
-                Filter catalog by
-              </label>
-              <select
-                id="catalog-filter-mode"
-                value={filterMode ?? ""}
-                onChange={(e) => handleFilterModeChange(e.target.value || null)}
-                className="w-full sm:min-w-[220px] bg-[#f9fafb] border border-[#e5e7eb] rounded-none py-3 px-4 font-montserrat text-xs font-bold tracking-wider text-[#1c1b1b] focus:bg-white focus:border-[#9ca3af] focus:outline-none transition-colors duration-150 cursor-pointer"
-              >
-                <option value="">FILTER BY...</option>
-                <option value="customer">BY CUSTOMER</option>
-                <option value="product">BY PRODUCT</option>
-              </select>
-            </div>
+            <CatalogFilterButtons
+              filterMode={filterMode}
+              onChange={handleFilterModeChange}
+            />
           )}
 
           {showCatalog && (
@@ -338,7 +393,7 @@ export function ProductsPage({ segment } = {}) {
                         <SidebarListItem
                           key={product.id}
                           label={product.name}
-                          isSelected={activeProductId === product.id}
+                          isSelected={String(activeProductId) === String(product.id)}
                           onClick={() => setActiveProductId(product.id)}
                         />
                       ))
@@ -420,24 +475,18 @@ export function ProductsPage({ segment } = {}) {
                     LOADING PRODUCTS...
                   </span>
                 </div>
-              ) : customersForProduct.length > 0 ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {customersForProduct.map((customer, index) => (
-                    <CustomerCard key={customer.id} customer={customer} index={index} />
-                  ))}
-                </div>
+              ) : activeProduct ? (
+                <ProductDetailPanel product={activeProduct} />
               ) : (
                 <div className="w-full border border-dashed border-[#e5e7eb] py-20 px-8 flex flex-col items-center justify-center text-center bg-[#f9fafb] min-h-[360px]">
                   <div className="w-12 h-12 rounded-full bg-[#C75550]/10 flex items-center justify-center text-[#C75550] mb-4">
-                    <i className="fa-solid fa-building text-lg" />
+                    <i className="fa-solid fa-box-open text-lg" />
                   </div>
                   <h4 className="font-title text-xl font-bold text-[#1c1b1b] uppercase tracking-wide">
-                    NO CUSTOMERS FOUND
+                    SELECT A PRODUCT
                   </h4>
                   <p className="font-body text-xs text-[#4b5563] max-w-md mt-2 leading-relaxed">
-                    {activeProduct
-                      ? `No customers are linked to ${activeProduct.name} yet.`
-                      : "Select a product from the list to view associated customers."}
+                    Select a product from the list to view its details.
                   </p>
                 </div>
               )}

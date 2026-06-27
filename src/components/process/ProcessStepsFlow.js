@@ -108,8 +108,7 @@ function ProcessStepDetail({ step, isOpen, onToggle }) {
           </h3>
         </div>
         <span className="flex-shrink-0 w-7 h-7 border border-[#e5e7eb] flex items-center justify-center text-[#9ca3af] group-open:bg-[#C75550] group-open:border-[#C75550] group-open:text-white transition-colors duration-200 mt-0.5">
-          <i className="fa-solid fa-plus text-[10px] group-open:hidden" />
-          <i className="fa-solid fa-minus text-[10px] hidden group-open:block" />
+          <i className="fa-solid fa-chevron-down text-[10px] transition-transform duration-200 group-open:rotate-180" />
         </span>
       </summary>
 

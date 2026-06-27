@@ -439,7 +439,7 @@ export function AboutPage() {
       <TeamSection />
 
       {/* Commitment Banner */}
-      <CommitmentBanner />
+      {/* <CommitmentBanner /> */}
 
       {/* About Contact CTA */}
       <AboutContactCTA />

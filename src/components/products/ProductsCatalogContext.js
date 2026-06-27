@@ -165,6 +165,13 @@ export function ProductsCatalogProvider({ children }) {
       try {
         const data = await fetchCustomerProducts(customerId);
         setCustomerProducts((prev) => ({ ...prev, [customerId]: data }));
+        setProductDetails((prev) => {
+          const next = { ...prev };
+          data.forEach((product) => {
+            next[product.id] = product;
+          });
+          return next;
+        });
         return data;
       } catch (err) {
         console.error("Failed to load customer products", err);
@@ -196,6 +203,13 @@ export function ProductsCatalogProvider({ children }) {
       try {
         const data = await fetchProductsByCategory(categoryId);
         setCategoryProducts((prev) => ({ ...prev, [categoryId]: data }));
+        setProductDetails((prev) => {
+          const next = { ...prev };
+          data.forEach((product) => {
+            next[product.id] = product;
+          });
+          return next;
+        });
         return data;
       } catch (err) {
         console.error("Failed to load category products", err);
@@ -216,6 +230,14 @@ export function ProductsCatalogProvider({ children }) {
 
     const cached = productDetailsRef.current[productId];
     if (cached) return cached;
+
+    for (const list of Object.values(categoryProductsRef.current)) {
+      const fromList = list.find((item) => String(item.id) === String(productId));
+      if (fromList) {
+        setProductDetails((prev) => ({ ...prev, [productId]: fromList }));
+        return fromList;
+      }
+    }
 
     const inflightKey = `product:${productId}`;
     if (inflightRef.current[inflightKey]) {

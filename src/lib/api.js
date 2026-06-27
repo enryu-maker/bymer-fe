@@ -454,6 +454,44 @@ export async function submitContactInquiry(payload) {
   }
 }
 
+export async function submitQuoteInquiry(payload, drawingFile = null) {
+  try {
+    let res;
+
+    if (drawingFile) {
+      const formData = new FormData();
+      Object.entries(payload).forEach(([key, value]) => {
+        if (value != null && value !== "") {
+          formData.append(key, value);
+        }
+      });
+      formData.append("drawing", drawingFile);
+
+      res = await fetch(`${BASE_URL}/api/forms/contact/`, {
+        method: "POST",
+        body: formData,
+      });
+    } else {
+      res = await fetch(`${BASE_URL}/api/forms/contact/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+    }
+
+    if (!res.ok) {
+      const errData = await res.json().catch(() => ({}));
+      throw new Error(JSON.stringify(errData) || "Quote submission failed");
+    }
+    return await res.json();
+  } catch (error) {
+    console.error("Error submitting quote:", error.message);
+    throw error;
+  }
+}
+
 export async function submitCareerApplication(payload) {
   try {
     const res = await fetch(`${BASE_URL}/api/forms/career/`, {

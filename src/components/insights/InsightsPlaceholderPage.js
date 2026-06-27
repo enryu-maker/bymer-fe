@@ -30,7 +30,7 @@ export function InsightsPlaceholderPage({ title, description }) {
             href="/contact"
             className="inline-flex items-center justify-center mt-8 bg-[#C75550] text-white px-8 py-3.5 font-title text-sm font-bold uppercase tracking-wider transition-all duration-200 hover:bg-[#b54a46] rounded-none gap-2"
           >
-            CONTACT US <span className="font-sans font-bold text-xs">&gt;</span>
+            CONTACT US <span className="font-sans text-sm">→</span>
           </Link>
         </div>
       </section>
