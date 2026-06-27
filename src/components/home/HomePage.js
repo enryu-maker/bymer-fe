@@ -9,31 +9,36 @@ import { QuoteRequestForm } from "../shared/QuoteRequestForm";
 // 1. HERO SECTION
 function Hero() {
   return (
-    <header className="relative w-full border-b border-[#e5e7eb] overflow-hidden bg-white min-h-[600px] flex items-center">
-      {/* Background Image Container */}
-      <div className="absolute inset-y-0 right-0 w-full lg:w-[65%] z-0">
-        <Image 
-          src="/images/backgroundHome.png" 
-          alt="Bymer Elastomers Automation Facility" 
-          fill
-          sizes="100vw"
-          className="object-cover object-center"
+    <header className="relative w-full border-b border-[#e5e7eb] overflow-hidden bg-white min-h-[480px] sm:min-h-[540px] lg:min-h-[600px] flex items-center">
+      <div className="absolute inset-0 z-0 bg-white">
+        <Image
+          src="/images/hero-global-map.png"
+          alt="Bymer Elastomers global reach from India"
+          width={1024}
+          height={534}
+          unoptimized
           priority
+          className="absolute right-0 top-1/2 -translate-y-1/2 h-full w-auto max-w-none object-contain object-right"
         />
       </div>
 
-      {/* Linear Gradient Overlay */}
-      <div 
-        className="absolute inset-0 z-10 pointer-events-none" 
+      <div
+        className="absolute inset-0 z-10 pointer-events-none"
         style={{
-          background: "linear-gradient(90deg, #ffffff 0%, #ffffff 35%, rgba(255, 255, 255, 0.7) 50%, rgba(255, 255, 255, 0) 100%)"
+          background:
+            "linear-gradient(90deg, #ffffff 0%, #ffffff 32%, rgba(255,255,255,0.92) 45%, rgba(255,255,255,0.55) 58%, rgba(255,255,255,0.15) 72%, rgba(255,255,255,0) 85%)",
         }}
       />
 
-      {/* Hero Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24 relative z-20 w-full">
-        <div className="flex flex-col items-start gap-5 sm:gap-6 max-w-2xl lg:max-w-3xl">
-        
+        <div className="flex flex-col items-start gap-4 sm:gap-5 max-w-xl">
+          <h1 className="font-title text-4xl sm:text-5xl lg:text-6xl font-black uppercase text-[#1c1b1b] leading-[1.05] tracking-tight">
+            Bymer{" "}
+            <span className="text-[#C75550]">Elastomers</span>
+          </h1>
+          <p className="font-body text-base sm:text-lg lg:text-xl text-[#4b5563] leading-relaxed">
+            We engineer reliable Elastomer Solutions
+          </p>
         </div>
       </div>
     </header>
