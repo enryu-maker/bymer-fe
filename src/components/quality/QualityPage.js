@@ -38,11 +38,13 @@ function QualityIntro() {
     <section className="w-full py-20 sm:py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto flex flex-col gap-6">
+        <div className="bg-[#111111] py-6 px-8 border-l-[6px] border-[#C75550] w-full">
+            <p className="font-title text-sm sm:text-base font-bold tracking-wider text-white uppercase leading-snug">
+              &ldquo;Quality Built into Every Component&rdquo;
+            </p>
+          </div>
           <p className="font-body text-sm sm:text-base text-[#4b5563] leading-relaxed">
-            Quality at Bymer Elastomers is not a final checkpoint, it is built-in at every step of
-            the manufacturing process. Each step, from raw material evaluation and compound
-            development to production, testing and final inspection is governed by strict quality
-            controls to ensure consistency, reliability and performance.
+          Quality at Bymer Elastomers is integrated into every stage of the manufacturing process—not inspected only at the end. From raw material verification and in-house compound development to precision manufacturing, testing, and final inspection, every process is governed by certified quality systems to ensure consistent performance, traceability, and product reliability.
           </p>
 
           <div className="bg-[#111111] py-6 px-8 border-l-[6px] border-[#C75550] w-full">
@@ -52,9 +54,7 @@ function QualityIntro() {
           </div>
 
           <p className="font-body text-sm sm:text-base text-[#4b5563] leading-relaxed">
-            Our philosophy of &ldquo;Doing Things Right the First Time&rdquo; drives a culture of
-            process discipline, continuous improvement and customer focused manufacturing
-            excellence.
+          Our philosophy of "Doing Things Right the First Time" drives a culture of engineering discipline, process consistency, and continuous improvement. Every component is manufactured with a focus on precision, repeatability, and compliance with customer specifications.
           </p>
         </div>
       </div>
@@ -79,14 +79,10 @@ function EngineeringConfidenceSection() {
 
           <div className="lg:col-span-7 flex flex-col gap-6">
             <p className="font-body text-sm sm:text-base text-[#4b5563] leading-relaxed">
-              We are constantly investing in the latest manufacturing technologies and processes to
-              meet the demanding expectations of OEMs and industrial capabilities. Modern equipment,
-              controlled production environments, and robust quality systems enable us to deliver
-              elastomer solutions that perform consistently in demanding applications.
+            Operating under IATF 16949:2016, ISO 9001:2015, and ISO 14001:2015 certified management systems, we combine advanced manufacturing technologies, controlled production environments, and robust process controls to deliver elastomer components that meet the demanding requirements of OEM and industrial applications.
             </p>
             <p className="font-body text-sm sm:text-base text-[#4b5563] leading-relaxed">
-              Every product is manufactured with a focus on dimensional accuracy, material
-              integrity, and long-term operational reliability.
+            Every product is manufactured with emphasis on dimensional accuracy, material integrity, and long-term operational reliability.
             </p>
           </div>
         </div>
@@ -108,9 +104,7 @@ function AdvancedTestingSection() {
               Advanced Testing &amp; Validation
             </h3>
             <p className="font-body text-sm sm:text-base text-[#4b5563] leading-relaxed">
-              Our in-house laboratory is fully equipped for extensive testing of the materials and
-              products, so we can verify performance, maintain our processes consistent and meet our
-              customer&apos;s specifications.
+            Our in-house quality laboratory is equipped to perform comprehensive material and product testing, enabling us to validate compound performance, verify product specifications, and maintain consistent manufacturing quality throughout production.
             </p>
           </div>
 
@@ -122,8 +116,7 @@ function AdvancedTestingSection() {
               In-House Validation
             </h3>
             <p className="font-body text-sm sm:text-base text-[#4b5563] leading-relaxed">
-              The majority of testing is performed in-house, allowing us to speed up validation,
-              enhance quality assurance, and exercise more control over product performance.
+            Most testing and validation activities are carried out in-house, enabling faster product approval, improved process control, and greater confidence in product performance before delivery.
             </p>
             <span className="inline-flex self-start bg-[#C75550] text-white px-3 py-1 font-montserrat text-[10px] font-bold tracking-wider uppercase">
               Majority In-House Testing
@@ -213,7 +206,7 @@ function CertificationsSection({ certifications }) {
             href="/contact"
             className="inline-flex items-center justify-center bg-[#C75550] text-white px-8 py-3.5 font-title text-sm font-bold uppercase tracking-wider transition-all duration-200 hover:bg-[#b54a46] rounded-none gap-2"
           >
-            DISCUSS YOUR REQUIREMENTS  <span className="font-sans text-sm">→</span>
+            Discuss your application  <span className="font-sans text-sm">→</span>
           </Link>
         </div>
       </div>

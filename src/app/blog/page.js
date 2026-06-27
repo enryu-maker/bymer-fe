@@ -12,7 +12,10 @@ export default function Blog() {
     <PageShell>
       <InsightsPlaceholderPage
         title="Blogs"
-        description="Stories, updates, and technical insights from our manufacturing and engineering teams."
+        description="Expert resources on elastomer materials, rubber component design, and manufacturing processes."
+        comingSoonTitle="Technical content is coming soon."
+        comingSoonBody="We're preparing expert resources covering elastomer materials, rubber component design, manufacturing processes, and industry applications."
+        ctaLabel="Discuss Your Requirement"
       />
     </PageShell>
   );

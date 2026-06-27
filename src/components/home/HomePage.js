@@ -129,7 +129,7 @@ function Capabilities() {
       title: "ELASTOMER EXPERTISE",
       icon: "fa-solid fa-flask",
       description:
-        "60 years of technical leadership in rubber technology. Deep material knowledge across NR, NBR, EPDM, silicone, FKM, HNBR, and specialty grades with in-house compound development capability enabling formulation matched to application requirements."
+        "60 years of technical leadership in rubber technology. Deep material knowledge across NR, NBR, EPDM, silicone, FKM, HNBR, and speciality grades with in-house compound development capability enabling formulation matched to application requirements."
     },
     {
       title: "OEM & INDUSTRIAL PARTNERSHIP",

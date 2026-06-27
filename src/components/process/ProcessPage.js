@@ -62,11 +62,10 @@ function ProcessCta() {
     <section className="w-full py-16 sm:py-20 bg-white border-t border-[#e5e7eb]">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center gap-6">
         <h2 className="font-title text-2xl sm:text-3xl font-black text-[#1c1b1b] uppercase tracking-tight">
-          Ready to Start Your Application?
+        Let's engineer the right solution together!
         </h2>
         <p className="font-body text-sm sm:text-base text-[#4b5563] leading-relaxed">
-          Our engineering team can assess your requirements and recommend the right elastomer
-          solution for your application.
+        From material selection to production, our engineering team is ready to support your next project with precision-manufactured elastomer solutions.
         </p>
         <Link
           href="/contact"

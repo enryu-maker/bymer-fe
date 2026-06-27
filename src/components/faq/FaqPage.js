@@ -40,54 +40,48 @@ const FAQ_ITEMS = [
   },
   {
     id: "VII",
-    question: "What rubber materials does Bymer Elastomers work with?",
-    answer:
-      "Bymer Elastomers formulates compounds in Natural Rubber (NR), Nitrile (NBR), EPDM, Silicone (VMQ), FKM/Viton, HNBR, Neoprene (CR), Polyacrylate (ACM), Ethylene Acrylic (AEM), Butyl (IIR), and Epichlorohydrin (ECO). All compounds are developed in-house, with material selection determined by the application's operating temperature, fluid exposure, mechanical loading, and regulatory requirements — not substituted from general-purpose grades.",
-  },
-  {
-    id: "VIII",
     question: "What is the difference between EPDM and NBR rubber?",
     answer:
       "EPDM (Ethylene Propylene Diene Monomer) offers excellent resistance to ozone, weathering, steam, and hot water — but is not compatible with petroleum oils or fuels. NBR (Nitrile Butadiene Rubber) provides excellent resistance to petroleum oils, fuels, and hydraulic fluids — but degrades under ozone and outdoor weathering. EPDM is used in automotive weatherseals, cooling hoses, and outdoor infrastructure. NBR is used in engine oil seals, fuel system components, and hydraulic seals.",
   },
   {
-    id: "IX",
+    id: "VIII",
     question: "What rubber material is used for EV busbar seals?",
     answer:
       "Silicone rubber (VMQ) is the primary material for EV busbar seals due to its wide operating temperature range (−60°C to +200°C), high dielectric strength, high volume resistivity, long service life, and compatibility with thermal management fluids in EV battery systems. EPDM is an alternative for lower-voltage applications at moderate operating temperatures.",
   },
   {
-    id: "X",
+    id: "IX",
     question: "What is rubber-to-metal bonding?",
     answer:
       "Rubber-to-metal bonding is a manufacturing process where rubber compound is chemically bonded to a metal insert during vulcanization in a mold. Metal inserts are surface-treated and coated with bonding adhesive before being positioned in the mold. Under heat and pressure, the rubber vulcanizes and simultaneously forms a chemical bond with the metal. The result is a structural composite combining the load-bearing rigidity of metal with the vibration-isolating, elastic, or sealing properties of rubber. Engine mounts, suspension bushings, and industrial vibration isolators are common applications.",
   },
   {
-    id: "XI",
+    id: "X",
     question: "What is the difference between compression molding and injection molding for rubber?",
     answer:
       "In compression molding, a preformed rubber charge is placed in an open mold cavity, which is then closed and heated to vulcanize the rubber. In injection molding, heated compound is injected under pressure into closed mold cavities. Injection molding produces tighter dimensional tolerances, minimal flash, shorter cycle times, and better cavity-to-cavity consistency — but requires higher tooling investment. Compression molding is more economical for lower volumes and simpler geometries. Transfer molding sits between the two in precision and complexity.",
   },
   {
-    id: "XII",
+    id: "XI",
     question: "What manufacturing processes does Bymer Elastomers operate?",
     answer:
       "Bymer Elastomers operates compression molding, transfer molding, injection molding, rubber extrusion, rubber-to-metal bonding, industrial hose production, and in-house elastomer compound development and mixing — all within IATF 16949:2016 certified manufacturing systems at two facilities in Nashik, India, with a combined area of 45,000 sq. ft.",
   },
   {
-    id: "XIII",
+    id: "XII",
     question: "What does IATF 16949 certification mean for a rubber manufacturer?",
     answer:
       "IATF 16949:2016 is the international QMS standard for automotive production and service parts suppliers. For a rubber manufacturer, it confirms documented process controls, production planning, non-conformance management, traceability systems, and continuous improvement programs meeting automotive OEM requirements. It is required or strongly preferred by most automotive OEM procurement teams globally and provides deeper manufacturing system assurance than ISO 9001 alone.",
   },
   {
-    id: "XIV",
+    id: "XIII",
     question: "What in-house rubber testing does Bymer perform?",
     answer:
       "Bymer Elastomers conducts in-house testing covering: rheological analysis (Moving Die Rheometer) for cure characteristics; Mooney viscosity for processability; Universal Testing Machine for tensile strength and elongation; Shore A hardness; compression set; accelerated heat ageing; ozone resistance; low-temperature performance to −60°C; abrasion resistance (DIN 53516); specific gravity; and electrical properties for EV and high-voltage applications.",
   },
   {
-    id: "XV",
+    id: "XIV",
     question: "What is compression set in rubber and why does it matter?",
     answer:
       "Compression set is the permanent deformation a rubber component retains after being compressed under a defined load, temperature, and time. Expressed as a percentage of the original deflection not recovered after load removal. For sealing applications, low compression set is critical — a seal with high compression set loses contact force over time, leading to leakage. Compression set testing (ISO 815 / ASTM D395) validates long-term sealing performance of compounds for static and dynamic seal applications.",

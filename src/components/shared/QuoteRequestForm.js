@@ -196,7 +196,7 @@ export function QuoteRequestForm({
             disabled={loading}
             className="bg-[#C75550] hover:bg-[#a53b36] text-white font-montserrat px-10 py-4 text-xs font-bold tracking-[0.15em] mt-4 flex items-center justify-center gap-2 w-fit cursor-pointer transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {loading ? "SUBMITTING..." : "START A PROJECT"} <span className="font-sans text-sm">→</span>
+            {loading ? "SUBMITTING..." : "Submit Your Requirement"} <span className="font-sans text-sm">→</span>
           </button>
         </>
       )}

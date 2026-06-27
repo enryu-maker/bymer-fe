@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect } from "react";
-import Image from "next/image";
 
 export function ImageLightbox({ item, onClose, ariaLabel }) {
   useEffect(() => {
@@ -24,7 +23,7 @@ export function ImageLightbox({ item, onClose, ariaLabel }) {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8 bg-black/80"
+      className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
@@ -40,22 +39,20 @@ export function ImageLightbox({ item, onClose, ariaLabel }) {
       </button>
 
       <div
-        className="relative w-full max-w-5xl max-h-[90vh] bg-white border border-[#e5e7eb] flex flex-col overflow-hidden"
+        className="relative w-full max-w-[95vw] lg:max-w-6xl max-h-[95vh] bg-white border border-[#e5e7eb] flex flex-col overflow-hidden"
         onClick={(event) => event.stopPropagation()}
       >
-        <div className="relative w-full min-h-[50vh] max-h-[75vh] bg-[#f9fafb]">
+        <div className="relative w-full flex-1 overflow-auto bg-[#f9fafb] min-h-0 max-h-[calc(95vh-5rem)]">
           {item.image ? (
-            <Image
-              src={item.image}
-              alt={item.title}
-              fill
-              unoptimized
-              sizes="100vw"
-              className="object-contain p-4 sm:p-6"
-              priority
-            />
+            <div className="flex justify-center p-2 sm:p-3 min-h-full">
+              <img
+                src={item.image}
+                alt={item.title}
+                className="w-full max-w-none h-auto object-contain"
+              />
+            </div>
           ) : (
-            <div className="absolute inset-0 flex items-center justify-center text-[#9ca3af]">
+            <div className="flex items-center justify-center min-h-[50vh] text-[#9ca3af]">
               <i className="fa-solid fa-image text-5xl" />
             </div>
           )}

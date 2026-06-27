@@ -185,12 +185,6 @@ export function Footer() {
                 <span className="text-white font-bold">GSTIN: </span>
                 <span className="text-[#fbbd05] font-bold">27AADP8030173</span>
               </p>
-              <Link
-                href="/contact"
-                className="inline-flex w-fit items-center justify-center mt-1 bg-[#fbbd05] text-[#1c1b1b] px-5 py-2.5 font-montserrat text-[10px] font-bold tracking-[0.15em] uppercase border border-[#111111] hover:bg-[#e5a804] transition-colors duration-150"
-              >
-                Request a Quote
-              </Link>
             </div>
           </div>
         </div>

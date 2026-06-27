@@ -94,7 +94,7 @@ function ContactDetails() {
               <i className="fa-solid fa-phone text-lg" />
             </div>
             <h3 className="font-title text-xl font-bold text-[#1c1b1b] uppercase tracking-wider mt-5 mb-3">
-              PHONE NUMBERS
+              CONTACT NUMBERS
             </h3>
             <div className="flex flex-col gap-1.5 font-body text-sm text-[#4b5563] font-medium">
               <a href={`tel:${phone}`} className="hover:text-[#C75550] transition-colors">
