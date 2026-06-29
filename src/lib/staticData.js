@@ -2,7 +2,7 @@
 
 export const STATIC_COMPANY_PROFILE = {
   company_name: "Bymer Elastomers",
-  tagline: "Delivering precision-engineered elastomer solutions with uncompromising quality since 1999. IATF 16949:2016, ISO 9001:2015 and ISO 14001:2015 certified.",
+  tagline: "Delivering precision-engineered elastomer solutions with uncompromising quality since 1983. IATF 16949:2016, ISO 9001:2015 and ISO 14001:2015 certified.",
   logo_url: null, // will fall back to local SVG/Image
   email: "sales@bymer.com",
   phone: "+919822079899",
@@ -14,15 +14,15 @@ export const STATIC_COMPANY_PROFILE = {
 export const STATIC_SOCIAL_LINKS = [
   { id: "s-1", platform: "LinkedIn", url: "https://www.linkedin.com/company/bymer-elastomers/" },
   { id: "s-2", platform: "Instagram", url: "https://www.instagram.com/bymer_elastomers?igsh=MWNwczR6NHJvdW1yMA==" },
-  { id: "s-3", platform: "YouTube", url: "https://youtube.com" },
+  { id: "s-3", platform: "YouTube", url: "https://www.youtube.com/@AltafSayyed-BYMER" },
   { id: "s-4", platform: "Email", url: "mailto:sales@bymer.com" },
 ];
 
 export const STATIC_STATISTICS = [
-  { id: "st-1", label: "YEARS EXPERIENCE", value: "30+" },
-  { id: "st-2", label: "GLOBAL CLIENTS", value: "50+" },
-  { id: "st-3", label: "PROJECTS COMPLETED", value: "1150+" },
-  { id: "st-4", label: "SATISFIED CLIENTS", value: "150+" },
+  { id: "st-1", label: "YEARS OF MANUFACTURING EXCELLENCE", value: "40+", icon: "fa-solid fa-landmark" },
+  { id: "st-2", label: "SQ. FT. MANUFACTURING INFRASTRUCTURE", value: "45,000", icon: "fa-solid fa-industry" },
+  { id: "st-3", label: "CUSTOMERS WORLDWIDE", value: "150+", icon: "fa-solid fa-globe" },
+  { id: "st-4", label: "MANUFACTURING UNITS", value: "2", icon: "fa-solid fa-building" },
 ];
 
 export const STATIC_CLIENTS = [

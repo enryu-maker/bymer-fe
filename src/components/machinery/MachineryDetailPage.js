@@ -137,7 +137,7 @@ export function MachineryDetailPage() {
                 href="/contact"
                 className="inline-flex items-center justify-center bg-[#C75550] text-white px-8 py-3.5 font-title text-sm font-bold uppercase tracking-wider transition-all duration-200 hover:bg-[#b54a46] rounded-none"
               >
-                REQUEST A QUOTE
+                Discuss your application
               </Link>
               <Link
                 href={plantHref}

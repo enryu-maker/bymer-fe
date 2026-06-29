@@ -45,6 +45,7 @@ export async function fetchCompanyProfile() {
 const SOCIAL_URL_OVERRIDES = {
   linkedin: "https://www.linkedin.com/company/bymer-elastomers/",
   instagram: "https://www.instagram.com/bymer_elastomers?igsh=MWNwczR6NHJvdW1yMA==",
+  youtube: "https://www.youtube.com/@AltafSayyed-BYMER",
 };
 
 function applySocialLinkOverrides(links) {
@@ -487,30 +488,29 @@ export async function submitContactInquiry(payload) {
 
 export async function submitQuoteInquiry(payload, drawingFile = null) {
   try {
-    let res;
+    const formData = new FormData();
+
+    formData.append("full_name", payload.full_name);
+    formData.append("company_name", payload.company_name);
+    formData.append("email", payload.email);
+    formData.append("phone", payload.phone);
+
+    if (payload.industry) {
+      formData.append("industry", payload.industry);
+    }
+    if (payload.product_required) {
+      formData.append("product_required", payload.product_required);
+    }
+    formData.append("project_requirements", payload.project_requirements);
 
     if (drawingFile) {
-      const formData = new FormData();
-      Object.entries(payload).forEach(([key, value]) => {
-        if (value != null && value !== "") {
-          formData.append(key, value);
-        }
-      });
       formData.append("drawing", drawingFile);
-
-      res = await fetch(`${BASE_URL}/api/forms/contact/`, {
-        method: "POST",
-        body: formData,
-      });
-    } else {
-      res = await fetch(`${BASE_URL}/api/forms/contact/`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
     }
+
+    const res = await fetch(`${BASE_URL}/api/quote/`, {
+      method: "POST",
+      body: formData,
+    });
 
     if (!res.ok) {
       const errData = await res.json().catch(() => ({}));

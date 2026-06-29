@@ -240,7 +240,7 @@ function MaterialFamiliesSection() {
         <SectionHeader
           eyebrow="Material Families"
           title="Elastomer Materials & Compound Expertise"
-          description="We formulate and manufacture application-specific elastomer compounds using EPDM, NBR, silicone, HNBR, FKM, neoprene, natural rubber, and other specialty materials—engineered to meet the performance requirements of OEM and industrial applications."
+          description="We formulate and manufacture application-specific elastomer compounds using EPDM, NBR, silicone, HNBR, FKM, neoprene, natural rubber and other specialty materials—engineered to meet the performance requirements of OEM and industrial applications."
         />
 
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">

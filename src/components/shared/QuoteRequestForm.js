@@ -48,24 +48,15 @@ export function QuoteRequestForm({
     setError(null);
 
     try {
-      const messageParts = [
-        formState.industry.trim() && `Industry: ${formState.industry.trim()}`,
-        formState.productRequired.trim() &&
-          `Product Required: ${formState.productRequired.trim()}`,
-        `Project Requirements:\n${formState.projectRequirements.trim()}`,
-      ].filter(Boolean);
-
       await submitQuoteInquiry(
         {
-          name: formState.fullName.trim(),
+          full_name: formState.fullName.trim(),
+          company_name: formState.companyName.trim(),
           email: formState.email.trim(),
           phone: formState.phone.trim(),
-          company_name: formState.companyName.trim(),
           industry: formState.industry.trim(),
           product_required: formState.productRequired.trim(),
-          subject: `Request a Quote - ${formState.companyName.trim()}`,
-          message: messageParts.join("\n\n"),
-          source_page: sourcePage,
+          project_requirements: formState.projectRequirements.trim(),
         },
         drawingFile
       );

@@ -3,7 +3,8 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { fetchStatistics, fetchClients } from "@/lib/api";
+import { fetchClients } from "@/lib/api";
+import { STATIC_STATISTICS } from "@/lib/staticData";
 import { QuoteRequestForm } from "../shared/QuoteRequestForm";
 
 // 1. HERO SECTION
@@ -54,46 +55,12 @@ function Hero() {
 }
 
 // 2. CORE OPERATIONS METRICS SECTION
-// 2. CORE OPERATIONS METRICS SECTION
 function TopStatsBar() {
-  const [stats, setStats] = useState([]);
-
-  useEffect(() => {
-    async function loadStats() {
-      const data = await fetchStatistics();
-      const iconMap = {
-        experience: "fa-solid fa-circle-check",
-        clients: "fa-solid fa-globe",
-        projects: "fa-solid fa-industry",
-        satisfied: "fa-solid fa-award",
-      };
-
-      const mapped = data.map((item) => {
-        const label = item.label.toLowerCase();
-        let icon = "fa-solid fa-circle-check";
-        if (label.includes("experience") || label.includes("years")) icon = iconMap.experience;
-        else if (label.includes("global") || label.includes("client")) icon = iconMap.clients;
-        else if (label.includes("project")) icon = iconMap.projects;
-        else if (label.includes("satisfied") || label.includes("award")) icon = iconMap.satisfied;
-
-        return {
-          value: item.value,
-          label: item.label.toUpperCase(),
-          icon,
-        };
-      });
-
-      setStats(mapped.length > 0 ? mapped : [
-        { value: "30+", label: "YEARS EXPERIENCE", icon: "fa-solid fa-circle-check" },
-        { value: "50+", label: "GLOBAL CLIENTS", icon: "fa-solid fa-globe" },
-        { value: "1150+", label: "PROJECTS COMPLETED", icon: "fa-solid fa-industry" },
-        { value: "150+", label: "SATISFIED CLIENTS", icon: "fa-solid fa-award" },
-      ]);
-    }
-    loadStats();
-  }, []);
-
-  if (stats.length === 0) return null;
+  const stats = STATIC_STATISTICS.map((item) => ({
+    value: item.value,
+    label: item.label,
+    icon: item.icon || "fa-solid fa-circle-check",
+  }));
 
   return (
     <section className="w-full bg-[#0a0a0a] text-[#f5f5f5] py-12 border-b border-[#111111]">
@@ -271,7 +238,7 @@ function JourneySection() {
       title: "MANUFACTURING LEGACY",
       icon: "fa-solid fa-landmark",
       items: [
-        "Established in 1978",
+        "Established in 1983",
         "40+ Years of manufacturing excellence",
         "60+ Years of combined technical leadership",
       ],
@@ -289,7 +256,7 @@ function JourneySection() {
       title: "CUSTOMER REACH",
       icon: "fa-solid fa-globe",
       items: [
-        "50+ customers across India and global markets",
+        "150+ customers across India and global markets",
         "OEM & industrial manufacturing expertise",
         "Long-term manufacturing partnerships",
       ],

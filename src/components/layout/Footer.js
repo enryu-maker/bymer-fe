@@ -55,7 +55,7 @@ export function Footer() {
 
   const tagline =
     profile?.tagline ||
-    "Bymer Elastomers engineers precision rubber and elastomer components for automotive, industrial and OEM applications. We are IATF 16949:2016, ISO 9001:2015 and ISO 14001:2015 certified and have been providing reliable solutions since 1999.";
+    "Bymer Elastomers engineers precision rubber and elastomer components for automotive, industrial and OEM applications. We are IATF 16949:2016, ISO 9001:2015 and ISO 14001:2015 certified and have been providing reliable solutions since 1983.";
   const email = profile?.email || "sales@bymer.com";
   const phone = profile?.phone || "+91 98220 79899";
   const alternatePhone = profile?.alternate_phone || "+91 253 2381123";
@@ -133,6 +133,15 @@ export function Footer() {
                     aria-label="Instagram"
                   >
                     <i className="fa-brands fa-instagram text-base" />
+                  </a>
+                  <a
+                    href="https://www.youtube.com/@AltafSayyed-BYMER"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-white/60 hover:text-[#C75550] transition-colors duration-150"
+                    aria-label="YouTube"
+                  >
+                    <i className="fa-brands fa-youtube text-base" />
                   </a>
                   <a
                     href={`mailto:${email}`}
