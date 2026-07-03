@@ -128,7 +128,7 @@ export function ProductDetailPage() {
                 <span className="font-montserrat text-[10px] font-bold text-[#9ca3af] tracking-wider uppercase block mb-1">
                   SPECIFICATION
                 </span>
-                <p className="font-body text-sm text-[#4b5563] leading-relaxed">{product.specification}</p>
+                <p className="font-body text-sm text-[#4b5563] leading-relaxed whitespace-pre-line">{product.specification}</p>
               </div>
             )}
 

@@ -60,7 +60,73 @@ function OrgMemberAvatar({ node }) {
   );
 }
 
-function OrgMemberCard({ node, hasChildren, isExpanded, onToggle }) {
+function OrgMemberBadges({ node, vacant, deptColor, compact = false }) {
+  return (
+    <div
+      className={`flex flex-wrap items-center ${compact ? "justify-center gap-0.5 mb-1" : "gap-2 mb-1"}`}
+    >
+      <span
+        className={`font-montserrat font-bold uppercase tracking-wider ${
+          compact ? "text-[7px] px-1.5 py-px" : "text-[9px] sm:text-[10px] px-2 py-0.5"
+        }`}
+        style={{
+          color: deptColor,
+          backgroundColor: `${deptColor}14`,
+          border: `1px solid ${deptColor}33`,
+        }}
+      >
+        {node.department?.name || "Department"}
+      </span>
+      {node.is_group && node.group_count != null && (
+        <span
+          className={`font-montserrat font-bold uppercase tracking-wider text-[#6b7280] bg-[#f3f4f6] border border-[#e5e7eb] ${
+            compact ? "text-[7px] px-1.5 py-px" : "text-[9px] px-2 py-0.5"
+          }`}
+        >
+          {compact ? node.group_count : `${node.group_count} members`}
+        </span>
+      )}
+      {vacant && (
+        <span
+          className={`font-montserrat font-bold uppercase tracking-wider text-[#9ca3af] bg-[#f3f4f6] border border-dashed border-[#d1d5db] ${
+            compact ? "text-[7px] px-1.5 py-px" : "text-[9px] px-2 py-0.5"
+          }`}
+        >
+          Vacant
+        </span>
+      )}
+    </div>
+  );
+}
+
+function ExpandButton({ isExpanded, onToggle, direction = "down", compact = false }) {
+  return (
+    <button
+      type="button"
+      onClick={onToggle}
+      aria-expanded={isExpanded}
+      aria-label={isExpanded ? "Collapse team" : "Expand team"}
+      className={`shrink-0 border border-[#e5e7eb] flex items-center justify-center text-[#9ca3af] hover:border-[#C75550] hover:text-[#C75550] transition-colors duration-200 ${
+        compact ? "w-6 h-6" : "w-9 h-9"
+      }`}
+    >
+      <i
+        className={`fa-solid fa-chevron-${direction} transition-transform duration-200 ${
+          compact ? "text-[8px]" : "text-[10px]"
+        } ${
+          direction === "down" && isExpanded
+            ? "rotate-180"
+            : direction === "right" && isExpanded
+              ? "rotate-90"
+              : ""
+        }`}
+      />
+    </button>
+  );
+}
+
+/* Mobile / tablet: vertical cards with avatar */
+function OrgMemberCardVertical({ node, hasChildren, isExpanded, onToggle }) {
   const vacant = node.is_vacant || /vacant/i.test(node.name || "");
   const deptColor = node.department?.color || "#C75550";
 
@@ -79,29 +145,7 @@ function OrgMemberCard({ node, hasChildren, isExpanded, onToggle }) {
       <OrgMemberAvatar node={node} />
 
       <div className="flex-1 min-w-0 text-left">
-        <div className="flex flex-wrap items-center gap-2 mb-1">
-          <span
-            className="font-montserrat text-[9px] sm:text-[10px] font-bold uppercase tracking-wider px-2 py-0.5"
-            style={{
-              color: deptColor,
-              backgroundColor: `${deptColor}14`,
-              border: `1px solid ${deptColor}33`,
-            }}
-          >
-            {node.department?.name || "Department"}
-          </span>
-          {node.is_group && node.group_count != null && (
-            <span className="font-montserrat text-[9px] font-bold uppercase tracking-wider text-[#6b7280] bg-[#f3f4f6] px-2 py-0.5 border border-[#e5e7eb]">
-              {node.group_count} members
-            </span>
-          )}
-          {vacant && (
-            <span className="font-montserrat text-[9px] font-bold uppercase tracking-wider text-[#9ca3af] bg-[#f3f4f6] px-2 py-0.5 border border-dashed border-[#d1d5db]">
-              Vacant
-            </span>
-          )}
-        </div>
-
+        <OrgMemberBadges node={node} vacant={vacant} deptColor={deptColor} />
         <h3
           className={`font-title text-base sm:text-lg font-black uppercase tracking-tight leading-snug ${
             vacant ? "text-[#9ca3af]" : "text-[#1c1b1b]"
@@ -113,31 +157,70 @@ function OrgMemberCard({ node, hasChildren, isExpanded, onToggle }) {
       </div>
 
       {hasChildren && (
-        <button
-          type="button"
-          onClick={() => onToggle(node.id)}
-          aria-expanded={isExpanded}
-          aria-label={isExpanded ? "Collapse team" : "Expand team"}
-          className="shrink-0 w-9 h-9 border border-[#e5e7eb] flex items-center justify-center text-[#9ca3af] hover:border-[#C75550] hover:text-[#C75550] transition-colors duration-200 self-start sm:self-center"
-        >
-          <i
-            className={`fa-solid fa-chevron-down text-[10px] transition-transform duration-200 ${
-              isExpanded ? "rotate-180" : ""
-            }`}
-          />
-        </button>
+        <ExpandButton
+          isExpanded={isExpanded}
+          onToggle={() => onToggle(node.id)}
+          direction="down"
+        />
       )}
     </div>
   );
 }
 
-function OrgTreeNode({ node, expandedIds, onToggle }) {
+/* Desktop: compact horizontal cards without avatar */
+function OrgMemberCardHorizontal({ node, hasChildren, isExpanded, onToggle }) {
+  const vacant = node.is_vacant || /vacant/i.test(node.name || "");
+  const deptColor = node.department?.color || "#C75550";
+
+  return (
+    <div
+      className={`relative flex flex-col items-center text-center w-[128px] xl:w-[140px] p-2 border bg-white transition-shadow duration-200 ${
+        vacant
+          ? "border-dashed border-[#d1d5db] bg-[#fafafa]"
+          : "border-[#e5e7eb] hover:shadow-[0_2px_8px_rgba(0,0,0,0.05)]"
+      }`}
+      style={{
+        borderTopWidth: vacant ? undefined : "3px",
+        borderTopColor: vacant ? undefined : deptColor,
+      }}
+    >
+      {hasChildren && (
+        <div className="absolute -right-2 top-1/2 -translate-y-1/2 z-10">
+          <ExpandButton
+            isExpanded={isExpanded}
+            onToggle={() => onToggle(node.id)}
+            direction="right"
+            compact
+          />
+        </div>
+      )}
+
+      <div className="w-full min-w-0">
+        <OrgMemberBadges node={node} vacant={vacant} deptColor={deptColor} compact />
+        <h3
+          className={`font-title text-[10px] font-black uppercase tracking-tight leading-tight ${
+            vacant ? "text-[#9ca3af]" : "text-[#1c1b1b]"
+          }`}
+        >
+          {node.name}
+        </h3>
+        <p className="font-body text-[9px] text-[#4b5563] mt-0.5 leading-tight">{node.title}</p>
+      </div>
+    </div>
+  );
+}
+
+function isFounderNode(node) {
+  return /founder/i.test(node.department?.name || "");
+}
+
+function OrgTreeNodeVertical({ node, expandedIds, onToggle }) {
   const hasChildren = node.children?.length > 0;
   const isExpanded = expandedIds.has(node.id);
 
   return (
     <li className="w-full">
-      <OrgMemberCard
+      <OrgMemberCardVertical
         node={node}
         hasChildren={hasChildren}
         isExpanded={isExpanded}
@@ -148,7 +231,7 @@ function OrgTreeNode({ node, expandedIds, onToggle }) {
         <div className="ml-6 sm:ml-10 md:ml-12 pl-5 sm:pl-6 md:pl-8 border-l-2 border-[#C75550]/25 mt-3 mb-1">
           <ul className="flex flex-col gap-3 w-full">
             {node.children.map((child) => (
-              <OrgTreeNode
+              <OrgTreeNodeVertical
                 key={child.id}
                 node={child}
                 expandedIds={expandedIds}
@@ -159,6 +242,142 @@ function OrgTreeNode({ node, expandedIds, onToggle }) {
         </div>
       )}
     </li>
+  );
+}
+
+function OrgTreeNodeHorizontal({ node, expandedIds, onToggle, isRoot = false }) {
+  const hasChildren = node.children?.length > 0;
+  const isExpanded = expandedIds.has(node.id);
+
+  return (
+    <div className={`flex items-start ${isRoot ? "" : "relative"}`}>
+      {!isRoot && (
+        <div className="w-4 xl:w-5 h-px bg-[#C75550]/35 shrink-0 mt-5" aria-hidden="true" />
+      )}
+
+      <div className="flex items-center shrink-0">
+        <OrgMemberCardHorizontal
+          node={node}
+          hasChildren={hasChildren}
+          isExpanded={isExpanded}
+          onToggle={onToggle}
+        />
+      </div>
+
+      {hasChildren && isExpanded && (
+        <div className="flex items-start ml-0">
+          <div className="w-4 xl:w-5 flex shrink-0 pt-5" aria-hidden="true">
+            <div className="w-full h-px bg-[#C75550]/35" />
+          </div>
+
+          <div className="flex flex-col justify-start gap-1 relative">
+            {node.children.length > 1 && (
+              <div
+                className="absolute left-0 top-2 bottom-2 w-px bg-[#C75550]/25"
+                aria-hidden="true"
+              />
+            )}
+
+            {node.children.map((child) => (
+              <OrgTreeNodeHorizontal
+                key={child.id}
+                node={child}
+                expandedIds={expandedIds}
+                onToggle={onToggle}
+              />
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function OrgFounderGroup({ founders, expandedIds, onToggle }) {
+  const founderChildren = founders.flatMap((founder) => founder.children || []);
+  const foundersWithChildren = founders.filter((founder) => founder.children?.length > 0);
+  const showBranches =
+    founderChildren.length > 0 &&
+    foundersWithChildren.some((founder) => expandedIds.has(founder.id));
+
+  return (
+    <div className="flex items-start shrink-0">
+      <div className="flex items-start gap-2">
+        {founders.map((founder) => {
+          const hasChildren = founder.children?.length > 0;
+          const isExpanded = expandedIds.has(founder.id);
+
+          return (
+            <OrgMemberCardHorizontal
+              key={founder.id}
+              node={founder}
+              hasChildren={hasChildren}
+              isExpanded={isExpanded}
+              onToggle={() => onToggle(founder.id)}
+            />
+          );
+        })}
+      </div>
+
+      {showBranches && (
+        <>
+          <div className="w-4 xl:w-5 flex shrink-0 pt-5" aria-hidden="true">
+            <div className="w-full h-px bg-[#C75550]/35" />
+          </div>
+
+          <div className="flex flex-col justify-start gap-1 relative">
+            {founderChildren.length > 1 && (
+              <div
+                className="absolute left-0 top-2 bottom-2 w-px bg-[#C75550]/25"
+                aria-hidden="true"
+              />
+            )}
+
+            {founderChildren.map((child) => (
+              <OrgTreeNodeHorizontal
+                key={child.id}
+                node={child}
+                expandedIds={expandedIds}
+                onToggle={onToggle}
+              />
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+
+function OrgDesktopTree({ tree, expandedIds, onToggle }) {
+  const founders = tree.filter(isFounderNode);
+  const nonFounders = tree.filter((node) => !isFounderNode(node));
+  const groupFounders = founders.length > 1;
+
+  return (
+    <div className="inline-flex items-start gap-6 min-w-max py-2 pr-4">
+      {groupFounders && <OrgFounderGroup founders={founders} expandedIds={expandedIds} onToggle={onToggle} />}
+
+      {!groupFounders &&
+        founders.map((node) => (
+          <OrgTreeNodeHorizontal
+            key={node.id}
+            node={node}
+            expandedIds={expandedIds}
+            onToggle={onToggle}
+            isRoot
+          />
+        ))}
+
+      {nonFounders.map((node) => (
+        <OrgTreeNodeHorizontal
+          key={node.id}
+          node={node}
+          expandedIds={expandedIds}
+          onToggle={onToggle}
+          isRoot
+        />
+      ))}
+    </div>
   );
 }
 
@@ -286,10 +505,11 @@ export function OrganizationChart() {
                 No organization members found for this plant.
               </p>
             ) : (
-              <div className="border border-[#e5e7eb] bg-[#f9fafb] p-4 sm:p-6 lg:p-8">
-                <ul className="flex flex-col gap-3 w-full">
+              <div className="border border-[#e5e7eb] bg-[#f9fafb] p-4 sm:p-6 lg:p-5">
+                {/* Mobile / tablet: vertical tree with avatars */}
+                <ul className="flex flex-col gap-3 w-full lg:hidden">
                   {tree.map((node) => (
-                    <OrgTreeNode
+                    <OrgTreeNodeVertical
                       key={node.id}
                       node={node}
                       expandedIds={expandedIds}
@@ -297,6 +517,15 @@ export function OrganizationChart() {
                     />
                   ))}
                 </ul>
+
+                {/* Desktop: horizontal scrollable tree, small cards, no images */}
+                <div className="hidden lg:block overflow-auto pb-2 max-h-[80vh]">
+                  <OrgDesktopTree
+                    tree={tree}
+                    expandedIds={expandedIds}
+                    onToggle={handleToggle}
+                  />
+                </div>
               </div>
             )}
           </>

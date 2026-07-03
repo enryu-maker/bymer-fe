@@ -221,14 +221,26 @@ function InstitutionalQuality() {
 }
 
 // 4.5. COMMITMENT BANNER
+const COMMITMENT_VIDEO_ID = "hfFEZLSLuv4";
+
 function CommitmentBanner() {
   return (
-    <section className="w-full bg-[#1c1b1b] text-white py-20 flex flex-col items-center justify-center text-center px-4 select-none">
-      <div className="w-10 h-10 bg-white flex items-center justify-center border-r-[3px] border-b-[3px] border-[#fbbd05]">
-        <i className="fa-solid fa-play text-[#1c1b1b] text-sm ml-0.5"></i>
+    <section className="w-full bg-[#1c1b1b] text-white py-16 sm:py-20 flex flex-col items-center justify-center text-center px-4">
+      <div className="w-full max-w-4xl mx-auto mb-10 sm:mb-12">
+        <div className="relative w-full aspect-video border border-[#fbbd05]/40 bg-black overflow-hidden">
+          <iframe
+            src={`https://www.youtube.com/embed/${COMMITMENT_VIDEO_ID}?autoplay=1&mute=1&rel=0&modestbranding=1&playsinline=1`}
+            title="Bymer Elastomers — Delivering Reliable Elastomer Solutions"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+            className="absolute inset-0 w-full h-full"
+          />
+        </div>
       </div>
-      <h2 className="font-title text-3xl sm:text-3xl lg:text-4xl font-black uppercase text-white tracking-wide leading-tight max-w-4xl mt-6">
-      Delivering Reliable Elastomer Solutions <br /> <span className="text-[#fbbd05]">for Performance-Critical Applications Worldwide.</span> 
+
+      <h2 className="font-title text-3xl sm:text-3xl lg:text-4xl font-black uppercase text-white tracking-wide leading-tight max-w-4xl">
+        Delivering Reliable Elastomer Solutions <br />{" "}
+        <span className="text-[#fbbd05]">for Performance-Critical Applications Worldwide.</span>
       </h2>
     </section>
   );

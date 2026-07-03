@@ -4,6 +4,7 @@ import { useEffect, useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ContactBanner } from "../layout/ContactBanner";
+import { sortBySequence } from "@/lib/api";
 import { useProductsCatalog } from "./ProductsCatalogContext";
 
 // 1. PRODUCTS HERO COMPONENT
@@ -77,10 +78,12 @@ function ProductCard({ product, index }) {
           <div className="w-full mt-4">
             {product.specification && (
               <div className="bg-[#f9fafb] border-l-4 border-[#fbbd05] py-2 px-3 text-left w-full">
-                <span className="font-montserrat text-xs text-[#4b5563] tracking-wide">
-                  <span className="font-bold text-[#1c1b1b]">Specification:</span>{" "}
-                  {product.specification}
+                <span className="font-montserrat text-xs font-bold text-[#1c1b1b] tracking-wide block mb-1">
+                  Specification:
                 </span>
+                <p className="font-montserrat text-xs text-[#4b5563] tracking-wide whitespace-pre-line leading-relaxed">
+                  {product.specification}
+                </p>
               </div>
             )}
             {product.description && (
@@ -156,7 +159,7 @@ function ProductDetailPanel({ product }) {
             <span className="font-montserrat text-[10px] font-bold text-[#9ca3af] tracking-wider uppercase block mb-1">
               SPECIFICATION
             </span>
-            <p className="font-body text-sm text-[#4b5563] leading-relaxed">{product.specification}</p>
+            <p className="font-body text-sm text-[#4b5563] leading-relaxed whitespace-pre-line">{product.specification}</p>
           </div>
         )}
 
@@ -279,8 +282,9 @@ export function ProductsPage({ segment } = {}) {
 
   const filteredCustomers = useMemo(() => {
     const query = searchQuery.trim().toLowerCase();
-    if (!query) return customers;
-    return customers.filter((customer) =>
+    const sorted = sortBySequence(customers);
+    if (!query) return sorted;
+    return sorted.filter((customer) =>
       (customer.name || "").toLowerCase().includes(query)
     );
   }, [customers, searchQuery]);

@@ -34,6 +34,15 @@ export function formatOrgImageUrl(url) {
   return `${ORG_API_BASE_URL}${url.startsWith("/") ? "" : "/"}${url}`;
 }
 
+export function sortBySequence(items = []) {
+  return [...items].sort((a, b) => {
+    const seqA = a.sequence ?? 0;
+    const seqB = b.sequence ?? 0;
+    if (seqA !== seqB) return seqA - seqB;
+    return 0;
+  });
+}
+
 export async function fetchCompanyProfile() {
   try {
     const res = await fetch(`${BASE_URL}/api/globals/company-profile/`, {
@@ -161,10 +170,18 @@ export async function fetchProductCategoryById(id) {
       next: { revalidate: 3600 },
     });
     if (!res.ok) throw new Error("Failed to fetch product category");
-    return await res.json();
+    const detail = await res.json();
+    if (Array.isArray(detail.customers)) {
+      detail.customers = sortBySequence(detail.customers);
+    }
+    return detail;
   } catch (error) {
     console.warn("Using fallback product category detail due to:", error.message);
-    return STATIC_PRODUCT_CATEGORY_DETAILS[id] || { id, name: "", customers: [] };
+    const fallback = STATIC_PRODUCT_CATEGORY_DETAILS[id] || { id, name: "", customers: [] };
+    return {
+      ...fallback,
+      customers: sortBySequence(fallback.customers || []),
+    };
   }
 }
 
