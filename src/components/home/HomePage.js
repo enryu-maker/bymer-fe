@@ -10,8 +10,9 @@ import { QuoteRequestForm } from "../shared/QuoteRequestForm";
 // 1. HERO SECTION
 function Hero() {
   return (
-    <header className="relative w-full border-b border-[#e5e7eb] overflow-hidden bg-white min-h-[480px] sm:min-h-[540px] lg:min-h-[600px] flex items-center">
-      <div className="absolute inset-0 z-0 bg-white">
+    <header className="relative w-full border-b border-[#e5e7eb] overflow-hidden bg-white">
+      {/* Desktop map background */}
+      <div className="absolute inset-0 z-0 bg-white hidden lg:block">
         <Image
           src="/images/hero-global-map.png"
           alt=""
@@ -25,29 +26,43 @@ function Hero() {
       </div>
 
       <div
-        className="absolute inset-0 z-10 pointer-events-none"
+        className="absolute inset-0 z-10 pointer-events-none hidden lg:block"
         style={{
           background:
             "linear-gradient(90deg, #ffffff 0%, #ffffff 30%, rgba(255,255,255,0.95) 42%, rgba(255,255,255,0.6) 55%, rgba(255,255,255,0.15) 70%, rgba(255,255,255,0) 82%)",
         }}
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24 relative z-20 w-full">
-        <div className="flex flex-col items-start gap-5 sm:gap-6 max-w-xl pl-5 sm:pl-6 border-l-4 border-[#C75550]">
-          <h1 className="font-title text-4xl sm:text-5xl lg:text-[3.75rem] font-black uppercase text-[#1c1b1b] leading-[1.02] tracking-tight">
-            Bymer{" "}
-            <span className="text-[#C75550]">Elastomers</span>
-          </h1>
-          <div className="w-14 h-1 bg-[#fbbd05]" />
-          <p className="font-body text-base sm:text-lg lg:text-xl text-[#4b5563] leading-relaxed max-w-md">
-            We engineer reliable Elastomer Solutions
-          </p>
-          <Link
-            href="/about"
-            className="btn-black font-montserrat py-4 px-8 text-xs font-bold tracking-[0.15em] uppercase self-start mt-1"
-          >
-            Discover More <span className="font-sans text-sm">→</span>
-          </Link>
+      <div className="relative z-20 w-full max-w-7xl mx-auto">
+        <div className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-24 lg:min-h-[540px] flex flex-col justify-center">
+          <div className="flex flex-col items-start gap-4 sm:gap-5 w-full max-w-full lg:max-w-xl pl-4 sm:pl-5 border-l-4 border-[#C75550]">
+            <h1 className="font-title text-[1.75rem] leading-[1.05] sm:text-4xl md:text-5xl lg:text-[3.75rem] font-black uppercase text-[#1c1b1b] tracking-tight max-w-full break-words">
+              Bymer{" "}
+              <span className="text-[#C75550]">Elastomers</span>
+            </h1>
+            <div className="w-12 sm:w-14 h-1 bg-[#fbbd05]" />
+            <p className="font-body text-sm sm:text-lg lg:text-xl text-[#4b5563] leading-relaxed max-w-full pr-2">
+              We engineer reliable Elastomer Solutions
+            </p>
+            <Link
+              href="/about"
+              className="btn-black font-montserrat py-3.5 sm:py-4 px-6 sm:px-8 text-xs font-bold tracking-[0.15em] uppercase self-start mt-1"
+            >
+              Discover More <span className="font-sans text-sm">→</span>
+            </Link>
+          </div>
+        </div>
+
+        {/* Mobile / tablet map */}
+        <div className="relative w-full h-44 sm:h-52 lg:hidden bg-[#fafafa] border-t border-[#e5e7eb]">
+          <Image
+            src="/images/hero-global-map.png"
+            alt="Bymer Elastomers global reach from India"
+            fill
+            unoptimized
+            sizes="100vw"
+            className="object-contain object-center px-2"
+          />
         </div>
       </div>
     </header>
@@ -63,28 +78,28 @@ function TopStatsBar() {
   }));
 
   return (
-    <section className="w-full bg-[#0a0a0a] text-[#f5f5f5] py-12 border-b border-[#111111]">
+    <section className="w-full bg-[#0a0a0a] text-[#f5f5f5] py-10 sm:py-12 border-b border-[#111111] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-8 gap-x-6">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-6 sm:gap-y-8 sm:gap-x-6">
           {stats.map((stat, idx) => (
-            <div 
-              key={stat.label} 
-              className={`flex items-center gap-4 py-2 w-full justify-start pl-6 sm:pl-10 lg:pl-16 ${
-                idx > 0 ? "lg:border-l lg:border-[#1f2937] lg:pl-16" : ""
+            <div
+              key={stat.label}
+              className={`flex items-start gap-2 sm:gap-4 py-1 sm:py-2 w-full min-w-0 ${
+                idx > 0 ? "lg:border-l lg:border-[#1f2937] lg:pl-10 xl:pl-16" : ""
               } ${
-                idx === 1 || idx === 3 ? "sm:border-l sm:border-[#1f2937] sm:pl-10 lg:border-l lg:border-[#1f2937]" : ""
-              } ${
-                idx === 2 ? "sm:border-l-0 lg:border-l lg:border-[#1f2937]" : ""
+                idx === 1 || idx === 3
+                  ? "max-lg:border-l max-lg:border-[#1f2937] max-lg:pl-3 sm:max-lg:pl-4"
+                  : ""
               }`}
             >
-              <div className="flex-shrink-0">
-                <i className={`${stat.icon} text-3xl sm:text-4xl text-[#fbbd05]`} />
+              <div className="shrink-0 pt-0.5">
+                <i className={`${stat.icon} text-2xl sm:text-3xl lg:text-4xl text-[#fbbd05]`} />
               </div>
-              <div className="flex flex-col items-start leading-tight">
-                <span className="font-title text-3xl sm:text-4xl font-black text-[#fbbd05] tracking-tight">
+              <div className="flex flex-col items-start leading-tight min-w-0">
+                <span className="font-title text-2xl sm:text-3xl lg:text-4xl font-black text-[#fbbd05] tracking-tight">
                   {stat.value}
                 </span>
-                <span className="font-montserrat text-[9px] sm:text-[10px] font-bold text-[#9ca3af] tracking-wider uppercase mt-0.5">
+                <span className="font-montserrat text-[8px] sm:text-[9px] lg:text-[10px] font-bold text-[#9ca3af] tracking-wide uppercase mt-0.5 leading-snug">
                   {stat.label}
                 </span>
               </div>

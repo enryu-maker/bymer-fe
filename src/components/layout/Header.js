@@ -126,8 +126,8 @@ export function Header() {
       {/* NAVBAR */}
       <nav className="w-full">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex h-20 items-center justify-between lg:grid lg:grid-cols-[auto_minmax(0,1fr)_auto] lg:items-center lg:gap-8">
-            <div className="flex shrink-0 items-center">
+          <div className="flex h-16 sm:h-20 items-center justify-between lg:grid lg:grid-cols-[auto_minmax(0,1fr)_auto] lg:items-center lg:gap-8">
+            <div className="flex min-w-0 shrink items-center">
               <Logo variant="header" />
             </div>
 
@@ -137,10 +137,10 @@ export function Header() {
               ))}
             </nav>
 
-            <div className="flex shrink-0 items-center justify-end gap-3 sm:gap-5">
+            <div className="flex shrink-0 items-center justify-end gap-2 sm:gap-3">
               <Link
                 href="/contact"
-                className="hidden sm:inline-flex btn-yellow font-montserrat text-[11px] xl:text-[12px] font-bold tracking-[0.15em] py-3 px-4 xl:py-3.5 xl:px-6 items-center gap-2 border border-[#111111] whitespace-nowrap"
+                className="hidden md:inline-flex btn-yellow font-montserrat text-[10px] xl:text-[12px] font-bold tracking-[0.15em] py-2.5 px-3 xl:py-3.5 xl:px-6 items-center gap-2 border border-[#111111] whitespace-nowrap"
               >
                 CONTACT US <span className="font-sans text-sm">→</span>
               </Link>
@@ -215,7 +215,7 @@ export function Header() {
                   </Link>
                 );
               })}
-              <div className="pt-4 pb-2 px-3 sm:hidden">
+              <div className="pt-4 pb-2 px-3 md:hidden">
                 <Link
                   href="/contact"
                   onClick={() => setIsOpen(false)}
