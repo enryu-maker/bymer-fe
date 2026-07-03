@@ -52,18 +52,6 @@ function Hero() {
             </Link>
           </div>
         </div>
-
-        {/* Mobile / tablet map */}
-        <div className="relative w-full h-44 sm:h-52 lg:hidden bg-[#fafafa] border-t border-[#e5e7eb]">
-          <Image
-            src="/images/hero-global-map.png"
-            alt="Bymer Elastomers global reach from India"
-            fill
-            unoptimized
-            sizes="100vw"
-            className="object-contain object-center px-2"
-          />
-        </div>
       </div>
     </header>
   );
