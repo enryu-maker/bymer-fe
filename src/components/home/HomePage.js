@@ -201,7 +201,7 @@ function InstitutionalQuality() {
           <div className="relative w-full aspect-[3/4] max-w-[500px] border border-[#C75550] p-4 bg-transparent">
             <div className="relative w-full h-full min-h-[350px]">
               <Image
-                src="/images/HomeCard.png"
+                src="/images/backgroundAbout.png"
                 alt="Bymer Elastomers Production"
                 fill
                 sizes="(max-w-md) 100vw, 500px"

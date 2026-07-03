@@ -5,24 +5,26 @@ import { OrganizationChartSection } from "./OrganizationChartSection";
 // 1. ABOUT HERO
 function AboutHero() {
   return (
-    <header className="relative w-full border-b border-[#e5e7eb] overflow-hidden bg-white min-h-[400px] sm:min-h-[450px] flex items-center">
+    <header className="relative w-full border-b border-[#e5e7eb] overflow-hidden bg-[#0a0a0a] min-h-[400px] sm:min-h-[450px] flex items-center">
       {/* Background Image Container */}
-      <div className="absolute inset-y-0 right-0 w-full lg:w-[65%] z-0">
-        <Image 
-          src="/images/backgroundAbout.png" 
-          alt="About Bymer Elastomers" 
+      <div className="absolute inset-y-0 right-0 w-full lg:w-[58%] z-0">
+        <Image
+          src="/images/backgroundAbout.png"
+          alt="Precision-engineered elastomer components and manufacturing"
           fill
-          sizes="100vw"
-          className="object-cover object-center filter grayscale opacity-45"
+          sizes="(max-width: 1024px) 100vw, 58vw"
+          className="object-cover object-center"
           priority
         />
+        <div className="absolute inset-0 border-l-4 border-[#C75550]/80 pointer-events-none" />
       </div>
 
       {/* Linear Gradient Overlay */}
-      <div 
-        className="absolute inset-0 z-10 pointer-events-none" 
+      <div
+        className="absolute inset-0 z-10 pointer-events-none"
         style={{
-          background: "linear-gradient(90deg, #ffffff 0%, #ffffff 35%, rgba(255, 255, 255, 0.7) 50%, rgba(255, 255, 255, 0) 80%)"
+          background:
+            "linear-gradient(90deg, #0a0a0a 0%, #0a0a0a 38%, rgba(10,10,10,0.92) 52%, rgba(10,10,10,0.55) 68%, rgba(10,10,10,0.15) 85%, rgba(10,10,10,0) 100%)",
         }}
       />
 
@@ -32,12 +34,18 @@ function AboutHero() {
           ABOUT US
         </span>
 
-        <h1 className="font-title text-4xl sm:text-5xl lg:text-6xl font-black uppercase text-[#1c1b1b] leading-[1.1] max-w-3xl tracking-tight">
-        Precision-Engineered Elastomer Solutions 
+        <h1 className="font-title text-4xl sm:text-5xl lg:text-6xl font-black uppercase text-white leading-[1.1] max-w-3xl tracking-tight">
+          Precision-Engineered Elastomer Solutions
         </h1>
 
-        <p className="font-body text-sm sm:text-base text-[#4b5563] max-w-2xl leading-relaxed mt-1">
-        Delivering precision elastomer solutions through decades of manufacturing expertise, certified quality, and engineering-driven innovation.
+        <p className="font-montserrat text-xs sm:text-sm font-bold text-[#fbbd05] uppercase tracking-[0.15em] max-w-2xl leading-relaxed">
+          Certified rubber components, custom compounds & manufacturing solutions for OEMs and
+          industrial applications
+        </p>
+
+        <p className="font-body text-sm sm:text-base text-[#9ca3af] max-w-2xl leading-relaxed mt-1">
+          Delivering precision elastomer solutions through decades of manufacturing expertise,
+          certified quality, and engineering-driven innovation.
         </p>
       </div>
     </header>
