@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { OrganizationChartSection } from "./OrganizationChartSection";
 
 // 1. ABOUT HERO
 function AboutHero() {
@@ -437,6 +438,9 @@ export function AboutPage() {
 
       {/* Team Section */}
       <TeamSection />
+
+      {/* Organization Chart */}
+      <OrganizationChartSection />
 
       {/* Commitment Banner */}
       {/* <CommitmentBanner /> */}

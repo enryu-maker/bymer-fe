@@ -15,6 +15,7 @@ import {
 } from "./staticData";
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL || "https://bymer.pythonanywhere.com";
+const ORG_API_BASE_URL = process.env.NEXT_PUBLIC_ORG_API_URL || BASE_URL;
 
 // Helper to handle absolute URL formatting for images served by Django
 export function formatImageUrl(url) {
@@ -23,6 +24,14 @@ export function formatImageUrl(url) {
     return url;
   }
   return `${BASE_URL}${url.startsWith("/") ? "" : "/"}${url}`;
+}
+
+export function formatOrgImageUrl(url) {
+  if (!url) return null;
+  if (url.startsWith("http://") || url.startsWith("https://")) {
+    return url;
+  }
+  return `${ORG_API_BASE_URL}${url.startsWith("/") ? "" : "/"}${url}`;
 }
 
 export async function fetchCompanyProfile() {
@@ -540,5 +549,34 @@ export async function submitCareerApplication(payload) {
   } catch (error) {
     console.error("Error submitting career form:", error.message);
     throw error;
+  }
+}
+
+export async function fetchOrgPlants() {
+  try {
+    const res = await fetch(`${ORG_API_BASE_URL}/api/org-plants/`, {
+      cache: "no-store",
+    });
+    if (!res.ok) throw new Error("Failed to fetch org plants");
+    const data = await res.json();
+    return Array.isArray(data) ? data : [];
+  } catch (error) {
+    console.warn("Failed to fetch org plants:", error.message);
+    return [];
+  }
+}
+
+export async function fetchOrgMemberTree(plantSlug) {
+  try {
+    const res = await fetch(
+      `${ORG_API_BASE_URL}/api/org-members/tree/?plant_slug=${encodeURIComponent(plantSlug)}`,
+      { cache: "no-store" }
+    );
+    if (!res.ok) throw new Error("Failed to fetch org tree");
+    const data = await res.json();
+    return Array.isArray(data) ? data : [];
+  } catch (error) {
+    console.warn("Failed to fetch org tree:", error.message);
+    return [];
   }
 }
