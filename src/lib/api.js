@@ -432,16 +432,18 @@ export async function fetchMachineryById(id) {
 export async function fetchCertifications() {
   try {
     const res = await fetch(`${BASE_URL}/api/certifications/`, {
-      next: { revalidate: 3600 },
+      cache: "no-store",
     });
     if (!res.ok) throw new Error("Failed to fetch certifications");
     const data = await res.json();
     const results = data.results || data;
     if (Array.isArray(results)) {
-      return results.map((cert) => ({
-        ...cert,
-        image: cert.image ? formatImageUrl(cert.image) : null,
-      }));
+      return results
+        .map((cert) => ({
+          ...cert,
+          image: cert.image ? formatImageUrl(cert.image) : null,
+        }))
+        .sort((a, b) => (a.id ?? 0) - (b.id ?? 0));
     }
     return STATIC_CERTIFICATIONS;
   } catch (error) {

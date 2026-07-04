@@ -173,11 +173,11 @@ function CertificationsSection({ certifications }) {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
           {certifications.map((cert) => (
             <div
               key={cert.id}
-              className="bg-white border border-[#e5e7eb] p-4 flex flex-col items-center gap-4"
+              className="bg-white border border-[#e5e7eb] p-3 sm:p-4 flex flex-col items-center gap-3 sm:gap-4"
             >
               <div className="relative w-full aspect-[3/4] bg-[#f9fafb] border border-[#e5e7eb]">
                 {cert.image ? (
@@ -185,8 +185,9 @@ function CertificationsSection({ certifications }) {
                     src={cert.image}
                     alt={cert.name}
                     fill
-                    sizes="(max-width: 640px) 100vw, 280px"
-                    className="object-contain p-3"
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 280px"
+                    className="object-contain p-2 sm:p-3"
+                    unoptimized
                   />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center text-[#9ca3af]">
@@ -194,7 +195,7 @@ function CertificationsSection({ certifications }) {
                   </div>
                 )}
               </div>
-              <span className="font-montserrat text-[11px] sm:text-xs font-bold text-[#1c1b1b] tracking-wider uppercase text-center leading-snug">
+              <span className="font-montserrat text-[10px] sm:text-[11px] font-bold text-[#1c1b1b] tracking-wider uppercase text-center leading-snug">
                 {cert.name}
               </span>
             </div>
