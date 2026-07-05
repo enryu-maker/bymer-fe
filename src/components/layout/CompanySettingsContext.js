@@ -1,37 +1,20 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect } from "react";
-import { fetchCompanyProfile, fetchSocialLinks } from "@/lib/api";
+import React, { createContext, useContext } from "react";
+import { STATIC_COMPANY_PROFILE, STATIC_SOCIAL_LINKS } from "@/lib/staticData";
 
 const CompanySettingsContext = createContext(null);
 
 export function CompanySettingsProvider({ children }) {
-  const [profile, setProfile] = useState(null);
-  const [socialLinks, setSocialLinks] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    async function loadSettings() {
-      try {
-        const [profileData, socialLinksData] = await Promise.all([
-          fetchCompanyProfile(),
-          fetchSocialLinks(),
-        ]);
-        setProfile(profileData);
-        setSocialLinks(socialLinksData);
-      } catch (err) {
-        console.error("Failed to load company global settings:", err);
-        setError(err);
-      } finally {
-        setLoading(false);
-      }
-    }
-    loadSettings();
-  }, []);
-
   return (
-    <CompanySettingsContext.Provider value={{ profile, socialLinks, loading, error }}>
+    <CompanySettingsContext.Provider
+      value={{
+        profile: STATIC_COMPANY_PROFILE,
+        socialLinks: STATIC_SOCIAL_LINKS,
+        loading: false,
+        error: null,
+      }}
+    >
       {children}
     </CompanySettingsContext.Provider>
   );

@@ -24,7 +24,7 @@ function WhoWeAre() {
           {/* Right Column: Paragraphs & Certificates (7 cols) */}
           <div className="lg:col-span-7 flex flex-col items-start text-left">
             <p className="font-body text-base sm:text-lg font-semibold text-[#1c1b1b] leading-relaxed mb-6">
-            Certified Rubber Components, Custom Compounds & Manufacturing Solutions for OEMs and Industrial Applications.
+            Certified Rubber Components, Custom Compounds & Manufacturing Solutions for <span >OEMs</span>  and Industrial Applications.
             </p>
             
             <p className="font-body text-sm sm:text-base text-[#4b5563] leading-relaxed mb-6">

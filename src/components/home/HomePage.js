@@ -177,7 +177,7 @@ function InstitutionalQuality() {
           </h2>
 
           <p className="font-montserrat text-xs sm:text-sm font-bold text-[#fbbd05] uppercase tracking-wider leading-relaxed max-w-xl">
-          Certified Rubber Components, Custom Rubber Compounds & Manufacturing Solutions for OEMs and Industrial Applications
+          Certified Rubber Components, Custom Rubber Compounds & Manufacturing Solutions for <span>OEMs</span>  and Industrial Applications
           </p>
           
           <div className="flex flex-col gap-4 font-body text-xs sm:text-sm text-[#9ca3af] leading-relaxed max-w-xl">

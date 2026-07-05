@@ -1,6 +1,4 @@
 import {
-  STATIC_COMPANY_PROFILE,
-  STATIC_SOCIAL_LINKS,
   STATIC_STATISTICS,
   STATIC_CLIENTS,
   STATIC_CATEGORIES,
@@ -41,71 +39,6 @@ export function sortBySequence(items = []) {
     if (seqA !== seqB) return seqA - seqB;
     return 0;
   });
-}
-
-export async function fetchCompanyProfile() {
-  try {
-    const res = await fetch(`${BASE_URL}/api/globals/company-profile/`, {
-      next: { revalidate: 3600 }, // Cache for 1 hour in Next.js
-    });
-    if (!res.ok) throw new Error("Failed to fetch company profile");
-    const data = await res.json();
-    return {
-      ...data,
-      logo_url: data.logo_url ? formatImageUrl(data.logo_url) : null,
-    };
-  } catch (error) {
-    console.warn("Using fallback company profile due to:", error.message);
-    return STATIC_COMPANY_PROFILE;
-  }
-}
-
-const SOCIAL_URL_OVERRIDES = {
-  linkedin: "https://www.linkedin.com/company/bymer-elastomers/",
-  instagram: "https://www.instagram.com/bymer_elastomers?igsh=MWNwczR6NHJvdW1yMA==",
-  youtube: "https://www.youtube.com/@AltafSayyed-BYMER",
-};
-
-function applySocialLinkOverrides(links) {
-  if (!Array.isArray(links) || links.length === 0) return STATIC_SOCIAL_LINKS;
-
-  const updated = links.map((link) => {
-    const platform = link.platform?.toLowerCase() || "";
-    const overrideUrl = Object.entries(SOCIAL_URL_OVERRIDES).find(([key]) =>
-      platform.includes(key)
-    )?.[1];
-    return overrideUrl ? { ...link, url: overrideUrl } : link;
-  });
-
-  for (const [platform, url] of Object.entries(SOCIAL_URL_OVERRIDES)) {
-    if (!updated.some((link) => link.platform?.toLowerCase().includes(platform))) {
-      updated.push({
-        id: `social-${platform}`,
-        platform: platform.charAt(0).toUpperCase() + platform.slice(1),
-        url,
-      });
-    }
-  }
-
-  return updated;
-}
-
-export async function fetchSocialLinks() {
-  try {
-    const res = await fetch(`${BASE_URL}/api/globals/social-links/`, {
-      next: { revalidate: 3600 },
-    });
-    if (!res.ok) throw new Error("Failed to fetch social links");
-    const data = await res.json();
-    // Handle paginated responses or simple arrays
-    const results = data.results || data;
-    return applySocialLinkOverrides(
-      Array.isArray(results) ? results : STATIC_SOCIAL_LINKS
-    );
-  } catch (error) {
-    console.warn("Using fallback social links due to:", error.message);
-    return STATIC_SOCIAL_LINKS;
-  }
 }
 
 export async function fetchStatistics() {
