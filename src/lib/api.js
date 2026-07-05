@@ -406,11 +406,36 @@ export async function fetchMachinery(plantId = null) {
     const data = await res.json();
     const results = data.results || data;
     if (Array.isArray(results)) {
-      return results.map((mach) => normalizeMachinery(mach));
+      return sortBySequence(results.map((mach) => normalizeMachinery(mach)));
     }
     return [];
   } catch (error) {
     console.warn("Failed to fetch machinery:", error.message);
+    return [];
+  }
+}
+
+export async function fetchQAMachinery() {
+  try {
+    const plants = await fetchMachineryPlants();
+    const qaPlant = plants.find((plant) => plant.name?.trim().toLowerCase() === "qa");
+    if (!qaPlant?.id) {
+      console.warn("QA plant not found in machinery plants");
+      return [];
+    }
+
+    const res = await fetch(`${BASE_URL}/api/machinery/?plant=${qaPlant.id}`, {
+      cache: "no-store",
+    });
+    if (!res.ok) throw new Error("Failed to fetch QA machinery");
+    const data = await res.json();
+    const results = data.results || data;
+    if (Array.isArray(results)) {
+      return sortBySequence(results.map((mach) => normalizeMachinery(mach)));
+    }
+    return [];
+  } catch (error) {
+    console.warn("Failed to fetch QA machinery:", error.message);
     return [];
   }
 }
@@ -438,12 +463,12 @@ export async function fetchCertifications() {
     const data = await res.json();
     const results = data.results || data;
     if (Array.isArray(results)) {
-      return results
-        .map((cert) => ({
+      return sortBySequence(
+        results.map((cert) => ({
           ...cert,
           image: cert.image ? formatImageUrl(cert.image) : null,
         }))
-        .sort((a, b) => (a.id ?? 0) - (b.id ?? 0));
+      );
     }
     return STATIC_CERTIFICATIONS;
   } catch (error) {
@@ -461,10 +486,12 @@ export async function fetchAwards() {
     const data = await res.json();
     const results = data.results || data;
     if (Array.isArray(results)) {
-      return results.map((award) => ({
-        ...award,
-        image: award.image ? formatImageUrl(award.image) : null,
-      }));
+      return sortBySequence(
+        results.map((award) => ({
+          ...award,
+          image: award.image ? formatImageUrl(award.image) : null,
+        }))
+      );
     }
     return STATIC_AWARDS;
   } catch (error) {

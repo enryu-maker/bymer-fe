@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ContactBanner } from "../layout/ContactBanner";
+import { PageHeroCarousel } from "../shared/PageHeroCarousel";
+import { getMachineryHref } from "@/lib/api";
 
 const TESTING_CAPABILITIES = [
   { name: "Rheological Analysis", icon: "fa-solid fa-chart-line" },
@@ -14,24 +16,6 @@ const TESTING_CAPABILITIES = [
   { name: "Hardness Testing", icon: "fa-solid fa-hammer" },
   { name: "Material Characterization & Validation", icon: "fa-solid fa-flask" },
 ];
-
-function QualityHero() {
-  return (
-    <header className="relative w-full border-b border-[#e5e7eb] overflow-hidden bg-[#0a0a0a] min-h-[320px] sm:min-h-[380px] flex items-center justify-center">
-      <div className="absolute inset-0 bg-[#0a0a0a]/90 z-10 pointer-events-none" />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-20 flex flex-col items-center gap-4">
-        <span className="font-montserrat text-xs sm:text-sm font-bold tracking-[0.2em] text-[#9ca3af] uppercase leading-none">
-          Quality Assurance at Bymer Elastomers
-        </span>
-        <h1 className="font-title text-4xl sm:text-5xl lg:text-6xl font-black uppercase text-white tracking-tight leading-[1.1] max-w-4xl">
-          Precision. Consistency. Reliability.
-        </h1>
-        <div className="w-16 h-[4px] bg-[#fbbd05] mt-1" />
-      </div>
-    </header>
-  );
-}
 
 function QualityIntro() {
   return (
@@ -160,54 +144,75 @@ function TestingCapabilitiesSection() {
   );
 }
 
-function CertificationsSection({ certifications }) {
+function QAMachinerySection({ machinery }) {
   return (
     <section className="w-full py-16 sm:py-20 bg-[#0a0a0a] border-t border-[#111111]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center justify-center text-center mb-10">
           <span className="font-montserrat text-xs sm:text-sm font-bold text-[#fbbd05] uppercase tracking-[0.2em] mb-2">
-            CERTIFIED SYSTEMS
+            Quality Laboratory
           </span>
           <h2 className="font-title text-2xl sm:text-3xl font-black text-white uppercase tracking-tight">
-            INTERNATIONALLY RECOGNIZED QUALITY MANAGEMENT
+            QA Plant — Testing &amp; Validation Equipment
           </h2>
+          <p className="font-body text-xs sm:text-sm text-[#9ca3af] max-w-2xl mt-3 leading-relaxed">
+            Laboratory and testing machinery from our dedicated QA plant, sorted by display sequence.
+          </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
-          {certifications.map((cert) => (
-            <div
-              key={cert.id}
-              className="bg-white border border-[#e5e7eb] p-3 sm:p-4 flex flex-col items-center gap-3 sm:gap-4"
-            >
-              <div className="relative w-full aspect-[3/4] bg-[#f9fafb] border border-[#e5e7eb]">
-                {cert.image ? (
+        {machinery.length > 0 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {machinery.map((machine) => (
+              <Link
+                key={machine.id}
+                href={getMachineryHref(machine.id)}
+                className="group relative block w-full aspect-[4/3] overflow-hidden border border-[#e5e7eb] bg-[#f3f4f6] transition-all duration-300 hover:border-[#C75550]"
+              >
+                {machine.image ? (
                   <Image
-                    src={cert.image}
-                    alt={cert.name}
+                    src={machine.image}
+                    alt={machine.name}
                     fill
-                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 280px"
-                    className="object-contain p-2 sm:p-3"
+                    sizes="(max-width: 640px) 100vw, 33vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                     unoptimized
                   />
                 ) : (
-                  <div className="w-full h-full flex items-center justify-center text-[#9ca3af]">
-                    <i className="fa-solid fa-certificate text-3xl" />
+                  <div className="absolute inset-0 flex items-center justify-center font-montserrat text-xs text-[#9ca3af]">
+                    NO IMAGE
                   </div>
                 )}
-              </div>
-              <span className="font-montserrat text-[10px] sm:text-[11px] font-bold text-[#1c1b1b] tracking-wider uppercase text-center leading-snug">
-                {cert.name}
-              </span>
-            </div>
-          ))}
-        </div>
+
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/90 via-[#0a0a0a]/35 to-transparent" />
+
+                <div className="absolute inset-0 flex flex-col justify-end p-5">
+                  <h3 className="font-title text-sm sm:text-base font-black text-white uppercase leading-snug tracking-tight">
+                    {machine.name}
+                  </h3>
+                  {machine.plantName && (
+                    <span className="font-montserrat text-[10px] font-bold text-[#fbbd05] uppercase tracking-wider mt-2">
+                      {machine.plantName}
+                    </span>
+                  )}
+                </div>
+              </Link>
+            ))}
+          </div>
+        ) : (
+          <div className="bg-white border border-[#e5e7eb] py-16 px-6 text-center">
+            <i className="fa-solid fa-microscope text-3xl text-[#C75550] mb-4" />
+            <p className="font-body text-sm sm:text-base text-[#4b5563] leading-relaxed max-w-md mx-auto">
+              Quality assurance equipment will be displayed here once published.
+            </p>
+          </div>
+        )}
 
         <div className="flex justify-center mt-10">
           <Link
             href="/contact"
             className="inline-flex items-center justify-center bg-[#C75550] text-white px-8 py-3.5 font-title text-sm font-bold uppercase tracking-wider transition-all duration-200 hover:bg-[#b54a46] rounded-none gap-2"
           >
-            Discuss your application  <span className="font-sans text-sm">→</span>
+            Discuss your application <span className="font-sans text-sm">→</span>
           </Link>
         </div>
       </div>
@@ -215,15 +220,20 @@ function CertificationsSection({ certifications }) {
   );
 }
 
-export function QualityPage({ certifications = [] }) {
+export function QualityPage({ machinery = [] }) {
   return (
     <div className="min-h-screen flex flex-col bg-white">
-      <QualityHero />
+      <PageHeroCarousel
+        eyebrow="Quality Assurance at Bymer Elastomers"
+        eyebrowMuted
+        title="Precision. Consistency. Reliability."
+        showDivider
+      />
       <QualityIntro />
       <EngineeringConfidenceSection />
       <AdvancedTestingSection />
       <TestingCapabilitiesSection />
-      <CertificationsSection certifications={certifications} />
+      <QAMachinerySection machinery={machinery} />
       <ContactBanner />
     </div>
   );

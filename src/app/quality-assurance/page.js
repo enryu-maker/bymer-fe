@@ -1,6 +1,6 @@
 import { PageShell } from "@/components/layout/PageShell";
 import { QualityPage } from "@/components/quality/QualityPage";
-import { fetchCertifications } from "@/lib/api";
+import { fetchQAMachinery } from "@/lib/api";
 
 export const metadata = {
   title: "Quality Assurance | Bymer Elastomers",
@@ -9,11 +9,11 @@ export const metadata = {
 };
 
 export default async function QualityAssurance() {
-  const certifications = await fetchCertifications();
+  const machinery = await fetchQAMachinery();
 
   return (
     <PageShell>
-      <QualityPage certifications={certifications} />
+      <QualityPage machinery={machinery} />
     </PageShell>
   );
 }

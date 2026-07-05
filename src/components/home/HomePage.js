@@ -112,19 +112,19 @@ function Capabilities() {
       title: "ELASTOMER EXPERTISE",
       icon: "fa-solid fa-flask",
       description:
-        "60 years of technical leadership in rubber technology. Deep material knowledge across NR, NBR, EPDM, silicone, FKM, HNBR, and speciality grades with in-house compound development capability enabling formulation matched to application requirements."
+      "60 years of technical leadership in rubber technology. Deep material knowledge across NR, NBR, EPDM, Silicone, FKM, HNBR, ACM, AEM, Chloroprene, and speciality elastomer grades, with in-house compound development capability enabling formulations precisely matched to application requirements."
     },
     {
       title: "OEM & INDUSTRIAL PARTNERSHIP",
       icon: "fa-solid fa-handshake",
       description:
-        "We work closely with OEMs and industrial manufacturers from concept to production, delivering responsive support, technical collaboration, and long-term manufacturing reliability.",
+"We work closely with OEMs, Tier 1/ Tier 2 suppliers, and industrial manufacturers from concept to production, delivering responsive support, technical collaboration, and long-term manufacturing reliability."
     },
     {
       title: "CERTIFIED QUALITY SYSTEMS",
       icon: "fa-solid fa-certificate",
       description:
-        "Our IATF 16949:2016, ISO 9001:2015, and ISO 14001:2015 certified processes guarantee traceability, consistency, compliance, and manufacturing excellence in line with global standards.",
+"Our ISO 9001:2015, ISO 14001:2015, ISO 45001:2018, and IATF 16949:2016 certified processes guarantee traceability, consistency, compliance, and manufacturing excellence in line with global standards."
     },
   ];
 
@@ -152,7 +152,7 @@ function Capabilities() {
                 </h3>
               </div>
 
-              <p className="font-body text-sm text-[#4b5563] leading-relaxed">
+              <p className="font-body text-justify text-xs sm:text-sm text-[#4b5563] leading-relaxed">
                 {card.description}
               </p>
             </div>
@@ -177,24 +177,18 @@ function InstitutionalQuality() {
           </h2>
 
           <p className="font-montserrat text-xs sm:text-sm font-bold text-[#fbbd05] uppercase tracking-wider leading-relaxed max-w-xl">
-          Certified Rubber Components, Custom Compounds & Manufacturing Solutions for OEMs and Industrial Applications
+          Certified Rubber Components, Custom Rubber Compounds & Manufacturing Solutions for OEMs and Industrial Applications
           </p>
           
           <div className="flex flex-col gap-4 font-body text-xs sm:text-sm text-[#9ca3af] leading-relaxed max-w-xl">
             <p>
-              Bymer Elastomers is a certified elastomer manufacturer specializing in custom rubber
-              components, rubber-to-metal bonded products, extruded rubber profiles, industrial hoses,
-              and custom rubber compounds.
+            Bymer Elastomers is a certified elastomer manufacturer specializing in custom rubber components, rubber-to-metal bonded products, extruded rubber profiles, low-pressure industrial hoses, and custom rubber compounds.
             </p>
             <p>
-              Bymer has two manufacturing units with a combined area of 45,000 sq. ft. at Nashik,
-              India. We supply OEMs, automotive manufacturers, industrial equipment companies, and
-              engineering firms across domestic and international markets.
+            Bymer has two manufacturing units with a combined area of 45,000 sq. ft. at Nashik, India. We supply OEMs, Tier 1 and Tier 2 suppliers, automotive manufacturers, industrial equipment companies, electrical and switchgear companies, and engineering firms across domestic and international markets.
             </p>
             <p>
-              Our IATF 16949:2016, ISO 9001:2015, and ISO 14001:2015 certified manufacturing
-              processes deliver consistent, reliable, and scalable production for performance-critical
-              applications.
+            Our IATF 16949:2016, ISO 9001:2015, ISO 14001:2015, and ISO 45001:2018 certified manufacturing processes deliver consistent, reliable, and scalable production for performance-critical applications.
             </p>
           </div>
         </div>
@@ -253,27 +247,28 @@ function JourneySection() {
       title: "MANUFACTURING LEGACY",
       icon: "fa-solid fa-landmark",
       items: [
-        "Established in 1983",
-        "40+ Years of manufacturing excellence",
-        "60+ Years of combined technical leadership",
+        "Established in 1978",
+        "40+ Years of Manufacturing Excellence",
+        "60+ Years of Combined Technical Leadership",
       ],
     },
     {
       title: "INFRASTRUCTURE & CAPACITY",
       icon: "fa-solid fa-industry",
       items: [
-        "45,000 Sq. Ft. manufacturing infrastructure",
-        "2 Manufacturing units",
-        "In-house compound development & mixing capability",
+        "45,000 Sq. Ft. Manufacturing Infrastructure",
+        "2 Manufacturing Units",
+        "In-house Compound Development & Mixing Capability",
+        "In-house testing capabilities",
       ],
     },
     {
       title: "CUSTOMER REACH",
       icon: "fa-solid fa-globe",
       items: [
-        "150+ customers across India and global markets",
-        "OEM & industrial manufacturing expertise",
-        "Long-term manufacturing partnerships",
+        "150+ Customers Across India and Global Markets",
+        "OEMs, Tier 1/Tier 2 Supplier Manufacturing Expertise",
+        "Long-term Manufacturing Partnerships",
       ],
     },
     {
@@ -283,6 +278,8 @@ function JourneySection() {
         "IATF 16949:2016 Certified",
         "ISO 9001:2015 Certified",
         "ISO 14001:2015 Certified",
+        "ISO 45001:2018 Certified",
+
       ],
     },
   ];

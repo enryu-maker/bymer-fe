@@ -53,15 +53,10 @@ export function Footer() {
     loadProductCategories();
   }, []);
 
-  const tagline =
-    profile?.tagline ||
-    "Bymer Elastomers engineers precision rubber and elastomer components for automotive, industrial and OEM applications. We are IATF 16949:2016, ISO 9001:2015 and ISO 14001:2015 certified and have been providing reliable solutions since 1983.";
-  const email = profile?.email || "sales@bymer.com";
-  const phone = profile?.phone || "+91 98220 79899";
-  const alternatePhone = profile?.alternate_phone || "+91 253 2381123";
-  const address =
-    profile?.address ||
-    "Plot No. J-46 & 47 MIDC Area,\nAmbad, Nashik 422010,\nMaharashtra, India.";
+  const email = "sales@bymer.com";
+  const phone = "+91 98220 79899";
+  const alternatePhone = "+91 253 2381123";
+  const address = "Plot No. J-52 & 47 MIDC Area,\nAmbad, Nashik 422010,\nMaharashtra, India.";
 
   const getSocialIcon = (platform) => {
     const p = platform.toLowerCase();
@@ -98,7 +93,7 @@ export function Footer() {
           <div className="sm:col-span-2 lg:col-span-4 flex flex-col gap-5">
             <Logo variant="footer" />
             <p className="font-body text-sm text-[#9ca3af] leading-relaxed max-w-md">
-              {tagline}
+            Delivering precision-engineered elastomer solutions with uncompromising quality since 1978. IATF 16949:2016, ISO 9001:2015, ISO 14001:2015, and ISO 45001:2018 certified.
             </p>
             <div className="flex items-center gap-5 pt-1">
               {socialLinks && socialLinks.length > 0 ? (

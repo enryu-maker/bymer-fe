@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { PageHeroCarousel } from "../shared/PageHeroCarousel";
 
 // 1. HISTORICAL MILESTONES DATA
 const HISTORICAL_MILESTONES = [
@@ -75,39 +76,7 @@ const LEADERSHIP_STAT_BOXES = [
   }
 ];
 
-// 3. HERO COMPONENT
-function HistoryHero() {
-  return (
-    <header className="relative w-full border-b border-[#e5e7eb] overflow-hidden bg-[#0a0a0a] min-h-[300px] sm:min-h-[350px] flex items-center justify-center">
-      {/* Background Image Container */}
-      <div className="absolute inset-0 z-0">
-        <Image 
-          src="/images/backgroundAbout.png" 
-          alt="Bymer Elastomers History Background" 
-          fill
-          sizes="100vw"
-          className="object-cover opacity-35 filter grayscale"
-          priority
-        />
-      </div>
-
-      {/* Dark semi-transparent overlay */}
-      <div className="absolute inset-0 bg-[#0a0a0a]/70 z-10 pointer-events-none" />
-
-      {/* Hero Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-20 flex flex-col items-center gap-3">
-        <span className="font-montserrat text-xs sm:text-sm font-bold tracking-[0.2em] text-[#9ca3af] uppercase leading-none">
-          HOME <span className="text-[#C75550]">/</span> HISTORY
-        </span>
-        <h1 className="font-title text-4xl sm:text-6xl font-black uppercase text-white tracking-tight leading-none">
-          OUR HISTORY
-        </h1>
-      </div>
-    </header>
-  );
-}
-
-// 4. MAIN HISTORY PAGE COMPONENT
+// 3. MAIN HISTORY PAGE COMPONENT
 export function HistoryPage() {
   const [activeTabIdx, setActiveTabIdx] = useState(0);
   const [activeChronologyIdx, setActiveChronologyIdx] = useState(0);
@@ -116,8 +85,15 @@ export function HistoryPage() {
   return (
     <div className="min-h-screen flex flex-col bg-white">
       
-      {/* History Hero */}
-      <HistoryHero />
+      <PageHeroCarousel
+        eyebrow={
+          <>
+            HOME <span className="text-[#C75550]">/</span> HISTORY
+          </>
+        }
+        eyebrowMuted
+        title="OUR HISTORY"
+      />
 
       {/* SECTION 1: TABS SELECTOR & ACTIVE DETAIL */}
       <main className="w-full py-16 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-white">

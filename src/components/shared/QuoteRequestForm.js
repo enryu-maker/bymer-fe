@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { submitQuoteInquiry } from "@/lib/api";
 
+const PRODUCT_REQUIREMENTS_MAX_LENGTH = 1000;
+
 const INITIAL_QUOTE_FORM = {
   fullName: "",
   companyName: "",
@@ -39,7 +41,11 @@ export function QuoteRequestForm({
   const [error, setError] = useState(null);
 
   const handleChange = (field) => (event) => {
-    setFormState((current) => ({ ...current, [field]: event.target.value }));
+    let value = event.target.value;
+    if (field === "projectRequirements") {
+      value = value.slice(0, PRODUCT_REQUIREMENTS_MAX_LENGTH);
+    }
+    setFormState((current) => ({ ...current, [field]: value }));
   };
 
   const handleSubmit = async (event) => {
@@ -157,15 +163,25 @@ export function QuoteRequestForm({
             </QuoteField>
           </div>
 
-          <QuoteField label="Project Requirements" required>
+          <QuoteField label="Product Requirements" required>
             <textarea
               rows={4}
               placeholder="Describe application, performance requirements, quantities, standards..."
               required
+              maxLength={PRODUCT_REQUIREMENTS_MAX_LENGTH}
               value={formState.projectRequirements}
               onChange={handleChange("projectRequirements")}
               className={`${quoteInputClassName} resize-none`}
             />
+            <span
+              className={`font-montserrat text-[10px] font-bold tracking-wider text-right ${
+                formState.projectRequirements.length >= PRODUCT_REQUIREMENTS_MAX_LENGTH
+                  ? "text-[#C75550]"
+                  : "text-[#9ca3af]"
+              }`}
+            >
+              {formState.projectRequirements.length} / {PRODUCT_REQUIREMENTS_MAX_LENGTH}
+            </span>
           </QuoteField>
 
           <QuoteField label="Drawing Upload (Optional)">

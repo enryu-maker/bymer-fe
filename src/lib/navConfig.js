@@ -21,6 +21,7 @@ export const INSIGHTS_SUBMENU = [
   { name: "BLOGS", href: "/blog" },
   { name: "CAREERS", href: "/career" },
   { name: "AWARDS", href: "/awards" },
+  { name: "CERTIFICATIONS", href: "/certifications" },
   { name: "TESTIMONIALS", href: "/testimonials" },
 ];
 

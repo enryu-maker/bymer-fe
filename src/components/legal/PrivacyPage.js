@@ -1,3 +1,5 @@
+import { PageHeroCarousel } from "../shared/PageHeroCarousel";
+
 const PRIVACY_SECTIONS = [
   {
     title: "Information We Collect",
@@ -54,23 +56,6 @@ const PRIVACY_SECTIONS = [
   },
 ];
 
-function PrivacyHero() {
-  return (
-    <header className="relative w-full border-b border-[#e5e7eb] overflow-hidden bg-[#0a0a0a] min-h-[280px] sm:min-h-[320px] flex items-center justify-center">
-      <div className="absolute inset-0 bg-[#0a0a0a]/90 z-10 pointer-events-none" />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-20 flex flex-col items-center gap-3">
-        <span className="font-montserrat text-xs sm:text-sm font-bold tracking-[0.2em] text-[#9ca3af] uppercase leading-none">
-          LEGAL
-        </span>
-        <h1 className="font-title text-4xl sm:text-5xl lg:text-6xl font-black uppercase text-white tracking-tight leading-none">
-          PRIVACY POLICY
-        </h1>
-      </div>
-    </header>
-  );
-}
-
 function PrivacyContent() {
   return (
     <section className="w-full py-16 sm:py-20 bg-white">
@@ -126,7 +111,7 @@ function PrivacyContent() {
 export function PrivacyPage() {
   return (
     <div className="min-h-screen flex flex-col bg-white">
-      <PrivacyHero />
+      <PageHeroCarousel eyebrow="LEGAL" eyebrowMuted title="PRIVACY POLICY" />
       <PrivacyContent />
     </div>
   );

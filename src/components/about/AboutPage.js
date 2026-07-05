@@ -1,56 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
+import { PageHeroCarousel } from "../shared/PageHeroCarousel";
 import { OrganizationChartSection } from "./OrganizationChartSection";
-
-// 1. ABOUT HERO
-function AboutHero() {
-  return (
-    <header className="relative w-full border-b border-[#e5e7eb] overflow-hidden bg-[#0a0a0a] min-h-[400px] sm:min-h-[450px] flex items-center">
-      {/* Background Image Container */}
-      <div className="absolute inset-y-0 right-0 w-full lg:w-[58%] z-0">
-        <Image
-          src="/images/backgroundAbout.png"
-          alt="Precision-engineered elastomer components and manufacturing"
-          fill
-          sizes="(max-width: 1024px) 100vw, 58vw"
-          className="object-cover object-center"
-          priority
-        />
-        <div className="absolute inset-0 border-l-4 border-[#C75550]/80 pointer-events-none" />
-      </div>
-
-      {/* Linear Gradient Overlay */}
-      <div
-        className="absolute inset-0 z-10 pointer-events-none"
-        style={{
-          background:
-            "linear-gradient(90deg, #0a0a0a 0%, #0a0a0a 38%, rgba(10,10,10,0.92) 52%, rgba(10,10,10,0.55) 68%, rgba(10,10,10,0.15) 85%, rgba(10,10,10,0) 100%)",
-        }}
-      />
-
-      {/* Hero Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 relative z-20 w-full flex flex-col items-start gap-4">
-        <span className="font-montserrat text-xs sm:text-sm font-bold text-[#C75550] uppercase tracking-[0.2em]">
-          ABOUT US
-        </span>
-
-        <h1 className="font-title text-4xl sm:text-5xl lg:text-6xl font-black uppercase text-white leading-[1.1] max-w-3xl tracking-tight">
-          Precision-Engineered Elastomer Solutions
-        </h1>
-
-        <p className="font-montserrat text-xs sm:text-sm font-bold text-[#fbbd05] uppercase tracking-[0.15em] max-w-2xl leading-relaxed">
-          Certified rubber components, custom compounds & manufacturing solutions for OEMs and
-          industrial applications
-        </p>
-
-        <p className="font-body text-sm sm:text-base text-[#9ca3af] max-w-2xl leading-relaxed mt-1">
-          Delivering precision elastomer solutions through decades of manufacturing expertise,
-          certified quality, and engineering-driven innovation.
-        </p>
-      </div>
-    </header>
-  );
-}
 
 // 2. WHO WE ARE
 function WhoWeAre() {
@@ -77,11 +28,11 @@ function WhoWeAre() {
             </p>
             
             <p className="font-body text-sm sm:text-base text-[#4b5563] leading-relaxed mb-6">
-            Bymer Elastomers is a certified elastomer manufacturer specializing in custom rubber components, rubber-to-metal bonded products, extruded rubber profiles, industrial hoses, and custom rubber compound formulations. We serve OEMs, automotive manufacturers, industrial equipment companies, and engineering organizations in domestic and international markets.
+            Bymer Elastomers is a certified elastomer manufacturer specializing in custom rubber components, rubber-to-metal bonded products, extruded rubber profiles, low-pressure industrial hoses, and custom rubber compound formulations. We serve OEMs, Tier-1 and Tier-2 automotive manufacturers, industrial equipment companies, and switchgear & electrical companies in domestic and international markets.
             </p>
 
             <p className="font-body text-sm sm:text-base text-[#4b5563] leading-relaxed mb-10">
-            We operate two manufacturing facilities in Nashik, Maharashtra—with a combined area of 45,000 sq. ft.—housing component manufacturing and in-house compound development under a single certified production system. This integration gives us direct control over material formulation, process execution, and quality verification at every stage of production.
+            We operate two manufacturing facilities in Nashik, Maharashtra—with a combined area of 45,000 sq. ft.—housing component manufacturing, in-house compound development, and in-house testing capabilities under a single certified production system. This integration gives us direct control over material formulation, process execution, and quality verification at every stage of production.
             </p>
 
             {/* Certification Badges Grid */}
@@ -133,7 +84,7 @@ function MissionVision() {
             <h3 className="font-title text-2xl sm:text-3xl font-black text-[#1c1b1b] uppercase tracking-tight">
               OUR VISION
             </h3>
-            <div className="flex flex-col gap-4 font-body text-xs sm:text-sm text-[#4b5563] leading-relaxed">
+            <div className="flex flex-col text-justify gap-4 font-body text-xs sm:text-sm text-[#4b5563] leading-relaxed">
               <p>
               To be a globally trusted elastomer manufacturing partner, recognized for engineering excellence, manufacturing reliability, innovation, and sustainable growth. We aspire to set industry benchmarks in quality, process excellence, and customer partnership while creating lasting value for our customers, employees, and stakeholders across India and international markets.
 
@@ -149,7 +100,7 @@ function MissionVision() {
             <h3 className="font-title text-2xl sm:text-3xl font-black text-[#1c1b1b] uppercase tracking-tight">
               OUR MISSION
             </h3>
-            <div className="flex flex-col gap-4 font-body text-xs sm:text-sm text-[#4b5563] leading-relaxed">
+            <div className="flex text-justify flex-col gap-4 font-body text-xs sm:text-sm text-[#4b5563] leading-relaxed">
               <p>
               To deliver reliable elastomer solutions through engineering expertise, certified manufacturing systems, and continuous innovation. We are committed to helping OEMs and industrial manufacturers achieve consistent performance, operational reliability, and long-term value through custom rubber components, advanced compounds, and scalable production capabilities.
               </p>
@@ -290,7 +241,7 @@ function LeadershipCard({ name, title, imageSrc, imageAlt, bio }) {
         <span className="font-montserrat text-[10px] sm:text-xs font-bold text-[#9ca3af] tracking-wider uppercase">
           EXPERTISE & BACKGROUND:
         </span>
-        <p className="font-body text-xs sm:text-sm text-[#4b5563] leading-relaxed">{bio}</p>
+        <p className="font-body text-justify text-xs sm:text-sm text-[#4b5563] leading-relaxed">{bio}</p>
       </div>
     </div>
   );
@@ -319,7 +270,7 @@ function PillarsSection() {
             title="PARTNER / CEO"
             imageSrc="/images/Yezdi Patel.png"
             imageAlt="YEZDI PATEL"
-            bio="Mr. Yezdi Patel has more than 60 years of experience in rubber technology and manufacturing to his expertise in elastomer engineering, product development, and process excellence. A qualified rubber technologist from the University of Mumbai and a graduate of the Plastics and Rubber Institute, London, he continues to lead the technical development and strategic growth of Bymer Elastomers, driving the company's commitment to reliability, innovation and manufacturing excellence."
+            bio="Mr. Yezdi Patel has more than 60 years of experience in rubber technology and manufacturing, to his expertise in elastomer engineering, product development, and process excellence. A science graduate of the University of Mumbai and a qualified rubber technologist from the Plastics and Rubber Institute, London, he continues to lead the technical development and strategic growth of Bymer Elastomers, driving the company's commitment to reliability, innovation and manufacturing excellence."
           />
           <LeadershipCard
             name="RUZBEH PATEL"
@@ -430,7 +381,12 @@ export function AboutPage() {
   return (
     <div className="min-h-screen flex flex-col bg-white">
       {/* About Hero */}
-      <AboutHero />
+      <PageHeroCarousel
+        eyebrow="ABOUT US"
+        title="Precision-Engineered Elastomer Solutions"
+        subheading="Certified Rubber Components, Custom Rubber Compounds & Manufacturing Solutions for OEMs, Tier 1 & Tier 2 Suppliers and Industrial Applications"
+        description="Delivering precision elastomer solutions through decades of manufacturing expertise, certified quality and engineering-driven innovation."
+      />
 
       {/* Who We Are */}
       <WhoWeAre />

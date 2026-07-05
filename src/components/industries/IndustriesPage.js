@@ -1,6 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ContactBanner } from "../layout/ContactBanner";
+import { PageHeroCarousel } from "../shared/PageHeroCarousel";
 
 const INDUSTRIES = [
   {
@@ -77,34 +77,6 @@ const INDUSTRIES = [
   },
 ];
 
-function IndustriesHero() {
-  return (
-    <header className="relative w-full border-b border-[#e5e7eb] overflow-hidden min-h-[320px] sm:min-h-[380px] flex items-center justify-center">
-      <div className="absolute inset-0 z-0">
-        <Image
-          src="/images/backgroundMachinery.png"
-          alt="Industries served by Bymer Elastomers"
-          fill
-          sizes="100vw"
-          className="object-cover filter grayscale"
-          priority
-        />
-      </div>
-      <div className="absolute inset-0 bg-[#0a0a0a]/85 z-10 pointer-events-none" />
-
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-20 flex flex-col items-center gap-4">
-        <span className="font-montserrat text-xs sm:text-sm font-bold tracking-[0.2em] text-[#9ca3af] uppercase leading-none">
-          Industries We Serve
-        </span>
-        <h1 className="font-title text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black uppercase text-white tracking-tight leading-[1.1]">
-          Engineering Elastomer Solutions for Industries That Demand Reliability
-        </h1>
-        <div className="w-16 h-[4px] bg-[#fbbd05] mt-1" />
-      </div>
-    </header>
-  );
-}
-
 function IndustryCard({ industry }) {
   return (
     <article
@@ -134,24 +106,26 @@ function IndustryCard({ industry }) {
 export function IndustriesPage() {
   return (
     <div className="min-h-screen flex flex-col bg-white">
-      <IndustriesHero />
+      <PageHeroCarousel
+        eyebrow="Industries We Serve"
+        eyebrowMuted
+        title="Engineering Elastomer Solutions for Industries That Demand Reliability"
+        titleClassName="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl"
+        showDivider
+      />
 
       <section className="w-full py-16 sm:py-20 bg-white border-b border-[#e5e7eb]">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-6 text-center">
+        <div className="max-w-4xl text-center mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-6">
           <p className="font-body text-sm sm:text-base text-[#4b5563] leading-relaxed">
-            Every industry has unique performance requirements, operating conditions, and quality
-            expectations. Bymer Elastomers partners with OEMs and industrial manufacturers to develop
-            elastomer solutions that address application-specific challenges while ensuring
-            consistency, durability, and manufacturing reliability.
+          Every industry has unique performance requirements, operating conditions, and quality expectations. Bymer Elastomers partners with OEMs and industrial manufacturers to develop elastomer solutions that address application-specific challenges while ensuring consistency, durability, and manufacturing reliability.
           </p>
           <p className="font-body text-sm sm:text-base text-[#4b5563] leading-relaxed">
-            The industries may be different, but the expectations are the same: consistent quality,
-            reliable delivery, technical know-how and manufacturing capability.
+          The industries may be different, but the expectations are the same: consistent quality, reliable delivery, technical know-how, and manufacturing capability.
+
           </p>
           <p className="font-body text-sm sm:text-base text-[#4b5563] leading-relaxed">
-            We have decades of elastomer manufacturing experience and certified processes, in-house
-            compound development and scalable production capabilities. We support customers across a
-            wide range of sectors and changing application requirements.
+          We have decades of elastomer manufacturing experience and certified processes, in-house compound development, in-house testing capabilities and scalable production capabilities. We support customers across a wide range of sectors and changing application requirements.
+
           </p>
         </div>
       </section>

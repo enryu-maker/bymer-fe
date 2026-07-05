@@ -4,47 +4,30 @@ import { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ContactBanner } from "../layout/ContactBanner";
+import { PageHeroCarousel } from "../shared/PageHeroCarousel";
 import { PageLoader } from "../shared/PageLoader";
 import { getMachineryHref } from "@/lib/api";
 import { useMachineryCatalog } from "./MachineryCatalogContext";
 
 function MachineryHero({ plant }) {
   const isPlantII = plant === 2;
+
   return (
-    <header className="relative w-full border-b border-[#e5e7eb] overflow-hidden min-h-[300px] sm:min-h-[350px] flex items-center justify-center">
-      <div className="absolute inset-0 z-0">
-        <Image
-          src="/images/backgroundMachinery.png"
-          alt="Bymer Elastomers Factory Production Infrastructure Background"
-          fill
-          sizes="100vw"
-          className="object-cover filter grayscale"
-          priority
-        />
-      </div>
-
-      <div className="absolute inset-0 bg-[#0a0a0a]/90 z-10 pointer-events-none" />
-
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-20 flex flex-col items-center gap-3">
-        <span className="font-montserrat text-xs sm:text-sm font-bold tracking-[0.2em] text-[#9ca3af] uppercase leading-none">
-          HOME / MANUFACTURING / {isPlantII ? "PLANT II" : "PLANT I"}
-        </span>
-        <h1 className="font-title text-4xl sm:text-6xl font-black uppercase text-white tracking-tight leading-none mb-1">
-          OUR MANUFACTURING CAPABILITIES
-        </h1>
-        <p className="font-montserrat text-xs sm:text-sm font-bold text-[#fbbd05] uppercase tracking-wider">
-          {isPlantII ? "Plant II - In-House Compound Development & Material Engineering " : "Plant I - Precision Manufacturing for Elastomer Components"} 
-        </p>
-        <p className="font-body text-xs sm:text-sm text-[#9ca3af] max-w-xl leading-relaxed">
-          {
-            isPlantII
-            ? "Our dedicated compounding facility develops and processes custom elastomer compounds using advanced mixing technologies and controlled manufacturing processes. This enables us to deliver application-specific materials with consistent quality, reliable performance, and complete traceability for OEM and industrial applications."
-:"Our integrated manufacturing facility combines advanced molding technologies, precision production systems, and certified quality processes to manufacture custom rubber components, rubber-to-metal bonded parts, and elastomer solutions for OEM and industrial applications."
-          }
-
-        </p>
-      </div>
-    </header>
+    <PageHeroCarousel
+      eyebrow={`HOME / MANUFACTURING / ${isPlantII ? "PLANT II" : "PLANT I"}`}
+      eyebrowMuted
+      title="OUR MANUFACTURING CAPABILITIES"
+      subheading={
+        isPlantII
+          ? "Plant II - In-House Compound Development & Material Engineering "
+          : "Plant I - Precision Manufacturing for Elastomer Components"
+      }
+      description={
+        isPlantII
+          ? "Our dedicated compounding facility develops and processes custom elastomer compounds using advanced mixing technologies and controlled manufacturing processes. This enables us to deliver application-specific materials with consistent quality, reliable performance, and complete traceability for OEMs, Tier-1, Tier-2, and industrial applications."
+          : "Our integrated manufacturing facility combines advanced molding technologies, precision production systems, and certified quality processes to manufacture custom rubber components, rubber-to-metal bonded parts, and elastomer solutions for OEM, Tier-1, Tier-2, and industrial applications. "
+      }
+    />
   );
 }
 

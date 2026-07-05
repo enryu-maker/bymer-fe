@@ -1,24 +1,7 @@
 import Link from "next/link";
 import { ContactBanner } from "../layout/ContactBanner";
+import { PageHeroCarousel } from "../shared/PageHeroCarousel";
 import { ProcessStepsFlow } from "./ProcessStepsFlow";
-
-function ProcessHero() {
-  return (
-    <header className="relative w-full border-b border-[#e5e7eb] overflow-hidden bg-[#0a0a0a] min-h-[300px] sm:min-h-[340px] flex items-center justify-center">
-      <div className="absolute inset-0 bg-[#0a0a0a]/90 z-10 pointer-events-none" />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-20 flex flex-col items-center gap-3">
-        <span className="font-montserrat text-xs sm:text-sm font-bold tracking-[0.2em] text-[#9ca3af] uppercase leading-none">
-          Manufacturing Process
-        </span>
-        <h1 className="font-title text-4xl sm:text-5xl lg:text-6xl font-black uppercase text-white tracking-tight leading-[1.1] max-w-4xl">
-          From Design to Reliable Production
-        </h1>
-        <div className="w-16 h-[4px] bg-[#fbbd05] mt-1" />
-      </div>
-    </header>
-  );
-}
 
 function ProcessIntro() {
   return (
@@ -81,7 +64,12 @@ function ProcessCta() {
 export function ProcessPage() {
   return (
     <div className="min-h-screen flex flex-col bg-white">
-      <ProcessHero />
+      <PageHeroCarousel
+        eyebrow="Manufacturing Process"
+        eyebrowMuted
+        title="From Design to Reliable Production"
+        showDivider
+      />
       <ProcessIntro />
       <ProcessFlowSection />
       <ProcessCta />

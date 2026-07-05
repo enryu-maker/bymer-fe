@@ -4,37 +4,14 @@ import { useState } from "react";
 import Image from "next/image";
 import { ContactBanner } from "../layout/ContactBanner";
 import { ImageLightbox } from "../shared/ImageLightbox";
-
-function AwardsHero() {
-  return (
-    <header className="relative w-full border-b border-[#e5e7eb] overflow-hidden bg-[#0a0a0a] min-h-[280px] sm:min-h-[320px] flex items-center justify-center">
-      <div className="absolute inset-0 bg-[#0a0a0a]/90 z-10 pointer-events-none" />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-20 flex flex-col items-center gap-3">
-        <span className="font-montserrat text-xs sm:text-sm font-bold tracking-[0.2em] text-[#9ca3af] uppercase leading-none">
-          Recognition
-        </span>
-        <h1 className="font-title text-4xl sm:text-5xl lg:text-6xl font-black uppercase text-white tracking-tight leading-none">
-          Awards &amp; Achievements
-        </h1>
-        <div className="w-16 h-[4px] bg-[#fbbd05] mt-1" />
-        <p className="font-body text-xs sm:text-sm text-[#9ca3af] max-w-xl leading-relaxed mt-1">
-          Celebrating milestones in manufacturing excellence, quality leadership, and customer
-          partnership.
-        </p>
-      </div>
-    </header>
-  );
-}
+import { PageHeroCarousel } from "../shared/PageHeroCarousel";
 
 function AwardsIntro() {
   return (
     <section className="w-full py-16 sm:py-20 bg-white border-b border-[#e5e7eb]">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <p className="font-body text-sm sm:text-base lg:text-lg text-[#4b5563] leading-relaxed">
-          Our awards reflect the commitment of our teams to engineering discipline, certified
-          manufacturing systems, and consistent delivery of reliable elastomer solutions for OEM and
-          industrial customers.
+        Our awards reflect the commitment of our teams to engineering discipline, certified manufacturing systems, and consistent delivery of reliable elastomer solutions for OEMs, Tier-1, Tier-2, and industrial customers.
         </p>
       </div>
     </section>
@@ -141,7 +118,13 @@ function AwardsGrid({ awards }) {
 export function AwardsPage({ awards = [] }) {
   return (
     <div className="min-h-screen flex flex-col bg-white">
-      <AwardsHero />
+      <PageHeroCarousel
+        eyebrow="Recognition"
+        eyebrowMuted
+        title="Awards & Achievements"
+        showDivider
+        description="Celebrating milestones in manufacturing excellence, quality leadership, and customer partnership."
+      />
       <AwardsIntro />
       <AwardsGrid awards={awards} />
       <ContactBanner />

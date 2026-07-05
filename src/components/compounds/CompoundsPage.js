@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ContactBanner } from "../layout/ContactBanner";
+import { PageHeroCarousel } from "../shared/PageHeroCarousel";
 
 const TRUST_ITEMS = [
   { label: "In-House Compound Development", icon: "fa-solid fa-flask" },
@@ -27,12 +28,14 @@ const DEVELOPMENT_PROCESS = [
 ];
 
 const MATERIAL_FAMILIES = [
+  "AEM",
+  "ACM",
   "EPDM",
   "NBR",
   "Silicone",
   "HNBR",
   "FKM",
-  "Neoprene",
+  "Chloroprene",
   "Natural Rubber",
   "Custom Elastomer Compounds",
 ];
@@ -46,6 +49,7 @@ const PERFORMANCE_REQUIREMENTS = [
   { name: "Compression Set Performance", icon: "fa-solid fa-compress" },
   { name: "Abrasion Resistance", icon: "fa-solid fa-gear" },
   { name: "Conductive Properties", icon: "fa-solid fa-plug" },
+  { name : "Oil resistance", icon: "fa-solid fa-oil-can" },
 ];
 
 const TESTING_CAPABILITIES = [
@@ -57,6 +61,8 @@ const TESTING_CAPABILITIES = [
   { name: "Specific Gravity", icon: "fa-solid fa-scale-balanced" },
   { name: "Electrical Properties", icon: "fa-solid fa-bolt" },
   { name: "Chemical Resistance", icon: "fa-solid fa-flask-vial" },
+  {name : "Ozone Resistance Test", icon: "fa-solid fa-radiation" },
+  { name : "Low-temperature testing (up to - 60 degrees C)", icon: "fa-solid fa-temperature-low" },
 ];
 
 function SectionHeader({ eyebrow, title, description, light = false }) {
@@ -87,34 +93,6 @@ function SectionHeader({ eyebrow, title, description, light = false }) {
         </p>
       )}
     </div>
-  );
-}
-
-function CompoundsHero() {
-  return (
-    <header className="relative w-full border-b border-[#e5e7eb] overflow-hidden min-h-[320px] sm:min-h-[380px] flex items-center justify-center">
-      <div className="absolute inset-0 z-0">
-        <Image
-          src="/images/backgroundCompound.png"
-          alt="Bymer Elastomers compound development"
-          fill
-          sizes="100vw"
-          className="object-cover filter grayscale"
-          priority
-        />
-      </div>
-      <div className="absolute inset-0 bg-[#0a0a0a]/90 z-10 pointer-events-none" />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-20 flex flex-col items-center gap-4">
-        <span className="font-montserrat text-xs sm:text-sm font-bold tracking-[0.2em] text-[#9ca3af] uppercase leading-none">
-          Compound Engineering
-        </span>
-        <h1 className="font-title text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black uppercase text-white tracking-tight leading-[1.1] max-w-5xl">
-          Custom Elastomer Compounds Engineered Around Application Performance
-        </h1>
-        <div className="w-16 h-[4px] bg-[#fbbd05] mt-1" />
-      </div>
-    </header>
   );
 }
 
@@ -240,7 +218,7 @@ function MaterialFamiliesSection() {
         <SectionHeader
           eyebrow="Material Families"
           title="Elastomer Materials & Compound Expertise"
-          description="We formulate and manufacture application-specific elastomer compounds using EPDM, NBR, silicone, HNBR, FKM, neoprene, natural rubber and other specialty materials—engineered to meet the performance requirements of OEM and industrial applications."
+          description={"We formulate and manufacture application-specific elastomer compounds using EPDM, NBR, silicone, HNBR, FKM, AEM, ACM, chloroprene, natural rubber, and other specialty materials—engineered to meet the performance requirements of OEM and industrial applications"}
         />
 
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
@@ -277,7 +255,7 @@ function PerformanceRequirementsSection() {
               className="bg-white border border-[#e5e7eb] p-5 flex items-start gap-4 border-l-[3px] border-l-[#C75550] min-h-[100px]"
             >
               <i className={`${item.icon} text-[#C75550] text-lg flex-shrink-0 mt-0.5`} />
-              <span className="font-montserrat text-[10px] sm:text-[11px] font-bold text-[#1c1b1b] tracking-wider uppercase leading-snug">
+              <span className="font-montserrat text-xs sm:text-sm font-bold text-[#1c1b1b] tracking-wider uppercase leading-snug">
                 {item.name}
               </span>
             </div>
@@ -364,7 +342,13 @@ function CompoundsCta() {
 export function CompoundsPage() {
   return (
     <div className="min-h-screen flex flex-col bg-white">
-      <CompoundsHero />
+      <PageHeroCarousel
+        eyebrow="Compound Engineering"
+        eyebrowMuted
+        title="Custom Elastomer Compounds Engineered Around Application Performance"
+        titleClassName="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl"
+        showDivider
+      />
       <TrustBar />
       <EngineeringFoundation />
       <DevelopmentProcessSection />

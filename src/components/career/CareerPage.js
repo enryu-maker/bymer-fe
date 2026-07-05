@@ -1,34 +1,7 @@
 import Link from "next/link";
 import { CareerForm } from "./CareerForm";
 import { ContactBanner } from "../layout/ContactBanner";
-
-function CareerHero() {
-  return (
-    <header className="relative w-full border-b border-[#e5e7eb] overflow-hidden bg-[#0a0a0a] min-h-[300px] sm:min-h-[360px] flex items-center justify-center">
-      <div className="absolute inset-0 bg-[#0a0a0a]/90 z-10 pointer-events-none" />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-20 flex flex-col items-center gap-4">
-        <span className="font-montserrat text-xs sm:text-sm font-bold tracking-[0.2em] text-[#9ca3af] uppercase leading-none">
-          Careers
-        </span>
-        <h1 className="font-title text-4xl sm:text-5xl lg:text-6xl font-black uppercase text-white tracking-tight leading-[1.1] max-w-4xl">
-          Build the Future with Bymer
-        </h1>
-        <div className="w-16 h-[4px] bg-[#fbbd05] mt-1" />
-        <p className="font-body text-sm sm:text-base text-[#9ca3af] max-w-2xl leading-relaxed">
-          Join a team committed to engineering excellence, manufacturing innovation, and continuous
-          growth.
-        </p>
-        <Link
-          href="#career-form"
-          className="inline-flex items-center justify-center bg-[#C75550] text-white px-8 py-3.5 font-title text-sm font-bold uppercase tracking-wider transition-all duration-200 hover:bg-[#b54a46] rounded-none gap-2 mt-2"
-        >
-          Apply Now <span className="font-sans text-sm">→</span>
-        </Link>
-      </div>
-    </header>
-  );
-}
+import { PageHeroCarousel } from "../shared/PageHeroCarousel";
 
 function CareerFormSection() {
   return (
@@ -62,7 +35,20 @@ function CareerFormSection() {
 export function CareerPage() {
   return (
     <div className="min-h-screen flex flex-col bg-white">
-      <CareerHero />
+      <PageHeroCarousel
+        eyebrow="Careers"
+        eyebrowMuted
+        title="Build the Future with Bymer"
+        showDivider
+        description="Join a team committed to engineering excellence, manufacturing innovation, and continuous growth."
+      >
+        <Link
+          href="#career-form"
+          className="inline-flex items-center justify-center bg-[#C75550] text-white px-8 py-3.5 font-title text-sm font-bold uppercase tracking-wider transition-all duration-200 hover:bg-[#b54a46] rounded-none gap-2 mt-2"
+        >
+          Apply Now <span className="font-sans text-sm">→</span>
+        </Link>
+      </PageHeroCarousel>
       <CareerFormSection />
       <ContactBanner />
     </div>

@@ -1,50 +1,18 @@
 "use client";
 
-import Image from "next/image";
 import { ContactForm } from "./ContactForm";
+import { PageHeroCarousel } from "../shared/PageHeroCarousel";
 import { useCompanySettings } from "../layout/CompanySettingsContext";
-
-// 1. CONTACT HERO
-function ContactHero() {
-  return (
-    <header className="relative w-full border-b border-[#e5e7eb] overflow-hidden bg-[#0a0a0a] min-h-[300px] sm:min-h-[350px] flex items-center justify-center">
-      {/* Background Image Container */}
-      <div className="absolute inset-0 z-0">
-        <Image 
-          src="/images/backgroundContact.png" 
-          alt="Contact Bymer Elastomers" 
-          fill
-          sizes="100vw"
-          className="object-cover filter grayscale"
-          priority
-        />
-      </div>
-
-      {/* Dark semi-transparent overlay */}
-      <div className="absolute inset-0 bg-[#0a0a0a]/70 z-10 pointer-events-none" />
-
-      {/* Banner Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-20 flex flex-col items-center gap-3">
-        <span className="font-montserrat text-xs sm:text-sm font-bold tracking-[0.2em] text-[#9ca3af] uppercase leading-none">
-          HOME / CONTACT
-        </span>
-        <h1 className="font-title text-4xl sm:text-6xl font-black uppercase text-white tracking-tight leading-none">
-          CONTACT US
-        </h1>
-      </div>
-    </header>
-  );
-}
 
 // 2. CONTACT DETAILS (INFO CARDS)
 function ContactDetails() {
   const { profile } = useCompanySettings();
 
-  const email = profile?.email || "sales@bymer.com";
-  const altEmail = profile?.alternate_phone ? "info@bymer.com" : null;
-  const phone = profile?.phone || "+91 253 2381123";
-  const altPhone = profile?.alternate_phone || "+91 98220 79859";
-  const address = profile?.address || "Plot No. J-52 and J-42, MIDC Industrial Area, Ambad, Nashik - 422 010, Maharashtra, India.";
+  const email =  "sales@bymer.com";
+  const altEmail = "info@bymer.com";
+  const phone = "+91 253 2381123";
+  const altPhone =  "+91 98220 79859";
+  const address = "Plot No. J-52 and J-42, MIDC Industrial Area, Ambad, Nashik - 422 010, Maharashtra, India.";
 
   return (
     <section className="w-full py-20 sm:py-24 bg-[#f5f5f5] border-b border-[#e5e7eb]">
@@ -133,7 +101,11 @@ export function ContactPage() {
   return (
     <div className="min-h-screen flex flex-col bg-white">
       {/* Contact Hero */}
-      <ContactHero />
+      <PageHeroCarousel
+        eyebrow="HOME / CONTACT"
+        eyebrowMuted
+        title="CONTACT US"
+      />
 
       {/* Contact Details (Info Cards) */}
       <ContactDetails />
