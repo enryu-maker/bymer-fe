@@ -6,6 +6,7 @@ import Link from "next/link";
 import { fetchClients } from "@/lib/api";
 import { STATIC_STATISTICS } from "@/lib/staticData";
 import { QuoteRequestForm } from "../shared/QuoteRequestForm";
+import { HeroImageCarousel } from "../shared/HeroImageCarousel";
 
 // 1. HERO SECTION
 function Hero() {
@@ -193,19 +194,10 @@ function InstitutionalQuality() {
           </div>
         </div>
 
-        {/* Right Column: Image (6 cols) */}
+        {/* Right Column: Image carousel (6 cols) */}
         <div className="lg:col-span-6 flex justify-center items-center py-4 w-full">
           <div className="relative w-full aspect-[3/4] max-w-[500px] border border-[#C75550] p-4 bg-transparent">
-            <div className="relative w-full h-full min-h-[350px]">
-              <Image
-                src="/images/backgroundAbout.png"
-                alt="Bymer Elastomers Production"
-                fill
-                sizes="(max-w-md) 100vw, 500px"
-                className="object-cover"
-                priority
-              />
-            </div>
+            <HeroImageCarousel priority />
           </div>
         </div>
 
