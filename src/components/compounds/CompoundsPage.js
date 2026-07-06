@@ -50,6 +50,7 @@ const PERFORMANCE_REQUIREMENTS = [
   { name: "Abrasion Resistance", icon: "fa-solid fa-gear" },
   { name: "Conductive Properties", icon: "fa-solid fa-plug" },
   { name : "Oil resistance", icon: "fa-solid fa-oil-can" },
+  { name : "Ozone Resistance", icon: "fa-solid fa-radiation" },
 ];
 
 const TESTING_CAPABILITIES = [

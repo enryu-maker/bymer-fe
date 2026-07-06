@@ -25,7 +25,7 @@ function MachineryHero({ plant }) {
       description={
         isPlantII
           ? "Our dedicated compounding facility develops and processes custom elastomer compounds using advanced mixing technologies and controlled manufacturing processes. This enables us to deliver application-specific materials with consistent quality, reliable performance, and complete traceability for OEMs, Tier-1, Tier-2, and industrial applications."
-          : "Our integrated manufacturing facility combines advanced molding technologies, precision production systems, and certified quality processes to manufacture custom rubber components, rubber-to-metal bonded parts, and elastomer solutions for OEM, Tier-1, Tier-2, and industrial applications. "
+          : "Our integrated manufacturing facility combines advanced molding technologies, precision production systems, and certified quality processes to manufacture custom rubber components, rubber-to-metal bonded parts, and elastomer solutions for OEMs, Tier-1, Tier-2, and industrial applications. "
       }
     />
   );

@@ -24,7 +24,7 @@ function WhoWeAre() {
           {/* Right Column: Paragraphs & Certificates (7 cols) */}
           <div className="lg:col-span-7 flex flex-col items-start text-left">
             <p className="font-body text-base sm:text-lg font-semibold text-[#1c1b1b] leading-relaxed mb-6">
-            Certified Rubber Components, Custom Compounds & Manufacturing Solutions for <span >OEMs</span>  and Industrial Applications.
+            Certified Rubber Components, Custom Compounds & Manufacturing Solutions for OEMs, Tier-1, Tier-2, and Industrial Applications. 
             </p>
             
             <p className="font-body text-sm sm:text-base text-[#4b5563] leading-relaxed mb-6">
@@ -58,6 +58,14 @@ function WhoWeAre() {
                 <i className="fa-solid fa-leaf text-[#2e7d32] text-lg flex-shrink-0" />
                 <span className="font-montserrat text-[11px] font-bold text-[#1c1b1b] tracking-wider uppercase">
                   ISO 14001:2015
+                </span>
+              </div>
+
+              {/* badge 4 */}
+              <div className="flex items-center gap-3 bg-[#f9fafb] p-4 border-l-[3px] border-[#1c1b1b]">
+                <i className="fa-solid fa-leaf text-[#2e7d32] text-lg flex-shrink-0" />
+                <span className="font-montserrat text-[11px] font-bold text-[#1c1b1b] tracking-wider uppercase">
+                  ISO 45001:2018
                 </span>
               </div>
             </div>
@@ -142,7 +150,7 @@ function OurOperationalStatistics() {
             </div>
             <div className="flex flex-col items-start mt-6 text-left">
               <span className="font-title text-4xl sm:text-5xl font-black text-white tracking-tight leading-none">
-                1150+
+              1800+
               </span>
               <span className="font-montserrat text-[10px] sm:text-xs font-bold text-[#9ca3af] tracking-wider uppercase mt-2">
                 PROJECTS COMPLETED
@@ -160,7 +168,7 @@ function OurOperationalStatistics() {
             </div>
             <div className="flex flex-col items-start mt-6 text-left">
               <span className="font-title text-4xl sm:text-5xl font-black text-white tracking-tight leading-none">
-                760+
+              25+
               </span>
               <span className="font-montserrat text-[10px] sm:text-xs font-bold text-[#9ca3af] tracking-wider uppercase mt-2">
                 PROJECTS RUNNING
@@ -175,7 +183,7 @@ function OurOperationalStatistics() {
             </div>
             <div className="flex flex-col items-start mt-6 text-left">
               <span className="font-title text-4xl sm:text-5xl font-black text-white tracking-tight leading-none">
-                70+
+              150+
               </span>
               <span className="font-montserrat text-[10px] sm:text-xs font-bold text-[#9ca3af] tracking-wider uppercase mt-2">
                 INDUSTRIES SERVED

@@ -85,7 +85,7 @@ const FAQ_ITEMS = [
     id: "XIV",
     question: "What is compression set in rubber and why does it matter?",
     answer:
-      "Compression set is the permanent deformation a rubber component retains after being compressed under a defined load, temperature, and time. Expressed as a percentage of the original deflection not recovered after load removal. For sealing applications, low compression set is critical — a seal with high compression set loses contact force over time, leading to leakage. Compression set testing (ISO 815 / ASTM D395) validates long-term sealing performance of compounds for static and dynamic seal applications.",
+"Compression set is the permanent deformation a rubber component retains after being compressed under a defined load, temperature, and time. Expressed as a percentage of the original deflection not recovered after load removal. For sealing applications, low compression set is critical — a seal with high compression set loses contact force over time, leading to leakage. Compression set testing (ASTM D 2000 and as per customer specification) validates long-term sealing performance of compounds for static and dynamic seal applications. "
   },
 ];
 

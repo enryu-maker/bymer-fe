@@ -187,7 +187,7 @@ export function Footer() {
               </address>
               <p className="font-montserrat text-xs uppercase tracking-wider pt-1">
                 <span className="text-white font-bold">GSTIN: </span>
-                <span className="text-[#fbbd05] font-bold">27AADP8030173</span>
+                <span className="text-[#fbbd05] font-bold">27AADFB1803D1Z5</span>
               </p>
             </div>
           </div>
