@@ -41,6 +41,32 @@ export function sortBySequence(items = []) {
   });
 }
 
+async function fetchAllPaginatedResults(url, options = {}) {
+  const items = [];
+  let nextUrl = url;
+
+  while (nextUrl) {
+    const res = await fetch(nextUrl, options);
+    if (!res.ok) throw new Error(`Failed to fetch ${url}`);
+
+    const data = await res.json();
+
+    if (Array.isArray(data)) {
+      return data;
+    }
+
+    if (Array.isArray(data.results)) {
+      items.push(...data.results);
+      nextUrl = data.next || null;
+      continue;
+    }
+
+    break;
+  }
+
+  return items;
+}
+
 export async function fetchStatistics() {
   try {
     const res = await fetch(`${BASE_URL}/api/globals/statistics/`, {
@@ -435,19 +461,16 @@ export async function fetchAwards() {
 
 export async function fetchTestimonials() {
   try {
-    const res = await fetch(`${BASE_URL}/api/testimonials/`, {
-      next: { revalidate: 3600 },
+    const results = await fetchAllPaginatedResults(`${BASE_URL}/api/testimonials/`, {
+      cache: "no-store",
     });
-    if (!res.ok) throw new Error("Failed to fetch testimonials");
-    const data = await res.json();
-    const results = data.results || data;
-    if (Array.isArray(results)) {
-      return results.map((testimonial) => ({
-        ...testimonial,
-        image: testimonial.image ? formatImageUrl(testimonial.image) : null,
-      }));
-    }
-    return [];
+
+    if (!Array.isArray(results)) return [];
+
+    return results.map((testimonial) => ({
+      ...testimonial,
+      image: testimonial.image ? formatImageUrl(testimonial.image) : null,
+    }));
   } catch (error) {
     console.warn("Failed to fetch testimonials:", error.message);
     return [];

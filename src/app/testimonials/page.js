@@ -8,6 +8,8 @@ export const metadata = {
     "Read testimonials from customers and suppliers who partner with Bymer Elastomers for elastomer solutions.",
 };
 
+export const dynamic = "force-dynamic";
+
 export default async function Testimonials() {
   const testimonials = await fetchTestimonials();
 
