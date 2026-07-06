@@ -152,7 +152,7 @@ function Capabilities() {
                 </h3>
               </div>
 
-              <p className="font-body text-justify text-xs sm:text-sm text-[#4b5563] leading-relaxed">
+              <p className="font-body text-xs sm:text-sm text-[#4b5563] leading-relaxed">
                 {card.description}
               </p>
             </div>
@@ -176,8 +176,8 @@ function InstitutionalQuality() {
 
           </h2>
 
-          <p className="font-montserrat text-xs sm:text-sm font-bold text-[#fbbd05] uppercase tracking-wider leading-relaxed max-w-xl">
-          Certified Rubber Components, Custom Rubber Compounds & Manufacturing Solutions for <span>OEMs</span>  and Industrial Applications
+          <p className="font-montserrat text-xs sm:text-sm font-bold text-[#fbbd05] tracking-wider uppercase leading-relaxed max-w-xl">
+          Certified Rubber Components, Custom Rubber Compounds & Manufacturing Solutions for <span className="uppercase">OEMs , Tier 1 and Tier 2 </span>Industrial Applications
           </p>
           
           <div className="flex flex-col gap-4 font-body text-xs sm:text-sm text-[#9ca3af] leading-relaxed max-w-xl">
@@ -429,7 +429,7 @@ function ClientLogos() {
     <section className="w-full bg-white border-y border-black py-10 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6">
         <p className="font-montserrat text-sm sm:text-base lg:text-base font-bold text-[#9ca3af] uppercase tracking-[0.15em] text-center">
-          Trusted by leading OEMs &amp; industrial partners worldwide
+          Trusted by leading OEMs, Tier-1 and Tier2 industrial partners worldwide
         </p>
       </div>
 

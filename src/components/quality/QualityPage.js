@@ -63,7 +63,7 @@ function EngineeringConfidenceSection() {
 
           <div className="lg:col-span-7 flex flex-col gap-6">
             <p className="font-body text-sm sm:text-base text-[#4b5563] leading-relaxed">
-            Operating under IATF 16949:2016, ISO 9001:2015, and ISO 14001:2015 certified management systems, we combine advanced manufacturing technologies, controlled production environments, and robust process controls to deliver elastomer components that meet the demanding requirements of OEM and industrial applications.
+            Operating under IATF 16949:2016, ISO 9001:2015, and ISO 14001:2015 certified management systems, we combine advanced manufacturing technologies, controlled production environments, and robust process controls to deliver elastomer components that meet the demanding requirements of OEMs, Tier-1 and Tier-2 industrial applications.
             </p>
             <p className="font-body text-sm sm:text-base text-[#4b5563] leading-relaxed">
             Every product is manufactured with emphasis on dimensional accuracy, material integrity, and long-term operational reliability.

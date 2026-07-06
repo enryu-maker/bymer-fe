@@ -56,7 +56,7 @@ export function Footer() {
   const email = "sales@bymer.com";
   const phone = "+91 98220 79899";
   const alternatePhone = "+91 253 2381123";
-  const address = "Plot No. J-52 & 47 MIDC Area,\nAmbad, Nashik 422010,\nMaharashtra, India.";
+  const address = "Plot No. J-52 MIDC Area,\nAmbad, Nashik 422010,\nMaharashtra, India.";
 
   const getSocialIcon = (platform) => {
     const p = platform.toLowerCase();

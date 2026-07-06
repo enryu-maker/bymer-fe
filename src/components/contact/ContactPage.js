@@ -12,7 +12,7 @@ function ContactDetails() {
   const altEmail = "info@bymer.com";
   const phone = "+91 253 2381123";
   const altPhone =  "+91 98220 79859";
-  const address = "Plot No. J-52 and J-42, MIDC Industrial Area, Ambad, Nashik - 422 010, Maharashtra, India.";
+  const address = "Plot No. J-52, MIDC Industrial Area, Ambad, Nashik - 422 010, Maharashtra, India.";
 
   return (
     <section className="w-full py-20 sm:py-24 bg-[#f5f5f5] border-b border-[#e5e7eb]">

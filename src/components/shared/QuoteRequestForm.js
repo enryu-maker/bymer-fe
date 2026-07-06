@@ -145,7 +145,7 @@ export function QuoteRequestForm({
             <QuoteField label="Industry">
               <input
                 type="text"
-                placeholder="Automotive, Industrial, OEM..."
+                placeholder="Automotive, Industrial, OEMs..."
                 value={formState.industry}
                 onChange={handleChange("industry")}
                 className={quoteInputClassName}

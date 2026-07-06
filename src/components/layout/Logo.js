@@ -38,7 +38,7 @@ export function Logo({ variant = "header" }) {
             isFooter ? "text-[#9ca3af]" : "text-[#1c1b1b]/60"
           }`}
         >
-          EST 1983 | ISO 9001:2015
+          EST 1978 | ISO 9001:2015
         </span>
       </div>
     </Link>

@@ -117,7 +117,7 @@ export function IndustriesPage() {
       <section className="w-full py-16 sm:py-20 bg-white border-b border-[#e5e7eb]">
         <div className="max-w-4xl text-center mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-6">
           <p className="font-body text-sm sm:text-base text-[#4b5563] leading-relaxed">
-          Every industry has unique performance requirements, operating conditions, and quality expectations. Bymer Elastomers partners with OEMs and industrial manufacturers to develop elastomer solutions that address application-specific challenges while ensuring consistency, durability, and manufacturing reliability.
+          Every industry has unique performance requirements, operating conditions, and quality expectations. Bymer Elastomers partners with OEMs, Tier-1 and Tier-2 industrial manufacturers to develop elastomer solutions that address application-specific challenges while ensuring consistency, durability, and manufacturing reliability.
           </p>
           <p className="font-body text-sm sm:text-base text-[#4b5563] leading-relaxed">
           The industries may be different, but the expectations are the same: consistent quality, reliable delivery, technical know-how, and manufacturing capability.

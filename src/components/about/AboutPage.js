@@ -102,7 +102,7 @@ function MissionVision() {
             </h3>
             <div className="flex text-justify flex-col gap-4 font-body text-xs sm:text-sm text-[#4b5563] leading-relaxed">
               <p>
-              To deliver reliable elastomer solutions through engineering expertise, certified manufacturing systems, and continuous innovation. We are committed to helping OEMs and industrial manufacturers achieve consistent performance, operational reliability, and long-term value through custom rubber components, advanced compounds, and scalable production capabilities.
+              To deliver reliable elastomer solutions through engineering expertise, certified manufacturing systems, and continuous innovation. We are committed to helping OEMs,Tier-1 and Tier-2 industrial manufacturers achieve consistent performance, operational reliability, and long-term value through custom rubber components, advanced compounds, and scalable production capabilities.
               </p>
             </div>
           </div>
@@ -277,7 +277,7 @@ function PillarsSection() {
             title="PARTNER / CFO"
             imageSrc="/images/Ruzbeh Patel.png"
             imageAlt="RUZBEH PATEL"
-            bio="Mr. Ruzbeh Patel, with over 40 years of experience in the rubber manufacturing industry, plays a pivotal role in spearheading business growth, customer engagement, and strategic development at Bymer Elastomers. He is a Science graduate from Savitribai Phule Pune University and is responsible for new business initiatives and market development, helping to strengthen Bymer's position as a trusted elastomer manufacturing partner for OEMs and industrial customers."
+            bio="Mr. Ruzbeh Patel, with over 40 years of experience in the rubber manufacturing industry, plays a pivotal role in spearheading business growth, customer engagement, and strategic development at Bymer Elastomers. He is a Science graduate from Savitribai Phule Pune University and is responsible for new business initiatives and market development, helping to strengthen Bymer's position as a trusted elastomer manufacturing partner for OEMs, Tier-1 and Tier-2 industrial customers."
           />
         </div>
 
