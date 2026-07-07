@@ -94,8 +94,7 @@ function MissionVision() {
             </h3>
             <div className="flex flex-col text-justify gap-4 font-body text-xs sm:text-sm text-[#4b5563] leading-relaxed">
               <p>
-              To be a globally trusted elastomer manufacturing partner, recognized for engineering excellence, manufacturing reliability, innovation, and sustainable growth. We aspire to set industry benchmarks in quality, process excellence, and customer partnership while creating lasting value for our customers, employees, and stakeholders across India and international markets.
-
+              To be a globally trusted elastomer manufacturing partner, recognized for engineering excellence, manufacturing reliability, innovation, and sustainable growth. We aim to set industry benchmarks in quality, process excellence, and customer partnership, creating lasting value for customers, employees, and stakeholders across India and global markets.
               </p>
             </div>
           </div>
@@ -110,7 +109,7 @@ function MissionVision() {
             </h3>
             <div className="flex text-justify flex-col gap-4 font-body text-xs sm:text-sm text-[#4b5563] leading-relaxed">
               <p>
-              To deliver reliable elastomer solutions through engineering expertise, certified manufacturing systems, and continuous innovation. We are committed to helping OEMs,Tier-1 and Tier-2 industrial manufacturers achieve consistent performance, operational reliability, and long-term value through custom rubber components, advanced compounds, and scalable production capabilities.
+              We engineer and manufacture precision elastomer solutions that enable OEMs, Tier-1, Tier-2, and industrial manufacturers to enhance product performance, operational reliability, and manufacturing efficiency through custom rubber components, advanced elastomer compounds, and scalable manufacturing capabilities.
               </p>
             </div>
           </div>
